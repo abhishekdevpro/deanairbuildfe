@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -68,9 +68,6 @@ const ProfilePage = () => {
     return filePath.split('/').pop();
   };
 
-
-
-
   const handleResume = async (e) => {
     e.preventDefault();
     if (selectedFile) {
@@ -89,7 +86,7 @@ const ProfilePage = () => {
         );
 
         if (response.status === 200) {
-          setUploadStatus("Resume uploaded successfully.");
+          setUploadStatus("Resume Uploaded Successfully");
           toast.success("Resume Uploaded Successfully")
         } else {
           setUploadStatus("Failed to upload resume.");
@@ -105,15 +102,34 @@ const ProfilePage = () => {
   };
 
   const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
-    setUploadStatus("");
+    const file = e.target.files[0];
+    const maxSizeInBytes = 2 * 1024 * 1024; // 2MB in bytes
+
+    if (file.size > maxSizeInBytes) {
+      setUploadStatus("File size exceeds 2MB. Please choose a smaller file.");
+      setSelectedFile(null);
+    } else {
+      setSelectedFile(file);
+      setUploadStatus("");
+    }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(modalContent)
+      .then(() => {
+        toast.success('Content copied to clipboard');
+      })
+      .catch(err => {
+        console.error('Failed to copy: ', err);
+        toast.error('Failed to copy content');
+      });
   };
 
   return (
-    <div className="bg-indigo-900 p-4 ">
-      <div className="max-w-4xl mx-auto ">
+    <div className="bg-indigo-900 p-4">
+      <div className="max-w-4xl mx-auto">
         <div className="rounded-lg shadow-lg p-6 bg-indigo-800 flex flex-col md:flex-row justify-between items-center h-44">
-          <div className="space-y-2 mb-6 md:mb-0 md:mr-6 md:pr-6 ">
+          <div className="space-y-2 mb-6 md:mb-0 md:mr-6 md:pr-6">
             <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s"
@@ -125,7 +141,6 @@ const ProfilePage = () => {
                 <p className="">Web Developer</p>
               </div>
             </div>
-            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ms-20">
               <div>
                 <p className="text-white">📧 ben@gmail.com</p>
@@ -134,36 +149,33 @@ const ProfilePage = () => {
               </div>
             </div>
           </div>
-           
-          {/* Vertical divider for larger screens */}
           <div className="hidden md:block border-[0.5px] border-gray-500 h-40"></div>
-          
           <div className="flex flex-col justify-start items-start gap-4">
-          { resumes.length > 0 && (
-    <tr key={resumes[0].id} className="border-t border-gray-700">
-      <td className="py-2 px-4 hidden">{getFileName(resumes[0].file_path)}</td>
-      <td>
-        <button
-          className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800"
-          onClick={() => handleGetScore(resumes[0])}
-        >
-         {scores[resumes[0].id] !== undefined  ? scores[resumes[0].id]   : 'Resume Score'}
-        </button>
-      </td>
-    </tr>
-  )}
-           
+            {resumes.length > 0 && (
+              <tr key={resumes[0].id} className="border-t border-gray-700">
+                <td className="py-2 px-4 hidden">{getFileName(resumes[0].file_path)}</td>
+                <td>
+                  <button
+                    className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800"
+                    onClick={() => handleGetScore(resumes[0])}
+                  >
+                    {scores[resumes[0].id] !== undefined ? scores[resumes[0].id] : 'Resume Score'}
+                  </button>
+                </td>
+              </tr>
+            )}
             <div className="flex flex-col md:flex-row items-center gap-2">
               <input
                 type="file"
                 onChange={handleFileChange}
                 className="hidden"
                 id="fileInput"
+                accept=".pdf"
               />
               <label htmlFor="fileInput" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
-                Choose File
+                Choose File 
               </label>
-              <span className="text-white ml-2">{selectedFile ? selectedFile.name : "No file chosen"}</span>
+              <span className="text-white ml-2">{selectedFile ? selectedFile.name : `Upload .Pdf format resume`}</span>
             </div>
             <button
               onClick={handleResume}
@@ -174,23 +186,30 @@ const ProfilePage = () => {
           </div>
         </div>
         {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
-          <div className="bg-gray-700 p-10 rounded shadow-lg text-white">
-            <h2 className="text-xl font-semibold text-white">Resume Score</h2>
-          
-            <p><strong>Content Accuracy Percentage: </strong> {modalContent}</p>
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="mt-4 bg-yellow-500 text-white py-1 px-10 rounded"
-            >
-              Close
-            </button>
+          <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
+            <div className="bg-gray-700 p-10 rounded shadow-lg text-white">
+              <h2 className="text-xl font-semibold text-white">Resume Score</h2>
+              <p><strong>Content Accuracy Percentage: </strong> {modalContent}</p>
+              <div className="flex mt-4">
+                <button
+                  onClick={copyToClipboard}
+                  className="bg-blue-500 text-white py-1 px-4 rounded mr-2"
+                >
+                  Copy
+                </button>
+                <button
+                  onClick={() => setIsModalOpen(false)}
+                  className="bg-yellow-500 text-white py-1 px-4 rounded"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        )}
         {uploadStatus && (
           <div className="mt-4 text-center">
-            <p className="text-sm text-gray-600">{uploadStatus}</p>
+            <p className="text-sm text-white font-semibold">{uploadStatus}</p>
           </div>
         )}
       </div>

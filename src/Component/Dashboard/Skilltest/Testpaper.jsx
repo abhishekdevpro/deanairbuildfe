@@ -25,7 +25,7 @@ function Testpaper() {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          `https://api.perfectresume.ca/api/user/skill-assessment?skill_id=${parseInt(skillId, 10)}&skill_name=${encodeURIComponent(skillName)}`,
+          `https://api.perfectresume.ca/api/user/skill-assessment?skill_id=${parseInt(skillId)}&skill_name=${encodeURIComponent(skillName)}`,
           {
             headers: {
               Authorization: token,
@@ -87,6 +87,15 @@ function Testpaper() {
       const { results } = response.data.data;
       setResults(results);
       setShowResults(true);
+
+      // Store results in local storage
+      localStorage.setItem('testResults', JSON.stringify({
+        skillName,
+        totalQuestions: results.total_question,
+        rightAnswers: results.right_answer,
+        wrongAnswers: results.wrong_answer,
+        percentage: results.Percentage
+      }));
     } catch (error) {
       console.error('Error submitting answers:', error);
       setError(error.message || 'Error submitting answers');
@@ -115,7 +124,9 @@ function Testpaper() {
       className="w-75  d-flex flex-column align-items-center "
       style={{ gap: "7px" }}
     >
-      <img src={""} alt="gif" className="w-50 " />
+      <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
+          <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-900 h-64 w-64 pt-20 ps-16">Please Wait..</div>
+        </div>
       <h2 className='text-violet-950'>Hold On A Second! We're Processing your request...!</h2>
       <p className="p-0 m-0 " style={{ color: "red", fontWeight: "500" }}>
         Don't Shut or Back Your Window!

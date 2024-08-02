@@ -1,21 +1,14 @@
-
+// main.js or index.js
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Layout from "./Layout.jsx";
-import Slider from "./Component/Home/Slider.jsx";
 import Slider_details from "./Component/Home/Slider_details.jsx";
 import Login from "./Component/Login/Login.jsx";
 import Signup from "./Component/Login/Signup.jsx";
 import { ToastBar, Toaster } from "react-hot-toast";
-// import Dashboard from "./Component/Dashboard/Dashboard.jsx";
-// import DashboardLayout from "./Component/"
 import DashboardLayout from './Component/Dashboard/Dashboard.jsx'
 import ProfileForm from "./Component/Dashboard/ProfileForm.jsx";
 import MyResume from "./Component/Dashboard/MyResume.jsx";
@@ -29,11 +22,9 @@ import Changepassword from "./Component/Dashboard/Changepassword.jsx";
 import Skills from "./Component/Dashboard/Skilltest/Skills.jsx";
 import Testpaper from "./Component/Dashboard/Skilltest/Testpaper.jsx";
 import Paymentpage from "./Component/Dashboard/Paymentpage.jsx";
-
 import AdminLayout from './Component/Admin/Admin.jsx'
 import ProfileForm1 from "./Component/Admin/ProfileForm1.jsx";
 import MyResume1 from "./Component/Admin/MyResume1.jsx";
-
 import Notification1 from "./Component/Admin/Notification1.jsx";
 import Payment1 from "./Component/Admin/Payment1.jsx";
 import Addreferall1 from "./Component/Admin/Addreferall1.jsx";
@@ -42,9 +33,10 @@ import Refferallbycustomer from "./Component/Admin/Refferallbycustomer.jsx";
 import Paymentpage1 from "./Component/Admin/Paymentpage1.jsx";
 import AdminLogin from "./Component/Login/AdminLogin.jsx";
 import Self from "./Component/Admin/Self.jsx";
+import Download from "./components/forms/Download.jsx";
 
-
-
+import { DownloadProvider } from './components/forms/DownloadContext'; // Import the DownloadProvider
+import { TemplateProvider } from "./components/forms/TemplateContext.jsx";
 const route = createBrowserRouter([
   {
     path: "/",
@@ -106,7 +98,6 @@ const route = createBrowserRouter([
             path: "changepassword",
             element: <Changepassword />,
           },
-          
           {
             path: "ai-resume-builder",
             element: <Selectionresume />,
@@ -116,8 +107,12 @@ const route = createBrowserRouter([
             element: <Uploadresume />,
           },
           {
-            path: "form",
+            path: "form/:id",
             element: <Form />,
+          },
+          {
+            path: "download",
+            element: <Download />,
           },
           {
             path: "skilltest",
@@ -126,11 +121,9 @@ const route = createBrowserRouter([
           {
             path:"testpaper/:skillId/:skillName",
             element:<Testpaper/>
-    
           }
         ],
       },
-
       {
         path: "admin",
         element: <AdminLayout />,
@@ -175,19 +168,19 @@ const route = createBrowserRouter([
             path: "changepassword1",
             element: <Changepassword1 />,
           },
-          
-          
         ],
       },
     ],
   },
 ]);
 
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={route} />
-    {/*<App /> */}
-    <Toaster />
+     <TemplateProvider>
+    <DownloadProvider>
+      <RouterProvider router={route} />
+      <Toaster />
+    </DownloadProvider>
+    </TemplateProvider>
   </React.StrictMode>
 );

@@ -103,7 +103,7 @@ const ProfileForm = () => {
           </div>
 
           <div className="flex justify-center">
-            <button type="submit" className="bg-navy-700 text-white px-6 py-2 rounded hover:bg-indigo-700 transition duration-200">
+            <button type="submit" className="bg-navy-700 text-white px-6 py-2 rounded bg-indigo-700 transition duration-200">
               Save Settings
             </button>
           </div>

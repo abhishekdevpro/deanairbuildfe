@@ -22,6 +22,8 @@ import Footer from './Footer';
 import FontSelector from './cvFunctionality/FontSelector';
 import ColorButtons from './cvFunctionality/ColorButtons';
 import TemplateComponent from './forms/templateComponent';
+import Download from './forms/Download';
+import { useDownload } from './forms/DownloadContext';
 
 const predefinedColors = {
   Template1: '#F5F5F5',
@@ -70,6 +72,7 @@ const predefinedText = {
 
 function Form() {
   // State variables
+  const targetRef = useDownload();
   const [showComponent, setShowComponent] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState('Template1');
    const [selectedFont, setSelectedFont] = useState('Arial');
@@ -529,12 +532,14 @@ start_date={resumeData.employmenthistory[0]?.start_date}
                 }
               })()}
             </div>
+            
             <div className=" w-4/6 ms-10 overflow-y-auto overflow-x-auto h-full  py-10 mb-10 border-r-2">
+            <Download/>
               <div className=' mb-5 ms-60 '><Tooltip/></div>
               
               <TemplateComponent
               image={image}
-                ref={cvRef}
+              ref={targetRef}
                 data={formData}
                 selectedTemplate={selectedTemplate}
                 setSelectedTemplate={setSelectedTemplate}
@@ -741,7 +746,7 @@ start_date={resumeData.employmenthistory[0]?.start_date}
       </>
     ) : (
       <>
-      
+      <Download/>
       <PreviewSection
       image={image}
         handlePrint={handlePrint}

@@ -73,7 +73,7 @@ function Uploadresume() {
       setLoading(false);
   
       // Navigate to resume display page with id as parameter
-      navigate(`/dashboard/form?id=${response.data.data[0].id}`);
+      navigate(`/dashboard/form/${response.data.data[0].id}`);
     } catch (error) {
       console.error("Upload error:", error);
       toast.error("File upload failed");

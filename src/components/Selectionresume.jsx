@@ -10,6 +10,39 @@ function Selectionresume() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
+  const createResume = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await fetch('https://api.perfectresume.ca/api/user/resume-create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        },
+        body: JSON.stringify({
+          // Your data here
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('Success:', data);
+      // Extract the resume ID from the response data
+      const resumeId = data.data.id;
+
+      // Navigate to the dashboard with the resume ID in the URL
+      navigate(`/dashboard/form/${resumeId}`);
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle error
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleClick2 = () => {
     setLoading(true);
     setTimeout(() => {
@@ -20,10 +53,7 @@ function Selectionresume() {
 
   const handleClick = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/dashboard/form');
-    }, 5000);
+    createResume();
   };
 
   return (
@@ -32,7 +62,6 @@ function Selectionresume() {
         <UploadScreen />
       ) : (
         <>
-         
           <div className="h-screen flex flex-col items-center">
             <div className="text-center my-10">
               <h1 className="font-bold text-3xl mb-3">Are you uploading an existing resume?</h1>

@@ -9,11 +9,13 @@ import Template7 from '../templates/Template7';
 import Template8 from '../templates/Template8';
 import Template9 from '../templates/Template9';
 import Template10 from '../templates/Template10';
+import { useDownload } from './DownloadContext';
 
 const TemplateComponent = forwardRef(({ image, data, selectedTemplate, selectedFont, textSize, setBoxBgColor, sectionSpacing, paragraphSpacing, lineSpacing, boxBgColor, isPreviewScreen, predefinedText , handleImageUpload,skillsfromapi ,id}, ref) => {
 console.log(image, '=====')
   
-  
+const { targetRef } = useDownload(); 
+
   const getSizeClass = (value) => {
     if (value <= 1) return 'small';
     if (value === 2) return 'medium';

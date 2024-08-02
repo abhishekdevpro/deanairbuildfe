@@ -4,6 +4,12 @@ import PdfDownloadButton from '../forms/PdfDownloadButton';
 import TemplateComponent from './templateComponent';
 import FunctionalityOfCV from './FunctionalityOfCV';
 import { useNavigate } from "react-router-dom";
+import { useDownload } from './DownloadContext';
+import { useTemplate } from './TemplateContext';
+import { useParams } from 'react-router-dom';
+import Download from './Download';
+
+
 const PreviewSection = ({
   cvRef,
   handlePrint,
@@ -20,9 +26,9 @@ const PreviewSection = ({
   boxBgColor,
   setBoxBgColor,
   skillsfromapi,
-  id,
   location
 }) => {
+  const targetRef = useDownload();
   const [textSize, setTextSize] = useState(2);
   const [sectionSpacing, setSectionSpacing] = useState(2);
   const [paragraphSpacing, setParagraphSpacing] = useState(2);
@@ -30,8 +36,9 @@ const PreviewSection = ({
   const [isPreviewScreen, setIsPreviewScreen] = useState(true);
   const [accuracyPercentage, setAccuracyPercentage] = useState(null);
   const navigate = useNavigate();
-console.log(skillsfromapi,'api',location)
-  
+  const { id } = useParams(); // Extract id from URL parameters
+  console.log(skillsfromapi, 'api', location);
+
   const resumeScore = async () => {
     try {
       const token = localStorage.getItem('token'); // Retrieve the token from local storage
@@ -132,7 +139,7 @@ console.log(skillsfromapi,'api',location)
       if (response.data) {
         console.log('Resume updated successfully:', response.data);
         // Navigate to the desired URL
-        navigate('/dashboard/ai-resume-builder');
+       // navigate('/dashboard/ai-resume-builder');
       }
     } catch (error) {
       console.error('Error updating resume:', error);
@@ -143,6 +150,7 @@ console.log(skillsfromapi,'api',location)
       }
     }
   };
+  
   
 
   return (
@@ -160,10 +168,11 @@ console.log(skillsfromapi,'api',location)
         <h1 className='text-2xl font-bold mb-3 '>Review your resume</h1>
         <h1 className='text-sm'>Review and make any final changes to your resume, then download or email yourself a copy and apply for jobs!</h1>
       </div>
+      <Download/>
       <div className='flex justify-center mb-40'>
         <div className="w-3/4 pt-5 overflow-auto mb-10">
-          <TemplateComponent
-            ref={cvRef}
+        <TemplateComponent
+            ref={targetRef}
             data={formData}
             selectedTemplate={selectedTemplate}
             selectedFont={selectedFont}
@@ -180,8 +189,20 @@ console.log(skillsfromapi,'api',location)
         </div>
         <div className='py-5 w-1/4 text-center'>
           <div className='flex justify-around'>
+            
             <div className="justify-end ">
-              <PdfDownloadButton targetRef={cvRef} />
+              <PdfDownloadButton targetRef={cvRef}
+               data={formData}
+               selectedTemplate={selectedTemplate}
+               selectedFont={selectedFont}
+               textSize={textSize}
+               sectionSpacing={sectionSpacing}
+               paragraphSpacing={paragraphSpacing}
+               lineSpacing={lineSpacing}
+               boxBgColor={boxBgColor}
+               isPreviewScreen={isPreviewScreen}
+               predefinedText={predefinedText}
+               skillsfromapi={skillsfromapi} />
             </div>
             <div className=''>
               <button
