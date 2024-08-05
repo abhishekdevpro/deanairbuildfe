@@ -200,7 +200,7 @@ const MyResume = () => {
           <tbody>
             {resumes.map((resume, index) => (
               <tr key={index} className="border-t border-gray-700">
-                <td className="py-2 px-4 text-start">{getFileName(resume.file_path)}</td>
+                <td className="py-2 px-4 ">{getFileName(resume.file_path) || "Resume joe"}</td>
                 <td className="py-2 px-4">
                   <button
                     className="bg-yellow-500 text-black py-1 px-3 rounded"

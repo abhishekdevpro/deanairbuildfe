@@ -84,8 +84,13 @@ function Uploadresume() {
 
   return (
     <>
-      {loading ? (
-        <UploadScreen />
+      {loading ? (<>
+        <div className="text-center pt-10">Please wait for while...</div>
+        <div className="flex items-center justify-center h-screen">
+          
+          <div className="border-t-8 border-violet-800 rounded-full w-40 h-40 animate-spin"></div>
+        </div>
+      </>
       ) : (
         <>{console.log(locationFromResponse,'dasd')}
           <div className="h-screen">

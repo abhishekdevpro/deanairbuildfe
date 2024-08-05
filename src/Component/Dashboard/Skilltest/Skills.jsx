@@ -105,7 +105,7 @@ const Skills = () => {
   }
 
   if (error) {
-    return <div className="py-16 px-5">Error loading skills data. Please try again later.</div>;
+    return <div className="py-16 px-5 text-center text-3xl">🎮Please update your Skills, So you can take the test</div>;
   }
 
   return (

@@ -169,12 +169,12 @@ const  navigate = useNavigate()
             </div>
             */}
             
-
-            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
+       
+            <Link to="#" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
             <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Fetch</Link>
-            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
-            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
-            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Blog</Link>
+            <Link to="https://www.perfectresume.ca/blog/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
+            <Link to="https://www.perfectresume.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
+      
             <Link
             to="/adminlogin"  className="text-white px-3 py-2 rounded-md text-lg font-semibold">
             <span className="mr-2">🛡️</span>

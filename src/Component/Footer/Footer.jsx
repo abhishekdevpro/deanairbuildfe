@@ -26,41 +26,39 @@ const Footer = () => {
                 <div className="w-full md:w-auto mb-6 md:mb-0" id='footer'>
                     <h2 className="text-lg font-bold text-white">Perfect Resume</h2>
                     <ul>
-                        <li><a href="#" className="">About Us</a></li>
-                        <li><a href="#" className="">Careers</a></li>
-                        <li><a href="#" className="">Placement Support</a></li>
-                        <li><a href="#" className="">Resources</a></li>
+                        <li><a href="/aboutus" className="">About Us</a></li>
+                        <li><a href="/careers" className="">Careers</a></li>
+                        <li><a href="/Placement" className="">Placement Support</a></li>
+                        <li><a href="https://www.perfectresume.ca/blog/" className="">Resources</a></li>
                     </ul>
                 </div>
                 <div className="w-full md:w-auto mb-6 md:mb-0">
                     <h2 className="text-lg font-bold text-white">Support</h2>
                     <ul>
-                        <li><a href="#" className="">Contact</a></li>
-                        <li><a href="#" className="">Salary Tool</a></li>
-                        <li><a href="#" className="">Grievance Redressal</a></li>
-                        <li><a href="#" className="">Terms & Conditions</a></li>
-                        <li><a href="#" className="">Privacy Policy</a></li>
+                        <li><a href="https://www.perfectresume.ca/#contact" className="">Contact</a></li>
+                        <li><a href="/Salarytools" className="">Salary Tool</a></li>
+                   
+                        <li><a href="/TermsandConditions" className="">Terms & Conditions</a></li>
+                        <li><a href="/PrivacyPolicy" className="">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div className="w-full md:w-auto mb-6 md:mb-0">
                     <h2 className="text-lg font-bold text-white">Scope & Products</h2>
                     <ul>
-                        <li><a href="#" className="">Ai Resume Builder</a></li>
-                        <li><a href="#" className="">Ai Skill Tests</a></li>
-                        <li><a href="#" className="">Ai CV Parsing</a></li>
-                        <li><a href="#" className="">White Labelling</a></li>
+                        <li><a href="/AiResumeBuilder" className="">Ai Resume Builder</a></li>
+                        <li><a href="/AiSkillTests" className="">Ai Skill Tests</a></li>
+                        <li><a href="/AiCVParsing" className="">Ai CV Parsing</a></li>
+                        <li><a href="" className="">White Labelling</a></li>
                         <li><a href="#" className="">Generative AI</a></li>
                     </ul>
                 </div>
                 <div className="w-full md:w-auto mb-6 md:mb-0">
                     <h2 className="text-lg font-bold text-white">Ai Resources</h2>
                     <ul>
-                        <li><a href="#" className="">Ai - Resume Accuracy</a></li>
-                        <li><a href="#" className="">Ai - Resume Enhancer</a></li>
-                        <li><a href="#" className="">Ai - Job Match & Apply</a></li>
-                        <li><a href="#" className="">Verified Jobs</a></li>
-                        <li><a href="#" className="">Verified Profiles</a></li>
-                        <li><a href="#" className="">& Much More</a></li>
+                        <li><a href="/AIEnhancedResumeAccuracy" className="">Ai - Resume Accuracy</a></li>
+                        <li><a href="/AiResumeEnhancer" className="">Ai - Resume Enhancer</a></li>
+                        <li><a href="/AiJobMatchApply" className="">Ai - Job Match & Apply</a></li>
+                
                     </ul>
                 </div>
                 </div>

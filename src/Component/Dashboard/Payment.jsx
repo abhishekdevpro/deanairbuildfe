@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Payment() {
     const [showForm, setShowForm] = useState(false);
@@ -44,12 +45,15 @@ function Payment() {
                 <div className="text-center">
                   <p className="text-lg font-bold">Paid</p>
                   <span className=" text-violet-900 font-bold text-lg"> $49</span> <span className=" text-violet-900 ">/One Time Purchase</span><br/>
-                  <button
+                <Link to="/dashboard/ai-resume-builder">
+                <button
                     className='bg-blue-900 text-white p-2 rounded-lg m-2'
-                    onClick={() => handleChoosePlan('paid', 49, '123')}
+                    
                   >
                     Choose This Plan
                   </button>
+                </Link>
+                 
                 </div>
               </th>
               <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600  tracking-wider">
@@ -57,10 +61,10 @@ function Payment() {
                   <p className="text-lg font-bold">Personal</p>
                   <span className=" text-violet-900 font-bold text-lg"> $69</span> <span className=" text-violet-900 ">/Month [Cancel any time]</span><br/>
                   <button
-                    className='bg-blue-900 text-white p-2 rounded-lg m-2'
-                    onClick={() => handleChoosePlan2('personal', 69, '123')}
+                   className='bg-red-200 text-blue-900 p-2 px-6 rounded-lg m-4 disabled:'
+                    onClick={() =>('personal', 69, '123')}
                   >
-                    Choose This Plan
+                    Coming Soon
                   </button>
                 </div>
               </th>

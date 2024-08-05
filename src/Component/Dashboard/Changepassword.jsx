@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import toast from "react-hot-toast";
+import { ToastContainer } from "react-toastify";
 function Changepassword() {
   const [showOldPassword, setShowOldPassword] = useState(false);
   const [showNewPassword, setShowNewPassword] = useState(false);
@@ -37,25 +38,20 @@ function Changepassword() {
     })
       .then((response) => {
         console.log(response);
-        showToastSuccess("Password has been changed successfully");
+        toast("✅ Password has been changed successfully");
       })
       .catch((err) => console.log(err));
-    showToastError("Something went wrong please try again");
+    toast("❌ Something went wrong please try again ");
   };
 
   return (
     <>
       <div className="bg-white min-h-screen p-4">
-        
+        <ToastContainer/>
         <div className="bg-white p-8 rounded shadow">
           <div className="flex justify-between items-center mb-6">
             <h5 className="text-2xl font-bold uppercase">🔐 Change Password</h5>
-            <Link
-              to={"/user/jobs-cv-manager"}
-              className="text-blue-500 hover:underline"
-            >
-              Back
-            </Link>
+            
           </div>
           <form onSubmit={handleSubmit}>
             <div className="space-y-7">

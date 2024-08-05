@@ -37,6 +37,21 @@ import Download from "./components/forms/Download.jsx";
 
 import { DownloadProvider } from './components/forms/DownloadContext'; // Import the DownloadProvider
 import { TemplateProvider } from "./components/forms/TemplateContext.jsx";
+
+import Aboutus from "./Component/Footer/Aboutus.jsx";
+import Careers from "./Component/Footer/Careers.jsx";
+import Placement from "./Component/Footer/Placement .jsx";
+import Salarytools from "./Component/Footer/Salarytools.jsx";
+import TermsandConditions from "./Component/Footer/TermsandConditions.jsx";
+import PrivacyPolicy from "./Component/Footer/PrivacyPolicy.jsx";
+import AiResumeBuilder from "./Component/Footer/AiResumeBuilder.jsx";
+import AiSkillTests from "./Component/Footer/AiSkillTests.jsx";
+import AiCVParsing from "./Component/Footer/AiCVParsing.jsx";
+import AIEnhancedResumeAccuracy from "./Component/Footer/AIEnhancedResumeAccuracy.jsx";
+import AiJobMatchApply from "./Component/Footer/AiJobMatchApply.jsx";
+import SearchJobsApply from "./Component/Footer/SearchJobsApply.jsx";
+import AiResumeEnhancer from "./Component/Footer/AiResumeEnhancer.jsx";
+
 const route = createBrowserRouter([
   {
     path: "/",
@@ -61,6 +76,58 @@ const route = createBrowserRouter([
       {
         path: "signup",
         element: <Signup />,
+      },
+      {
+        path: "aboutus",
+        element: <Aboutus />,
+      },
+      {
+        path: "careers",
+        element: <Careers />,
+      },
+      {
+        path: "Placement",
+        element: <Placement />,
+      },
+      {
+        path: "Salarytools",
+        element: <Salarytools />,
+      },
+      {
+        path: "TermsandConditions",
+        element: <TermsandConditions />,
+      },
+      {
+        path: "PrivacyPolicy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "AiResumeBuilder",
+        element: <AiResumeBuilder />,
+      },
+      {
+        path: "AiSkillTests",
+        element: <AiSkillTests />,
+      },
+      {
+        path: "AiCVParsing",
+        element: <AiCVParsing />,
+      },
+      {
+        path: "AIEnhancedResumeAccuracy",
+        element: <AIEnhancedResumeAccuracy />,
+      },
+      {
+        path: "AiJobMatchApply",
+        element: <AiJobMatchApply />,
+      },
+      {
+        path: "SearchJobsApply",
+        element: <SearchJobsApply />,
+      },
+      {
+        path: "AiResumeEnhancer",
+        element: <AiResumeEnhancer />,
       },
       {
         path: "dashboard",
