@@ -191,6 +191,7 @@ const PreviewSection = ({
           <div className='flex justify-around'>
             
             <div className="justify-end ">
+              <button onClick={updateResume}>
               <PdfDownloadButton targetRef={cvRef}
                data={formData}
                selectedTemplate={selectedTemplate}
@@ -202,7 +203,7 @@ const PreviewSection = ({
                boxBgColor={boxBgColor}
                isPreviewScreen={isPreviewScreen}
                predefinedText={predefinedText}
-               skillsfromapi={skillsfromapi} />
+               skillsfromapi={skillsfromapi} /></button>
             </div>
             <div className=''>
               <button

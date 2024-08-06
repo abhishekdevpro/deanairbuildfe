@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -171,18 +172,20 @@ const ProfilePage = () => {
                 className="hidden"
                 id="fileInput"
                 accept=".pdf"
+                disabled
               />
               <label htmlFor="fileInput" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
                 Choose File 
               </label>
               <span className="text-white ml-2">{selectedFile ? selectedFile.name : `Upload .Pdf format resume`}</span>
             </div>
+            <Link to="/dashboard/ai-resume-builder">
             <button
-              onClick={handleResume}
+             // onClick={handleResume}
               className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
             >
               Upload Resume
-            </button>
+            </button></Link>
           </div>
         </div>
         {isModalOpen && (

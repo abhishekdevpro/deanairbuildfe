@@ -7,20 +7,6 @@ const Download = () => {
   const [isVisible, setIsVisible] = useState(false);
   const linkRef = useRef(null);
 
-  useEffect(() => {
-    // Get the current URL
-    const url = new URL(window.location.href);
-    
-    // Check if the URL contains the token parameter
-    const searchParams = new URLSearchParams(url.search);
-    
-    if (searchParams.has('token')) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
-  }, []);
-
   const handleDownload = () => {
     const element = targetRef.current;
 
@@ -40,6 +26,21 @@ const Download = () => {
       link.click();
     });
   };
+
+  useEffect(() => {
+    // Get the current URL
+    const url = new URL(window.location.href);
+    
+    // Check if the URL contains the token parameter
+    const searchParams = new URLSearchParams(url.search);
+    
+    if (searchParams.has('token')) {
+      setIsVisible(true);
+      handleDownload(); // Automatically trigger download when visible
+    } else {
+      setIsVisible(false);
+    }
+  }, []);
 
   if (!isVisible) {
     return null; // Render nothing if the button should be hidden

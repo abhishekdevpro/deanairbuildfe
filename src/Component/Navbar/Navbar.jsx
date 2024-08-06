@@ -1,9 +1,6 @@
-
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './logo.jpg';
-import './Navbar.css';
+
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -16,13 +13,25 @@ const Navbar = () => {
   const [isLoading, setLoading1] = useState(false);
   const [error, setError] = useState(null);
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
-const  navigate = useNavigate()
+  const [isAdmin, setIsAdmin] = useState(!!localStorage.getItem('token')); // Check admin status from localStorage
+  const [isHovering, setIsHovering] = useState(false);
+  
+  const navigate = useNavigate();
+
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
   };
 
   const resumeScore = async () => {
@@ -93,7 +102,9 @@ const  navigate = useNavigate()
 
   const handleLogout = () => {
     localStorage.removeItem('token'); // Clear the token
+    localStorage.removeItem('isAdmin'); // Clear the admin status
     setIsLoggedIn(false);
+    setIsAdmin(false);
     navigate("/");// Update login state
   };
 
@@ -111,34 +122,48 @@ const  navigate = useNavigate()
             </Link>
           </div>
           <div className="hidden md:flex justify-center items-center space-x-4" id="nav">
-            
-            
-       
-            <Link to="#" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
-            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Parsing</Link>
+            <Link to="" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
+            <Link
+              to="/"
+              className="text-white px-3 py-2 rounded-md text-lg font-semibold relative"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              AI Resume Parsing
+              {isHovering && (
+                <div className="absolute w-full bg-sky-600 text-black border  px-2 py-2 rounded-md text-xs  shadow-lg mt-2  bg-opacity-50">
+                  At Perfect Resume, we leverage cutting-edge AI CV parsing technology to streamline the recruitment process,
+                   making it faster and more efficient for both employers and job seekers. Our AI CV parsing tool accurately 
+                   extracts and analyzes key information from CVs, helping you identify the best candidates quickly and effectively.
+                </div>
+              )}
+            </Link>
             <Link to="https://www.perfectresume.ca/blog/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
             <Link to="https://www.perfectresume.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
-      
-            <Link
-            to="/adminlogin"  className="text-white px-3 py-2 rounded-md text-lg font-semibold">
-            <span className="mr-2">🛡️</span>
-            <span>Admin</span>
-          </Link>
-
+            <Link to="/adminlogin" className="text-white px-3 py-2 rounded-md text-lg font-semibold">
+              <span className="mr-2">🛡️</span>
+              <span>Admin</span>
+            </Link>
           </div>
           <div className="hidden md:flex justify-center items-center gap-4">
             {isLoggedIn ? (
-              <button
-                onClick={handleLogout}
-                className="text-white px-4 py-2 text-md font-semibold border-2 rounded-xl"
-              >
-                Logout
-              </button>
+              <>
+              {/*                <img src="https://img.freepik.com/premium-vector/businessman-avatar-illustration-cartoon-user-portrait-user-profile-icon_118339-4382.jpg" alt="User" className="w-8 h-8 rounded-full" />  Dummy photo icon */} 
+                <button
+                  onClick={handleLogout}
+                  className="text-white px-4 py-2 text-md font-semibold border-2 rounded-xl"
+                >
+                  Logout
+                </button>
+              </>
             ) : (
               <>
                 <Link to="/login" className="text-white px-4 py-2 text-md font-semibold border-2 rounded-xl">Log in</Link>
                 <Link to="/signup" className="text-white px-4 py-2 text-md font-semibold border-2 rounded-xl">Sign up</Link>
               </>
+            )}
+            {isAdmin && (
+              <img src="https://cdn.pixabay.com/photo/2019/08/11/18/59/icon-4399701_1280.png" alt="Admin" className="w-8 h-8 rounded-full" /> /* Admin photo icon */
             )}
           </div>
           <div className="md:hidden flex items-center">

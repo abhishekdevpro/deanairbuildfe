@@ -37,9 +37,9 @@ const PdfDownloadButton = () => {
   return (
     <button 
       onClick={handleChoosePlan} 
-      className="bg-blue-900 text-white p-2 rounded-lg m-2"
+      className="bg-blue-900 text-white p-2 py-4 pb-5 rounded-lg m-2"
     >
-      Choose This Plan
+      Pay & Download
     </button>
   );
 };
