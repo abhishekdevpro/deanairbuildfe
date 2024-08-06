@@ -111,67 +111,11 @@ const  navigate = useNavigate()
             </Link>
           </div>
           <div className="hidden md:flex justify-center items-center space-x-4" id="nav">
-            {/*{loading ? (
-              <div className='text-white font-semibold px-3 py-3'>Loading...</div>
-            ) : accuracyPercentage !== null ? (
-              <div className="api-data-container">
-                <p className='text-white font-semibold px-3 py-3'>AI Score: {accuracyPercentage}</p>
-              </div>
-            ) : (
-              <button
-                type="button"
-                onClick={resumeScore}
-                className="text-white px-3 py-2 rounded-md text-lg font-semibold"
-              >
-                Resume Score
-              </button>
-            )}
-            <div>
-              <button
-                className="text-white px-3 py-2 rounded-md text-lg font-semibold"
-                onClick={handleClick}
-              >
-                Suggest
-              </button>
-
-              {isOpen && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-                  <div className="bg-gray-600 rounded-md shadow-lg w-96 p-5 text-3xl">
-                    <button onClick={handleClose} className="text-white float-right">
-                      &times;
-                    </button>
-                    <p className="text-white text-sm">
-                      {isLoading ? (
-                        'Loading...'
-                      ) : error ? (
-                        <span className="text-red-500">{error}</span>
-                      ) : (
-                        suggestions.map((suggestion, index) => (
-                          <div key={index} className="mb-4 text-lg p-2">
-                            {suggestion}
-                            <button
-                              className="text-white float-end text-xs px-2 py-1 m-3 bg-violet-700 hover:bg-blue-600 rounded-md flex items-center gap-1 mt-2"
-                              onClick={() => {
-                                navigator.clipboard.writeText(suggestion);
-                                alert('Suggestion copied to clipboard!');
-                              }}
-                            >
-                              <i className="fas fa-copy"></i> Copy
-                            </button>
-                            <hr className="my-1 border-gray-400" />
-                          </div>
-                        ))
-                      )}
-                    </p>
-                  </div>
-                </div>
-              )}
-            </div>
-            */}
+            
             
        
             <Link to="#" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
-            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Fetch</Link>
+            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Parsing</Link>
             <Link to="https://www.perfectresume.ca/blog/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
             <Link to="https://www.perfectresume.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
       

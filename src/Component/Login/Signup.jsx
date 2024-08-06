@@ -569,7 +569,7 @@ function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
+  
     if (
       !formData.first_name ||
       !formData.last_name ||
@@ -580,7 +580,7 @@ function Signup() {
       toast.error("All fields are required");
       return;
     }
-
+  
     const body = {
       first_name: formData.first_name,
       last_name: formData.last_name,
@@ -588,19 +588,18 @@ function Signup() {
       phone: formData.phone,
       password: formData.password,
     };
-
-    console.log("Body Data",body);
-
+  
+    console.log("Body Data", body);
+  
     try {
-      const response = await axios.post("https://api.perfectresume.ca/api/user/auth/signup", {data: body},
-         {
+      const response = await axios.post("https://api.perfectresume.ca/api/user/auth/signup", body, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-
+  
       console.log("Response:", response);
-
+  
       if (response.status === 200) {
         toast.success("Signup successful!");
         navigate("/login"); 
@@ -612,6 +611,7 @@ function Signup() {
       toast.error(error.response?.data?.message || "An error occurred");
     }
   };
+  
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -651,20 +651,7 @@ function Signup() {
               maxLength={40}
             />
           </div>
-          {/* <div className="mb-4">
-            <label className="block text-black">Company Name</label>
-            <input
-              type="text"
-              name="company_name"
-              value={formData.company_name}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border rounded-md"
-              placeholder="Enter your company name"
-              required
-              minLength={2}
-              maxLength={40}
-            />
-          </div> */}
+         
           <div className="mb-4">
             <label className="block text-black">Email</label>
             <input

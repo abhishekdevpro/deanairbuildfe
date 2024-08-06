@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "./logo.jpg";
@@ -26,7 +24,7 @@ function Login() {
     e.preventDefault();
 
     if (!formData.email || !formData.password) {
-      toast.error("Email and Password are Required");
+      toast.error("Email and Password are required");
       return;
     }
 
@@ -38,14 +36,15 @@ function Login() {
 
       if (response.status === 200) {
         toast.success("Login successfully");
-        console.log(response)
-        console.log("Token", response.data.data.token)
-        localStorage.setItem("token",response.data.data.token)
+        console.log(response);
+        console.log("Token", response.data.data.token);
+        localStorage.setItem("token", response.data.data.token);
         navigate("/dashboard");
       } else {
-        toast.error("Failed to Login");
+        toast.error("Failed to login");
       }
     } catch (error) {
+      console.error(error);
       toast.error(error.response?.data?.message || "An error occurred");
     }
   };
@@ -73,6 +72,7 @@ function Login() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 placeholder="Enter your email ID"
+                required
               />
             </div>
             <div className="mb-4">
@@ -84,6 +84,7 @@ function Login() {
                 onChange={handleInputChange}
                 className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 placeholder="Enter your password"
+                required
               />
             </div>
             <div className="text-center py-2">
@@ -115,5 +116,3 @@ function Login() {
 }
 
 export default Login;
-
-  
