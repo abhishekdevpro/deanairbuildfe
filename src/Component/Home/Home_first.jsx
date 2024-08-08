@@ -59,11 +59,11 @@ function Home_first() {
                 AI Enabled, Perfect Resume Builder
               </div>
               <div className='text-lg font-medium text-slate-700 text-center md:text-left'>
-                Resume Score, Enhanced Resume & much more. Now Apply Job with confidence with our all in one solution under one roof.
+                Resume Score, Enhanced Resume & much more. Now Apply for a Job with confidence with our all in one solution under one roof.
               </div>
               <div className='flex flex-wrap gap-4 justify-center md:justify-start'>
                 <button className='px-6 py-2 text-lg rounded-full font-bold bg-indigo-600 text-white hover:shadow-2xl hover:shadow-slate-500' id='home_third'>
-                  Sign Up! - It's 100% Free!
+                 Free to join or Sign Up! 
                 </button>
                 <button className='text-black text-lg px-6 py-2 rounded-full font-bold bg-white hover:shadow-2xl hover:shadow-slate-500' id='home_third'>
                   Build your Resume

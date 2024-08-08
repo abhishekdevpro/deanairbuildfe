@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.box-hover-effect:hover {
+    background-color: gray; /* Change the background color on hover */
+    color: black; /* Change the text color on hover */
+  }
+  

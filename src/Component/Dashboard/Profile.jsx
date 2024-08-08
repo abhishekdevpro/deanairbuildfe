@@ -131,7 +131,7 @@ const ProfilePage = () => {
       <div className="max-w-4xl mx-auto">
         <div className="rounded-lg shadow-lg p-6 bg-indigo-800 flex flex-col md:flex-row justify-between items-center h-44">
           <div className="space-y-2 mb-6 md:mb-0 md:mr-6 md:pr-6">
-            <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
+            <div className="flex flex-col md:flex-row md:items-center md:space-x-4 ">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s"
                 alt="Profile"
@@ -144,9 +144,9 @@ const ProfilePage = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ms-20">
               <div>
-                <p className="text-white">📧 ben@gmail.com</p>
-                <p className="text-white">📱 12345678</p>
-                <p className="text-white">📍 United States, Florida</p>
+                <p className="text-white ms-3">📧 ben@gmail.com</p>
+                <p className="text-white ms-3">📱 12345678</p>
+                <p className="text-white ms-3">📍 United States, Florida</p>
               </div>
             </div>
           </div>
@@ -174,9 +174,9 @@ const ProfilePage = () => {
                 accept=".pdf"
                 disabled
               />
-              <label htmlFor="fileInput" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+             {/* <label htmlFor="fileInput" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
                 Choose File 
-              </label>
+              </label> */}
               <span className="text-white ml-2">{selectedFile ? selectedFile.name : `Upload .Pdf format resume`}</span>
             </div>
             <Link to="/dashboard/ai-resume-builder">

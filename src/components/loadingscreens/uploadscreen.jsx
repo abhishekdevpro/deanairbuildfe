@@ -32,7 +32,7 @@ function UploadScreen() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen ">
+    <div className="flex flex-col items-center pt-24 h-screen ">
       <div className="border-4 border-black">
         <div className="w-max-w-xs w-10 border-5 border-black">
           <div className="h-12 bg-gray-200 overflow-hidden">

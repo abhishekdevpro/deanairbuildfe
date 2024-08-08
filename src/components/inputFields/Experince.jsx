@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import styles
+import 'react-quill/dist/quill.snow.css';
 
 const Experience = ({
   experiences = [],
   handleInputChange,
   addExperience,
   deleteExperience,
+  summary,
   company,
   end_date,
   location,
@@ -15,6 +16,11 @@ const Experience = ({
 }) => {
   const [isCurrentlyWorking, setIsCurrentlyWorking] = useState(false);
   const [isExperienceComplete, setIsExperienceComplete] = useState(false);
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [searchValue, setSearchValue] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     checkExperienceCompletion();
@@ -31,12 +37,6 @@ const Experience = ({
     setIsExperienceComplete(complete);
   };
 
-  const [dropdownVisible, setDropdownVisible] = useState(false);
-  const [searchValue, setSearchValue] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
   };
@@ -44,12 +44,11 @@ const Experience = ({
   const handleSearchChange = async (e) => {
     const value = e.target.value;
     setSearchValue(value);
-  
-    if (e.key === 'Enter' && value.length > 2) { // Check if Enter key is pressed
+
+    if (e.key === 'Enter' && value.length > 2) {
       setIsLoading(true);
       try {
         const token = localStorage.getItem('token');
-  
         const response = await fetch('https://api.perfectresume.ca/api/user/ai-resume-profexp-data', {
           method: 'POST',
           headers: {
@@ -58,15 +57,15 @@ const Experience = ({
           },
           body: JSON.stringify({
             key: "professional_experience",
-            keyword: "Cecklist of professional experience in manner of content and informations ",
+            keyword: "Checklist of professional experience in manner of content and informations ",
             Content: value
           }),
         });
-  
+
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
-  
+
         const data = await response.json();
         const responsibilities = data.data.resume_analysis.responsibilities || [];
         setSearchResults(responsibilities);
@@ -79,22 +78,8 @@ const Experience = ({
       setSearchResults([]);
     }
   };
+
   
-  
-  const handleDescriptionChange = (value, index) => {
-    handleInputChange({ target: { name: 'companydescription', value } }, index, 'experiences');
-  };
-  
-  const handleSearchResultSelect = (result, index) => {
-    handleInputChange({ target: { name: 'companydescription', value: result } }, index, 'experiences');
-    setSearchValue(''); // Clear search input after selection if needed
-    setSearchResults([]); // Clear search results after selection
-  };
-  const handleSuggestionSelect = (result) => {
-    // Handle selection of a suggestion and update state
-    handleInputChange({ target: { name: 'companydescription', value: result } }, 0, 'experiences');
-    setDropdownVisible(false); 
-  }
 
   return (
     <div className='mt-4 text-xs sm:text-xs md:text-xs lg:text-xs'>
@@ -141,7 +126,7 @@ const Experience = ({
                   <input 
                     type="month" 
                     name="month1" 
-                    value={exp.month1 }
+                    value={exp.month1}
                     onChange={(e) => handleInputChange(e, index, 'experiences')}
                     className="w-full p-3 mb-4 border border-black rounded-lg"
                   /> 
@@ -154,7 +139,7 @@ const Experience = ({
                   <input 
                     type="month" 
                     name="month2" 
-                    value={exp.month2 }
+                    value={exp.month2}
                     onChange={(e) => handleInputChange(e, index, 'experiences')}
                     disabled={isCurrentlyWorking}
                     className="w-full p-3 mb-4 border border-black rounded-lg"
@@ -227,7 +212,7 @@ const Experience = ({
                               <li
                                 key={index}
                                 className="py-1 px-3 hover:bg-gray-100 cursor-pointer"
-                                onClick={() => handleSuggestionSelect(result, index)}
+                                onClick={() => handleSuggestionSelect(result)}
                               >
                                 {result}
                               </li>
@@ -240,8 +225,9 @@ const Experience = ({
                   )}
                 </div>
               </div>
-               <ReactQuill
-                value={exp.companydescription || ''}
+              <ReactQuill
+                theme="snow"
+                value={exp.companydescription || summary || ''}
                 onChange={(value) => handleDescriptionChange(value, index)}
                 className="w-full h-40 p-2 mb-4 break-all"
               />

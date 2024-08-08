@@ -51,6 +51,7 @@ import AIEnhancedResumeAccuracy from "./Component/Footer/AIEnhancedResumeAccurac
 import AiJobMatchApply from "./Component/Footer/AiJobMatchApply.jsx";
 import SearchJobsApply from "./Component/Footer/SearchJobsApply.jsx";
 import AiResumeEnhancer from "./Component/Footer/AiResumeEnhancer.jsx";
+import Templatelist from "./Component/Admin/Templatelist.jsx";
 
 const route = createBrowserRouter([
   {
@@ -210,6 +211,10 @@ const route = createBrowserRouter([
           {
             path: "notification1",
             element: <Notification1 />,
+          },
+          {
+            path: "templatelist",
+            element: <Templatelist />,
           },
           {
             path: "payment1",

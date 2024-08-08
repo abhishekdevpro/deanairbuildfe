@@ -1,0 +1,8 @@
+.box-hover-effect {
+    transition: transform 0.3s ease;
+  }
+  
+  .box-hover-effect:hover {
+    transform: scale(1.1); /* Increase the scale value to make the zoom effect more pronounced */
+  }
+  

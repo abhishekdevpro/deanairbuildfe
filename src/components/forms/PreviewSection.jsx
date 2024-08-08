@@ -3,7 +3,7 @@ import axios from 'axios';
 import PdfDownloadButton from '../forms/PdfDownloadButton';
 import TemplateComponent from './templateComponent';
 import FunctionalityOfCV from './FunctionalityOfCV';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDownload } from './DownloadContext';
 import { useTemplate } from './TemplateContext';
 import { useParams } from 'react-router-dom';
@@ -138,6 +138,7 @@ const PreviewSection = ({
       // Handle success (e.g., show a success message, redirect, etc.)
       if (response.data) {
         console.log('Resume updated successfully:', response.data);
+      
         // Navigate to the desired URL
        // navigate('/dashboard/ai-resume-builder');
       }
@@ -216,6 +217,7 @@ const PreviewSection = ({
               </button>
             </div>
           </div>
+          <Link to="/">
           <button
             type="button"
             onClick={updateResume}
@@ -223,6 +225,7 @@ const PreviewSection = ({
           >
             Finish Resume
           </button>
+          </Link>
           <div>
       {accuracyPercentage !== null ? (
         <div className="api-data-container border-amber-600 border-4 py-4 ms-3">
