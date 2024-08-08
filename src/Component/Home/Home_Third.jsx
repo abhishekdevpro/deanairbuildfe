@@ -13,7 +13,7 @@ import image3 from './homeimage2.jpg'
 import cvimage1 from './cv4.jpg'
 import cvimage2 from './homeimage3.jpg'
 import cvimage3 from './cv3.jpg'
-
+import { Link } from 'react-router-dom'
 function Home_Third() {
   return (
     <>
@@ -134,7 +134,9 @@ function Home_Third() {
       <div key={index} className='relative group'>
         <img src={template.src} alt={template.alt} className=' h-[400px] w-full rounded-xl' />
         <h1 className='font-bold  text-xl text-center mt-2' id='homecard'>{template.title}</h1>
+        <Link to="/dashboard">
         <button className='absolute top-0 left-0 right-0 bottom-0 m-auto w-fit h-fit bg-blue-600 text-white font-bold py-2 px-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300' id='home_third'>Create Your Resume </button>
+        </Link>
       </div>
     ))}
   </div>

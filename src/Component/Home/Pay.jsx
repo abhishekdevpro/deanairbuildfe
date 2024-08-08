@@ -39,7 +39,7 @@
 
 import React from 'react';
 import './Home.css';
-
+import { Link } from 'react-router-dom';
 const Subscription = () => {
   return (
     <div className="bg-gray-100 py-10">
@@ -81,9 +81,11 @@ const Subscription = () => {
               <span>& More</span>
             </div>
             <div className="flex justify-center mt-6">
+            <Link to="/dashboard">
               <button className="px-6 py-3 rounded-2xl font-semibold text-white bg-blue-500 hover:bg-blue-600 shadow-md">
                 Get Started For Free
               </button>
+              </Link>
             </div>
           </div>
         </div>

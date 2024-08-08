@@ -6,6 +6,7 @@ import image2 from '../Home/images/2.png'
 import image3 from '../Home/images/3.png'
 import image4 from '../Home/images/4.png'
 import image5 from '../Home/images/5.png'
+import { Link } from 'react-router-dom'
 
 function Home_Second() {
   return (
@@ -44,9 +45,10 @@ function Home_Second() {
             </div>
         </div>
         <div className=' flex justify-center mt-4'>
+        <Link to="/dashboard">
             <button className=' px-5 py-3 rounded-full text-lg text-white font-bold hover:px-8 hover:shadow-2xl hover:shadow-slate-500' id='home_third'>
                 Create my Resume
-            </button>
+            </button></Link>
         </div>
       </div>
 
