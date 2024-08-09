@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { toast } from 'react-toastify';
 
 const MyResume = () => {
   const [resumes, setResumes] = useState([]);
@@ -12,7 +13,9 @@ const MyResume = () => {
   const [modalResumeName, setModalResumeName] = useState("");
   const [selectedResume, setSelectedResume] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  const [idFromResponse, setIdFromResponse] = useState(null); // Define the state
+  const [locationFromResponse, setLocationFromResponse] = useState(""); 
+  
   const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
@@ -109,9 +112,44 @@ const MyResume = () => {
     }
   };
 
-  const handleEditResume = (resume) => {
-    navigate(`/dashboard/form/${resume.id}`); // Redirect to the form page with the resume ID
+  const handleEditResume = async (resume) => {
+    const token = localStorage.getItem("token");
+  
+    try {
+      const response = await axios.get(`https://api.perfectresume.ca/api/user/resume-list/${resume.id}`, {
+        headers: {
+          Authorization: token,
+        },
+      });
+  
+      if (!response.data.data || !response.data.data.ai_resume_parse_data) {
+        console.error("Resume data not found in API response");
+        return;
+      }
+  
+      const parsedData = JSON.parse(response.data.data.ai_resume_parse_data);
+      console.log("Parsed Resume Data:", parsedData);
+  
+      // Store resume data and related details in localStorage
+      localStorage.setItem('resumeData', JSON.stringify(parsedData.templateData));
+      localStorage.setItem('resumeId', response.data.data.id);
+      localStorage.setItem('location', response.data.data.file_path);
+  
+      // Set states with the received data if needed
+      setIdFromResponse(response.data.data.id);
+      setLocationFromResponse(response.data.data.file_path);
+  
+      toast.success("Resume data loaded successfully");
+  
+      // Navigate to the resume display page with the resume ID
+      navigate(`/dashboard/form/${response.data.data.id}`);
+    } catch (error) {
+      console.error("Error fetching resume details:", error);
+      toast.error("Failed to load resume data");
+    }
   };
+  
+  
 
   const handleUpdateResume = () => {
     const token = localStorage.getItem("token");

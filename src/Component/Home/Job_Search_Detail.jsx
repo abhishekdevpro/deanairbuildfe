@@ -67,7 +67,7 @@ const CourseDetail = ({ course }) => {
             <a key={index} href={card.link} target='_blank' rel="noopener noreferrer" className="flex flex-col items-center justify-between h-full bg-white rounded-xl shadow-md overflow-hidden transition duration-300 transform hover:scale-105">
               <img src={card.img} alt="Course" className="w-full h-auto border-2 rounded-t-md" />
               <div className="p-4">
-                <h2 className="text-lg lg:text-xl font-bold mb-2">{card.title}</h2>
+                <h2 className="text-lg lg:text-lg font-bold mb-2">{card.title}</h2>
                 {/* <p className="text-sm text-gray-600">{card.name}</p> */}
               </div>
             </a>

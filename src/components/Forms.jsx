@@ -24,7 +24,7 @@ import ColorButtons from './cvFunctionality/ColorButtons';
 import TemplateComponent from './forms/templateComponent';
 import Download from './forms/Download';
 import { useDownload } from './forms/DownloadContext';
-
+import axios from 'axios';
 const predefinedColors = {
   Template1: '#F5F5F5',
   Template3: '#F0FFF0',
@@ -73,6 +73,7 @@ const predefinedText = {
 function Form() {
   // State variables
   const targetRef = useDownload();
+  
   const [showComponent, setShowComponent] = useState(false);
   const [selectedTemplate, setSelectedTemplate] = useState('Template1');
    const [selectedFont, setSelectedFont] = useState('Arial');
@@ -103,8 +104,30 @@ function Form() {
   const [image, setImage] = useState(null);
   const [resumeData, setResumeData] = useState(null);
   const [id, setid] = useState(null);
-  const [location, setlocation] = useState(null);
-  const [idFromResponse, setIdFromResponse] = useState(null); 
+  const [location, setLocation] = useState('');
+    const [idFromResponse, setIdFromResponse] = useState(null); 
+
+  
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token && id) {
+      axios
+        .get(`https://api.perfectresume.ca/api/user/resume-list/${id}`, {
+          headers: {
+            Authorization: token,
+          },
+        })
+        .then((response) => {
+          setResumeData(response.data); // Assuming the API returns the resume data
+        })
+        .catch((error) => {
+          console.error('Error fetching resume data:', error);
+        });
+    }
+  }, [id]);
+
+
 
   const [screenNames, setScreenNames] = useState({
     Details: 'Details',
@@ -383,16 +406,14 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
-  
   const locationid = localStorage.getItem('location');
   if (locationid) {
-    setlocation(locationid); 
+    setLocation(locationid); 
   }
+}, []); // Empty dependency array ensures this runs once on mount
 
+console.log(location, 'dasd'); 
 
-}, []);
-
-{console.log(location,'dasd')}
 return (<div>
    {resumeData?(<><div className="h-screen">
     {!isPreviewing ? (

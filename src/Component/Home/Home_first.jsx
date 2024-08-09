@@ -8,14 +8,7 @@ import { Link } from 'react-router-dom';
 function Home_first() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      navigate('/login'); // Redirect to login if the user is not logged in
-    } else {
-      navigate('/'); // Redirect to dashboard if the user is logged in
-    }
-  }, [navigate]);
+ 
 
   return (
     <>
