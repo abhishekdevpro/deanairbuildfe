@@ -12,9 +12,9 @@ const ProfileForm = () => {
     current_salary: '',
     expected_salary: '',
     description: '',
-    country: '',
-    state: '',
-    city: '',
+    country_id: '',
+    state_id: '',
+    city_id: '',
     uploadPhoto: null
   });
 
@@ -28,6 +28,7 @@ const ProfileForm = () => {
       try {
         const token = localStorage.getItem("token");
         
+        // Fetch user profile
         const userProfileResponse = await axios.get('https://api.perfectresume.ca/api/user/user-profile', {
           headers: {
             Authorization: token,
@@ -36,7 +37,6 @@ const ProfileForm = () => {
         
         if (userProfileResponse.data.status === 'success') {
           const userData = userProfileResponse.data.data;
-
           setFormData(prevData => ({
             ...prevData,
             first_name: userData.first_name || '',
@@ -49,15 +49,16 @@ const ProfileForm = () => {
             phone: userData.phone || '',
             email: userData.email || '',
             description: userData.description || '',
-            country: userData.country || '',
-            state: userData.state || '',
-            city: userData.city || ''
+            country_id: userData.country_id || '',
+            state_id: userData.state_id || '',
+            city_id: userData.city_id || ''
           }));
-        }
 
-        const countriesResponse = await axios.get('https://api.perfectresume.ca/api/user/countries');
-        if (countriesResponse.data.status === 'success') {
-          setCountries(countriesResponse.data.data);
+          // Fetch countries
+          const countriesResponse = await axios.get('https://api.perfectresume.ca/api/user/countries');
+          if (countriesResponse.data.status === 'success') {
+            setCountries(countriesResponse.data.data);
+          }
         }
       } catch (error) {
         console.error('An error occurred while fetching data:', error);
@@ -69,52 +70,70 @@ const ProfileForm = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchStates = async () => {
+      if (formData.country_id) {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await axios.get(`https://api.perfectresume.ca/api/user/states/${country_id}`, {
+            headers: {
+              Authorization: token // Ensure token is included correctly
+            },
+          });
+          if (response.data.status === 'success') {
+            setStates(response.data.data);
+          } else {
+            console.error('API Error:', response.data.message);
+            
+          }
+        } catch (error) {
+          console.error('Request Error:', error);
+       
+        }
+      }
+    };
+    
+
+    fetchStates();
+  }, [formData.country_id]);
+
+  useEffect(() => {
+    const fetchCities = async () => {
+      if (formData.state_id) {
+        try {
+          const citiesResponse = await axios.get(`https://api.perfectresume.ca/api/user/cities/${formData.state_id}`);
+          if (citiesResponse.data.status === 'success') {
+            setCities(citiesResponse.data.data);
+          }
+        } catch (error) {
+          console.error('Error fetching cities:', error);
+        }
+      }
+    };
+
+    fetchCities();
+  }, [formData.state_id]);
+
   const handleCountryChange = async (e) => {
-    const selectedCountryName = e.target.value;
+    const selectedCountryId = e.target.value;
     setFormData(prevData => ({
       ...prevData,
-      country: selectedCountryName,
-      state: '',
-      city: ''
+      country_id: selectedCountryId,
+      state_id: '',
+      city_id: ''
     }));
     setStates([]);
     setCities([]);
-
-    const selectedCountry = countries.find(country => country.name === selectedCountryName);
-
-    if (selectedCountry) {
-      try {
-        const statesResponse = await axios.get(`https://api.perfectresume.ca/api/user/stats/${selectedCountry.id}`);
-        if (statesResponse.data.status === 'success') {
-          setStates(statesResponse.data.data);
-        }
-      } catch (error) {
-        console.error('Error fetching states:', error);
-      }
-    }
   };
 
-  const handleStateChange = async (e) => {
-    const selectedStateName = e.target.value;
+  const handleStateChange = (e) => {
+    const selectedStateId = e.target.value;
     setFormData(prevData => ({
       ...prevData,
-      state: selectedStateName,
-      city: ''
+      state_id: selectedStateId,
+      city_id: ''
     }));
     setCities([]);
-
-    const selectedState = states.find(state => state.name === selectedStateName);
-
-    if (selectedState) {
-      try {
-        const citiesResponse = await axios.get(`https://api.perfectresume.ca/api/user/cities/${selectedState.id}`);
-        if (citiesResponse.data.status === 'success') {
-          setCities(citiesResponse.data.data);
-        }
-      } catch (error) {
-        console.error('Error fetching cities:', error);
-      }
-    }
   };
 
   const handleChange = (e) => {
@@ -146,14 +165,9 @@ const ProfileForm = () => {
     formDataToSend.append('current_salary', formData.current_salary);
     formDataToSend.append('expected_salary', formData.expected_salary);
     formDataToSend.append('description', formData.description);
-
-    const selectedCountry = countries.find(country => country.name === formData.country);
-    const selectedState = states.find(state => state.name === formData.state);
-    const selectedCity = cities.find(city => city.name === formData.city);
-
-    if (selectedCountry) formDataToSend.append('country_id', selectedCountry.id);
-    if (selectedState) formDataToSend.append('state_id', selectedState.id);
-    if (selectedCity) formDataToSend.append('city_id', selectedCity.id);
+    formDataToSend.append('country_id', formData.country_id);
+    formDataToSend.append('state_id', formData.state_id);
+    formDataToSend.append('city_id', formData.city_id);
 
     if (formData.uploadPhoto) {
       formDataToSend.append('upload_photo', formData.uploadPhoto);
@@ -284,105 +298,68 @@ const ProfileForm = () => {
                 required
               />
             </div>
-          </div>
-
-          <div className="mb-6">
-            <label className="block mb-2">Description:</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full border p-2 h-32"
-              required
-            ></textarea>
-          </div>
-
-          <h2 className="text-xl font-bold mb-4">CONTACT INFORMATION</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <div>
-              <label className="block mb-2">Phone:</label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
+            <div className="md:col-span-2">
+              <label className="block mb-2">Description:</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
                 className="w-full border p-2"
-                readOnly
+                rows="4"
               />
             </div>
-            <div>
-              <label className="block mb-2">Email Address:</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                className="w-full border p-2"
-                readOnly
-              />
-            </div>
-
             <div>
               <label className="block mb-2">Country:</label>
               <select
-                name="country"
-                value={formData.country}
+                name="country_id"
+                value={formData.country_id}
                 onChange={handleCountryChange}
                 className="w-full border p-2"
               >
                 <option value="">Select a country</option>
-                {countries.map(country => (
-                  <option key={country.id} value={country.name}>
+                {countries.map((country) => (
+                  <option key={country.id} value={country.id}>
                     {country.name}
                   </option>
                 ))}
               </select>
             </div>
-
             <div>
               <label className="block mb-2">State:</label>
               <select
-                name="state"
-                value={formData.state}
+                name="state_id"
+                value={formData.state_id}
                 onChange={handleStateChange}
                 className="w-full border p-2"
-                disabled={!states.length}
+                disabled={!formData.country_id}
               >
                 <option value="">Select a state</option>
-                {states.map(state => (
-                  <option key={state.id} value={state.name}>
+                {states.map((state) => (
+                  <option key={state.id} value={state.id}>
                     {state.name}
                   </option>
                 ))}
               </select>
             </div>
-
             <div>
               <label className="block mb-2">City:</label>
               <select
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
+                name="city_id"
+                value={formData.city_id}
+                onChange={(e) => setFormData(prevData => ({ ...prevData, city_id: e.target.value }))}
                 className="w-full border p-2"
-                disabled={!cities.length}
+                disabled={!formData.state_id}
               >
                 <option value="">Select a city</option>
-                {cities.map(city => (
-                  <option key={city.id} value={city.name}>
+                {cities.map((city) => (
+                  <option key={city.id} value={city.id}>
                     {city.name}
                   </option>
                 ))}
               </select>
             </div>
           </div>
-
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="bg-indigo-700 text-white px-6 py-2 rounded transition duration-200 hover:bg-indigo-600"
-            >
-              Save Settings
-            </button>
-          </div>
+          <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded">Update Profile</button>
         </form>
       </div>
     </div>
