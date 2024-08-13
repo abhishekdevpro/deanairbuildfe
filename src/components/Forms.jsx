@@ -109,23 +109,6 @@ function Form() {
 
   
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token && id) {
-      axios
-        .get(`https://api.perfectresume.ca/api/user/resume-list/${id}`, {
-          headers: {
-            Authorization: token,
-          },
-        })
-        .then((response) => {
-          setResumeData(response.data); // Assuming the API returns the resume data
-        })
-        .catch((error) => {
-          console.error('Error fetching resume data:', error);
-        });
-    }
-  }, [id]);
 
 
 
@@ -797,5 +780,4 @@ start_date={resumeData.employmenthistory[0]?.start_date}
 }
 
 export default Form;
-
 

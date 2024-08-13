@@ -227,7 +227,7 @@ const Experience = ({
               </div>
               <ReactQuill
                 theme="snow"
-                value={exp.companydescription || summary || ''}
+                value={exp.companydescription ||''}
                 onChange={(value) => handleDescriptionChange(value, index)}
                 className="w-full h-40 p-2 mb-4 break-all"
               />

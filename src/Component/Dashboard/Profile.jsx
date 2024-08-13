@@ -65,16 +65,11 @@ const ProfilePage = () => {
           }));
 
           // Fetch countries
-          const countriesResponse = await axios.get('https://api.perfectresume.ca/api/user/countries');
-          if (countriesResponse.data.status === 'success') {
-            setCountries(countriesResponse.data.data);
-          }
+          
         }
       } catch (error) {
         console.error('An error occurred while fetching data:', error);
-      } finally {
-        setIsLoading(false);
-      }
+      } 
     };
 
     fetchData();
@@ -91,6 +86,10 @@ const ProfilePage = () => {
       })
       .then(response => {
         const resumes = response.data.resumelist;
+        if (resumes.length === 0) {
+          // If no resumes are returned, show a toast or set a message
+          toast.info("No resumes available.");
+        }
         setResumes(resumes);
         resumes.forEach(resume => {
           console.log(resume.file_path, 'test');

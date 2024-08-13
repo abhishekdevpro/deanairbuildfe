@@ -51,7 +51,7 @@ import '../Home/Home.css';
 const CourseDetail = ({ course }) => {
   return (
     <div id="course" className="bg-gray-100 py-10">
-      <h1 className="text-5xl font-bold text-center mb-8 px-5 md:px-16">Browse our up-to-date resume guides</h1>
+     {/* <h1 className="text-5xl font-bold text-center mb-8 px-5 md:px-16">Browse our up-to-date resume guides</h1>
       <p className="text-lg text-center text-gray-700 mx-auto max-w-xl px-5 md:px-16 mb-8">
         Explore our recently updated guides to help you refine and modernize your resume. Discover valuable tips and strategies for today’s job market.
       </p>
@@ -71,7 +71,7 @@ const CourseDetail = ({ course }) => {
         <button className="px-6 py-3 bg-black hover:bg-gray-900 text-white font-semibold rounded-xl">
           Get More Career Advice
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };

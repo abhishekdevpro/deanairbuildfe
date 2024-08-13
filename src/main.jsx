@@ -52,6 +52,8 @@ import AiJobMatchApply from "./Component/Footer/AiJobMatchApply.jsx";
 import SearchJobsApply from "./Component/Footer/SearchJobsApply.jsx";
 import AiResumeEnhancer from "./Component/Footer/AiResumeEnhancer.jsx";
 import Templatelist from "./Component/Admin/Templatelist.jsx";
+import PrivateRoute from "./PrivateRoute.jsx";
+
 
 const route = createBrowserRouter([
   {
@@ -132,7 +134,7 @@ const route = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <DashboardLayout />,
+        element: <PrivateRoute element={DashboardLayout} />, // Make dashboard private
         children: [
           {
             path: "",
@@ -184,12 +186,12 @@ const route = createBrowserRouter([
           },
           {
             path: "skilltest",
-            element: <Skills/>,
+            element: <Skills />,
           },
           {
-            path:"testpaper/:skillId/:skillName",
-            element:<Testpaper/>
-          }
+            path: "testpaper/:skillId/:skillName",
+            element: <Testpaper />,
+          },
         ],
       },
       {
@@ -248,11 +250,11 @@ const route = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-     <TemplateProvider>
-    <DownloadProvider>
-      <RouterProvider router={route} />
-      <Toaster />
-    </DownloadProvider>
+    <TemplateProvider>
+      <DownloadProvider>
+        <RouterProvider router={route} />
+        <Toaster />
+      </DownloadProvider>
     </TemplateProvider>
   </React.StrictMode>
 );

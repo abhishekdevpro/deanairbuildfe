@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const MyResume = () => {
   const [resumes, setResumes] = useState([]);
@@ -15,12 +16,15 @@ const MyResume = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [idFromResponse, setIdFromResponse] = useState(null); // Define the state
   const [locationFromResponse, setLocationFromResponse] = useState(""); 
-  
+  const [deleteresumeid,setDeleteresumeid]=useState(null)
+  const [isDeleteModalOpen, setisDeleteModalOpen]=useState(false);
+
+
   const navigate = useNavigate(); // Initialize useNavigate
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+  
     if (token) {
       axios
         .get("https://api.perfectresume.ca/api/user/resume-list", {
@@ -29,7 +33,11 @@ const MyResume = () => {
           },
         })
         .then((response) => {
-          const resumes = response.data.resumelist;
+          const resumes = response.data.resumelist || []; // Ensure resumes is not null or undefined
+          if (resumes.length === 0) {
+            // If no resumes are returned, show a toast or set a message
+            toast.info("No resumes available.");
+          }
           setResumes(resumes);
         })
         .catch((error) => console.error("Error fetching resume list:", error));
@@ -37,6 +45,7 @@ const MyResume = () => {
       console.error("Token not found in localStorage");
     }
   }, []);
+  
 
   const handleGetScore = (resume) => {
     const token = localStorage.getItem("token");
@@ -149,87 +158,36 @@ const MyResume = () => {
     }
   };
   
+const handleDeleteResume = async () => {
+  const token = localStorage.getItem("token")
+
+  try{
+    await axios.delete(`https://api.perfectresume.ca/api/user/resume-list/${deleteresumeid}`,{
+      headers:{
+        Authorization:token
+      }
+    });
+    toast.success("Your Resume Deleted Succesfully")
+    setisDeleteModalOpen(false);
+    setResumes(resumes.filter((resume)=>resume.id !== deleteresumeid));
+  } catch(error){
+    console.log("error",error);
+    toast.error("Failed to Delete your Resume")
+  }
+};
+
+const handleopenDeleteModal = (resumeId) => {
+  setDeleteresumeid(resumeId); // Set the ID of the resume to be deleted
+  setisDeleteModalOpen(true);  // Open the delete confirmation modal
+};
+
+
+const handleCloseModal = () => {
+  setisDeleteModalOpen(false); // Close the delete confirmation modal
+};
+
   
 
-  const handleUpdateResume = () => {
-    const token = localStorage.getItem("token");
-    const updatedData = {
-      templateData: {
-        templatename: selectedResume.templateData?.templatename || "",
-        details: {
-          firstname: selectedResume.templateData?.details?.firstname || "",
-          lastname: selectedResume.templateData?.details?.lastname || "",
-          address: selectedResume.templateData?.details?.address || "",
-          phone: selectedResume.templateData?.details?.phone || "",
-          email: selectedResume.templateData?.details?.email || "",
-          postalcode: selectedResume.templateData?.details?.postalcode || "",
-          drivinglicense:
-            selectedResume.templateData?.details?.drivinglicense || "",
-          nationality: selectedResume.templateData?.details?.nationality || "",
-          placeofbirth:
-            selectedResume.templateData?.details?.placeofbirth || "",
-          dateofbirth: selectedResume.templateData?.details?.dateofbirth || "",
-          securityclearance:
-            selectedResume.templateData?.details?.securityclearance || "",
-          city: selectedResume.templateData?.details?.city || "",
-          country: selectedResume.templateData?.details?.country || "",
-          github: selectedResume.templateData?.details?.github || "",
-          languages: selectedResume.templateData?.details?.languages || [],
-          projects: selectedResume.templateData?.details?.projects || [],
-          achievement: selectedResume.templateData?.details?.achievement || [],
-          photo: selectedResume.templateData?.details?.photo || "",
-          profession: selectedResume.templateData?.details?.profession || "",
-          linkdin: selectedResume.templateData?.details?.linkdin || "",
-          wantedjobtitle:
-            selectedResume.templateData?.details?.wantedjobtitle || "",
-        },
-        professionalsummary:
-          selectedResume.templateData?.professionalsummary || "",
-        skills: selectedResume.templateData?.skills || [],
-        education: selectedResume.templateData?.education || [],
-        employmenthistory: selectedResume.templateData?.employmenthistory || [],
-        other_sections: selectedResume.templateData?.other_sections || [],
-      },
-    };
-
-    if (token && selectedResume.id) {
-      setIsLoading(true);
-      axios
-        .put(
-          `https://api.perfectresume.ca/api/user/resume-update/${selectedResume.id}`,
-          updatedData,
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        )
-        .then((response) => {
-          // Refresh the resume list after update
-          axios
-            .get("https://api.perfectresume.ca/api/user/resume-list", {
-              headers: {
-                Authorization: token,
-              },
-            })
-            .then((response) => {
-              setResumes(response.data.resumelist);
-              setIsEditModalOpen(false);
-              setIsLoading(false);
-            })
-            .catch((error) => {
-              console.error("Error fetching updated resume list:", error);
-              setIsLoading(false);
-            });
-        })
-        .catch((error) => {
-          console.error("Error updating resume:", error);
-          setIsLoading(false);
-        });
-    } else {
-      console.error("Token not found in localStorage or no resume selected");
-    }
-  };
 
   const handleCopySuggestions = () => {
     const suggestionsText = modalSuggestions.join("\n");
@@ -249,7 +207,9 @@ const MyResume = () => {
   };
 
   return (
+    
     <div className="container mx-auto p-4 text-center">
+      <ToastContainer/>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-dark text-black rounded-md">
           <thead>
@@ -264,10 +224,13 @@ const MyResume = () => {
             </tr>
           </thead>
           <tbody>
-            {resumes.length > 0 &&
-              resumes.map((resume, index) => (
-                <tr key={index} className="border-t border-gray-700">
 
+            {resumes.length > 0 ?(
+              resumes.map((resume, index) => (
+                <tr
+                key={index}
+               className="border-2"
+              >
                   <td className=" ">{index + 1}.</td>
 
                   <td className="py-2 float-start ">
@@ -305,16 +268,19 @@ const MyResume = () => {
                       >
                         <i className="fas fa-edit"></i>
                       </button>
-                      <button className="text-black">
-                        <i className="fas fa-trash"></i>
-                      </button>
+                      <button className="text-black" onClick={() => handleopenDeleteModal(resume.id)}>
+  <i className="fas fa-trash"></i>
+</button>
+
                     </div>
                   </td>
                   <td className="py-2 px-4">
                     Comming Soon
                   </td>
                 </tr>
-              ))}
+              )) ) : (
+                <div>Please Uplaod Resume.</div>
+              )}
           </tbody>
         </table>
       </div>
@@ -379,6 +345,25 @@ const MyResume = () => {
           </div>
         </div>
       )}
+
+{isDeleteModalOpen && (
+  <div className="fixed inset-0 bg-gray-900 bg-opacity-45 flex items-center justify-center"> 
+    <div className="bg-gray-400 p-10 rounded shadow-lg text-white">
+      <h2 className="text-2xl font semi-bold">Delete Confirmation</h2>
+      <p className="mt-5">Are you sure you want to delete this resume?</p>
+      <div className="mt-6 flex justify-center space-x-4">
+        <button onClick={handleDeleteResume} className="bg-red-500 text-white px-4 py-2 rounded">
+          Delete
+        </button> 
+        <button onClick={handleCloseModal} className="bg-gray-300 text-black px-4 py-2 rounded">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+
     </div>
   );
 };
