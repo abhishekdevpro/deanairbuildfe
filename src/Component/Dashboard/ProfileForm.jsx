@@ -25,7 +25,8 @@ const ProfileForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
+      try { 
+        
         const token = localStorage.getItem("token");
         
         // Fetch user profile
@@ -306,6 +307,29 @@ const ProfileForm = () => {
                 onChange={handleChange}
                 className="w-full border p-2"
                 rows="4"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2">Phone Number </label>
+              <input
+                type="number"
+                name="phone"
+                value={formData.phone}
+                
+                className="w-full border p-2"
+                readOnly
+              />
+            </div>
+            <div>
+              <label className="block mb-2">Email</label>
+              <input
+                type="text"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border p-2"
+               readOnly
               />
             </div>
             <div>

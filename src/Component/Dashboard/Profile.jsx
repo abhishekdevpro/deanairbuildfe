@@ -14,6 +14,72 @@ const ProfilePage = () => {
   const [modalContent, setModalContent] = useState('');
   const [modalResumeName, setModalResumeName] = useState('');
 
+  const [formData, setFormData] = useState({
+    photo:'',
+    first_name: '',
+    last_name: '',
+    professional_title: '',
+    languages: '',
+    age: '',
+    current_salary: '',
+    expected_salary: '',
+    description: '',
+    country_id: '',
+    state_id: '',
+    city_id: '',
+    uploadPhoto: null
+  });
+
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try { 
+        
+        const token = localStorage.getItem("token");
+        
+        // Fetch user profile
+        const userProfileResponse = await axios.get('https://api.perfectresume.ca/api/user/user-profile', {
+          headers: {
+            Authorization: token,
+          },
+        });
+        
+        if (userProfileResponse.data.status === 'success') {
+          const userData = userProfileResponse.data.data;
+          setFormData(prevData => ({
+            ...prevData,
+            photo: userData.photo|| "",
+            first_name: userData.first_name || '',
+            last_name: userData.last_name || '',
+            professional_title: userData.professional_title || '',
+            languages: userData.languages || '',
+            age: userData.age || '',
+            current_salary: userData.current_salary || '',
+            expected_salary: userData.expected_salary || '',
+            phone: userData.phone || '',
+            email: userData.email || '',
+            description: userData.description || '',
+            country_id: userData.country_id || '',
+            state_id: userData.state_id || '',
+            city_id: userData.city_id || ''
+          }));
+
+          // Fetch countries
+          const countriesResponse = await axios.get('https://api.perfectresume.ca/api/user/countries');
+          if (countriesResponse.data.status === 'success') {
+            setCountries(countriesResponse.data.data);
+          }
+        }
+      } catch (error) {
+        console.error('An error occurred while fetching data:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
 
@@ -133,19 +199,19 @@ const ProfilePage = () => {
           <div className="space-y-2 mb-6 md:mb-0 md:mr-6 md:pr-6">
             <div className="flex flex-col md:flex-row md:items-center md:space-x-4 ">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4YreOWfDX3kK-QLAbAL4ufCPc84ol2MA8Xg&s"
+                src={`https://api.perfectresume.ca/${formData.photo}`}
                 alt="Profile"
                 className="w-20 h-20 rounded-full mb-4 md:mb-0"
               />
               <div className="text-white">
-                <h2 className="text-xl font-semibold">Ben Dexter</h2>
-                <p className="">Web Developer</p>
+                <h2 className="text-xl font-semibold">{formData.first_name ||" Benjamin "}  {" "} {formData.last_name || " Tenison "}</h2>
+                <p className="">{formData.professional_title ||"Web Developer "}</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ms-20">
               <div>
-                <p className="text-white ms-3">📧 ben@gmail.com</p>
-                <p className="text-white ms-3">📱 12345678</p>
+                <p className="text-white ms-3">📧 {formData.email ||"ben@gmail.com "} </p>
+                <p className="text-white ms-3">📱 {formData.phone ||"12345678 "}</p>
                 <p className="text-white ms-3">📍 United States, Florida</p>
               </div>
             </div>
