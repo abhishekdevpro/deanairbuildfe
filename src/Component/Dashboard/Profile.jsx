@@ -204,7 +204,7 @@ const ProfilePage = () => {
                 className="w-20 h-20 rounded-full mb-4 md:mb-0"
               />
               <div className="text-white">
-                <h2 className="text-xl font-semibold">{formData.first_name ||" Benjamin "}  {" "} {formData.last_name || " Tenison "}</h2>
+                <h2 className="text-xl font-semibold gap-4">{formData.first_name || " Benjamin "}  {<n/>} {formData.last_name || " Tenison "}</h2>
                 <p className="">{formData.professional_title ||"Web Developer "}</p>
               </div>
             </div>
