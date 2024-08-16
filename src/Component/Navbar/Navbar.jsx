@@ -144,6 +144,7 @@ const Navbar = () => {
               <span className="mr-2">🛡️</span>
               <span>Admin</span>
             </Link>
+            <Link to="https://www.Resume Intellect.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">📞 +1 8887936474</Link>
           </div>
           <div className="hidden md:flex justify-center items-center gap-4">
             {isLoggedIn ? (

@@ -25,6 +25,28 @@ function Payment() {
       setShowForm2(true);
     };
   
+    const handleChoosePlan3 = () => {
+      const amount = 269; // Fixed price
+      const token = localStorage.getItem('token'); // Retrieve token from localStorage
+  
+      const payload = {
+        amount,
+        ResumeId: "9CN06189KH259320999", // Ensure the field name matches the API expectation
+        Token: token || '' // Ensure the field name matches the API expectation
+      };
+  
+      axios.post('https://api.resumeintellect.com/api/user/paypal/create-payment', payload, {
+        headers: { 'Content-Type': 'application/json' }, // Use JSON content type
+      })
+      .then(response => {
+        const data = response.data;
+        if (data && data.data) {
+          // Redirect to the PayPal URL provided in the response
+          window.location.href = data.data;
+        }
+      })
+      .catch(error => console.error('Payment Error:', error));
+    };
     
   
 
@@ -43,7 +65,7 @@ function Payment() {
               </th>
               <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600  tracking-wider">
                 <div className="text-center">
-                  <p className="text-lg font-bold">Paid</p>
+                  <p className="text-lg font-bold">AI resume writer</p>
                   <span className=" text-violet-900 font-bold text-lg"> $49</span> <span className=" text-violet-900 ">/One Time Purchase</span><br/>
                 <Link to="/dashboard/ai-resume-builder">
                 <button
@@ -58,13 +80,14 @@ function Payment() {
               </th>
               <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600  tracking-wider">
                 <div className="text-center">
-                  <p className="text-lg font-bold">Personal</p>
-                  <span className=" text-violet-900 font-bold text-lg"> $69</span> <span className=" text-violet-900 ">/Month [Cancel any time]</span><br/>
+                  <p className="text-lg font-bold">Expert human writer</p>
+                  
+                  <span className=" text-violet-900 font-bold text-lg"> $269</span> <span className=" text-violet-900 ">/Resume </span><br/>
                   <button
-                   className='bg-red-200 text-blue-900 p-2 px-6 rounded-lg m-4 disabled:'
-                    onClick={() =>('personal', 69, '123')}
+                   className='bg-green-700 text-white p-2 px-5 rounded-lg m-4 disabled:'
+                   onClick={handleChoosePlan} 
                   >
-                    Coming Soon
+                    Choose this plan
                   </button>
                 </div>
               </th>
@@ -173,7 +196,7 @@ function Payment() {
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" required className='border-2 rounded-lg m-2 p-3'/><br /><br />
         
-        <span className=" text-violet-900 font-bold text-2xl "> $49</span> <span className=" text-violet-900 ">/One Time Purchase</span><br/>
+        <span className=" text-violet-900 font-bold text-2xl "> $269</span> <span className=" text-violet-900 ">/One Time Purchase</span><br/>
         <input type="hidden" name="amount" defaultValue="49" />
         <input type="hidden" name="courseID" defaultValue="" />
         <button type="submit"  className='bg-yellow-500 text-white px-20 rounded-lg mt-10 p-3 font-bold'>🚚 Checkout </button>
