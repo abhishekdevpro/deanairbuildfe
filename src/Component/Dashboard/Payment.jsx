@@ -3,27 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function Payment() {
-    const [showForm, setShowForm] = useState(false);
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState(0);
-    const [courseID, setCourseID] = useState('');
-  
-    const handleChoosePlan = (plan, planPrice, planCourseID) => {
-      setPrice(planPrice);
-      setCourseID(planCourseID);
-      setShowForm(true);
-    };
-
-    const [showForm2, setShowForm2] = useState(false);
-    const [name2, setName2] = useState('');
-    const [price2, setPrice2] = useState(0);
-    const [courseID2, setCourseID2] = useState('');
-  
-    const handleChoosePlan2 = (plan, planPrice2, planCourseID2) => {
-      setPrice2(planPrice2);
-      setCourseID2(planCourseID2);
-      setShowForm2(true);
-    };
+    
   
     const handleChoosePlan3 = () => {
       const amount = 269; // Fixed price
@@ -85,7 +65,7 @@ function Payment() {
                   <span className=" text-violet-900 font-bold text-lg"> $269</span> <span className=" text-violet-900 ">/Resume </span><br/>
                   <button
                    className='bg-green-700 text-white p-2 px-5 rounded-lg m-4 disabled:'
-                   onClick={handleChoosePlan} 
+                   onClick={handleChoosePlan3} 
                   >
                     Choose this plan
                   </button>
@@ -188,38 +168,7 @@ function Payment() {
         </table>
       </div>
 
-      {showForm && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-          <div className="bg-white py-10 rounded-lg shadow-md w-96 text-center">
-            <h2 className="text-xl font-bold mb-10">🛒 Checkout </h2>
-            <form id="checkoutForm" action="https://api.resumeintellect.com/api/user/paypal/create-payment" method="POST">
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" required className='border-2 rounded-lg m-2 p-3'/><br /><br />
-        
-        <span className=" text-violet-900 font-bold text-2xl "> $269</span> <span className=" text-violet-900 ">/One Time Purchase</span><br/>
-        <input type="hidden" name="amount" defaultValue="49" />
-        <input type="hidden" name="courseID" defaultValue="" />
-        <button type="submit"  className='bg-yellow-500 text-white px-20 rounded-lg mt-10 p-3 font-bold'>🚚 Checkout </button>
-      </form>
-          </div>
-        </div>
-      )}
-      {showForm2 && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
-          <div className="bg-white py-10 rounded-lg shadow-md w-96 text-center">
-            <h2 className="text-xl font-bold mb-10">🛒 Checkout </h2>
-            <form id="checkoutForm" action="https://api.resumeintellect.com/api/user/paypal/create-payment" method="POST">
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" required className='border-2 rounded-lg m-2 p-3'/><br /><br />
-        
-        <span className=" text-violet-900 font-bold text-2xl "> $69</span> <span className=" text-violet-900 ">/Month [Cancel any time]</span><br/>
-        <input type="hidden" name="amount" defaultValue="69" />
-        <input type="hidden" name="courseID" defaultValue="" />
-        <button type="submit"  className='bg-yellow-500 text-white px-20 rounded-lg mt-10 p-3 font-bold'>🚚 Checkout </button>
-      </form>
-          </div>
-        </div>
-      )}
+     
     </div>
   );
 }
