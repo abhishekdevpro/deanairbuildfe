@@ -48,7 +48,7 @@ const PreviewSection = ({
       };
 
       const response = await axios.post(
-        'https://api.perfectresume.ca/api/user/file-based-ai',
+        'https://api.resumeintellect.com/api/user/file-based-ai',
         requestBody,
         {
           headers: {
@@ -68,7 +68,7 @@ const PreviewSection = ({
 
   const updateResume = async () => {
     const token = localStorage.getItem('token');
-    const url = `https://api.perfectresume.ca/api/user/resume-update/${id}`;
+    const url = `https://api.resumeintellect.com/api/user/resume-update/${id}`;
   
     // Ensure skillsfromapi is initialized as an empty array if it's null or undefined
     const skillsFromApiArray = Array.isArray(skillsfromapi) ? skillsfromapi : [];

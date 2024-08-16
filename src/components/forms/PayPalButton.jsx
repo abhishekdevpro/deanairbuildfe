@@ -9,7 +9,7 @@ const PayPalButton = () => {
       paypal.Buttons({
         createOrder: async (data, actions) => {
           // Call your backend to create the PayPal order
-          const response = await fetch('https://api.perfectresume.ca/api/user/paypal/create-payment', {
+          const response = await fetch('https://api.resumeintellect.com/api/user/paypal/create-payment', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

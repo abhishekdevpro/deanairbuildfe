@@ -38,7 +38,7 @@ const QuestionDetail = ({
     }
 
     try {
-      const url = `https://api.perfectresume.ca/api/user/skill-assessment?skill_id=${skillId}&skill_name=${encodeURIComponent(skillName)}`;
+      const url = `https://api.resumeintellect.com/api/user/skill-assessment?skill_id=${skillId}&skill_name=${encodeURIComponent(skillName)}`;
       console.log('Request URL:', url);
       const response = await axios.post(
         url,

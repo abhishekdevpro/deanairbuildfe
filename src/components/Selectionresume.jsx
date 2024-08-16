@@ -13,7 +13,7 @@ function Selectionresume() {
   const createResume = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('https://api.perfectresume.ca/api/user/resume-create', {
+      const response = await fetch('https://api.resumeintellect.com/api/user/resume-create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

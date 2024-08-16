@@ -41,15 +41,18 @@ const Experience = ({
     setDropdownVisible(!dropdownVisible);
   };
 
+  
+
   const handleSearchChange = async (e) => {
     const value = e.target.value;
     setSearchValue(value);
 
-    if (e.key === 'Enter' && value.length > 2) {
+
+    if (e.key === 'Enter' && value.length > 2)  {
       setIsLoading(true);
       try {
         const token = localStorage.getItem('token');
-        const response = await fetch('https://api.perfectresume.ca/api/user/ai-resume-profexp-data', {
+        const response = await fetch('https://api.resumeintellect.com/api/user/ai-resume-profexp-data', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -78,6 +81,24 @@ const Experience = ({
       setSearchResults([]);
     }
   };
+
+  const handleDescriptionChange = (value, index) => {
+    handleInputChange({ target: { name: 'companydescription', value } }, index, 'experiences');
+  };
+
+  const handleSearchResultSelect = (result, index) => {
+    const currentDescription = experiences[index].companydescription || '';
+    const newDescription = currentDescription ? `${currentDescription}\n${result}` : result;
+    handleInputChange({ target: { name: 'companydescription', value: newDescription } }, index, 'experiences');
+    setSearchValue(''); // Clear search input after selection if needed
+    setSearchResults([]); // Clear search results after selection
+  };
+
+  const handleSuggestionSelect = (result) => {
+    // Handle selection of a suggestion and update state
+    handleInputChange({ target: { name: 'companydescription', value: result } }, 0, 'experiences');
+    setDropdownVisible(false); 
+  }
 
   
 
@@ -196,11 +217,12 @@ const Experience = ({
                     <h3>AI - Assist</h3>
                   </button>
                   {dropdownVisible && (
-                    <div className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                      <div className="relative inline-block text-left">
+                    <div className="origin-top-left absolute right-0 mt-3 w-80 rounded-md shadow-lg bg-white">
+                      <div className="absolute inline-block text-left">
+                        
                         <input
                           type="text"
-                          className="block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          className="block w-80 px-3 py-2 border border-gray-300 rounded-md text-xs focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                           placeholder="Search..."
                           value={searchValue}
                           onChange={handleSearchChange}
@@ -208,17 +230,18 @@ const Experience = ({
                         />
                         {!isLoading && !error && searchResults.length > 0 && (
                           <ul className="mt-2">
-                            {searchResults.map((result, index) => (
+                            {searchResults.map((result, idx) => (
                               <li
-                                key={index}
-                                className="py-1 px-3 hover:bg-gray-100 cursor-pointer"
-                                onClick={() => handleSuggestionSelect(result)}
+                                key={idx}
+                                className="px-4 py-2 hover:bg-gray-100 hover:text-black bg-gray-800 text-white cursor-pointer text-xs"
+                                onClick={() => handleSearchResultSelect(result, index)}
                               >
                                 {result}
                               </li>
                             ))}
                           </ul>
                         )}
+                        {isLoading && <div>Loading...</div>}
                         {error && <div className="text-red-500">{error}</div>}
                       </div>
                     </div>
@@ -227,9 +250,10 @@ const Experience = ({
               </div>
               <ReactQuill
                 theme="snow"
-                value={exp.companydescription ||''}
+                value={exp.companydescription}
                 onChange={(value) => handleDescriptionChange(value, index)}
-                className="w-full h-40 p-2 mb-4 break-all"
+                placeholder="Write something about the company..."
+                className="mb-4"
               />
 
               <button

@@ -26,7 +26,7 @@ const Skills = ({ skills, handleInputChange, addSkill, deleteSkill, skillsfromap
       };
 
       const response = await axios.post(
-        'https://api.perfectresume.ca/api/user/ai-skills-data',
+        'https://api.resumeintellect.com/api/user/ai-skills-data',
         requestBody,
         {
           headers: {

@@ -164,16 +164,19 @@ const Template1 = ({
     exp.companydescription.split(/\r?\n/).map((line, i) => (
       <li
         key={i}
-        className={`${line.trim() ? 'before:content-[""] before:mr-1' : ''} text-xs sm:text-xs md:text-xs lg:text-xs m-2 w-full break-all`}
-        style={{ marginBottom: '4px' }} // Adjust margin bottom as needed
-        dangerouslySetInnerHTML={{ __html: line ? `•${line}` : '' }}
-      />
+        className="text-xs sm:text-xs md:text-xs lg:text-xs m-2 w-full break-all"
+        style={{ marginBottom: '4px', listStyleType: 'none', position: 'relative', paddingLeft: '1em' }} // Adjust margin and padding as needed
+      >
+        <span style={{ position: 'absolute', left: 0 }}>•</span>
+        <span dangerouslySetInnerHTML={{ __html: line ? `${line}` : '' }} />
+      </li>
     ))
   ) : (
     // Render a placeholder or message if company description is not provided
     <li className="text-gray-400 italic">No description provided</li>
   )}
 </ul>
+
 
       <br />
     </div>

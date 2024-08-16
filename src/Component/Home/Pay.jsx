@@ -12,7 +12,7 @@
 //         <div className=' px-2 flex justify-center'>
           
 //             <div className=' border-t-4 border-t-gray-900 shadow-xl shadow-gray-700 rounded-lg px-3 py-3'>
-//               <h1 className=' font-bold text-xl'>Perfect Resume Builder</h1>
+//               <h1 className=' font-bold text-xl'>Resume Intellect Builder</h1>
 //                 <div className=' flex gap-2 items-center font-medium'><i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500 "></i>AI Score</div>
 //                 <div className=' flex gap-2 items-center font-medium'><i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>AI Parsing</div>
 //                 <div className=' flex gap-2 items-center font-medium'><i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>Resume Building</div>
@@ -47,7 +47,7 @@ const Subscription = () => {
         <h1 className="text-center font-bold text-3xl py-5">Want To Supercharge Your Career Growth With Our AI Tool?</h1>
         <div className="flex justify-center">
           <div className="bg-white rounded-lg shadow-md p-4 sm:p-6 md:p-8">
-            <h1 className="font-bold text-xl mb-4">Perfect Resume Builder</h1>
+            <h1 className="font-bold text-xl mb-4">Resume Intellect Builder</h1>
             <div className="flex items-center gap-2 font-medium mb-2">
               <i className="fa-solid fa-check border-2 px-2 py-2 rounded-full text-white bg-green-500"></i>
               <span>AI Score</span>

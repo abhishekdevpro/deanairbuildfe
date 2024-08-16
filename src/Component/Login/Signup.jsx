@@ -66,13 +66,13 @@
 // //   //     phone: registerValues.phone,
 // //   //     password: registerValues.password,
 // //   //   };
-// //   //   console.log(`${process.env.NODE_ENV === 'development' ? '' : 'https://api.perfectresume.ca'}/api/user/auth/signup`)
+// //   //   console.log(`${process.env.NODE_ENV === 'development' ? '' : 'https://api.resumeintellect.com'}/api/user/auth/signup`)
 
 // //   //   try {
 // //   //     console.log('Request Body:', body);
 // //   //     const response = await axios.post(
-// //   //       `https://api.perfectresume.ca/api/user/auth/signup`,
-// //   //       `${process.env.NODE_ENV === 'development' ? '' : 'https://api.perfectresume.ca'}/api/user/auth/signup`,
+// //   //       `https://api.resumeintellect.com/api/user/auth/signup`,
+// //   //       `${process.env.NODE_ENV === 'development' ? '' : 'https://api.resumeintellect.com'}/api/user/auth/signup`,
 // //   //       body,
 // //   //       { 
 // //   //         withCredentials:true,
@@ -119,7 +119,7 @@
 // //     }
 
 // //     try {
-// //       const response = await axios.post("https://api.perfectresume.ca/api/user/auth/signup", formData, {
+// //       const response = await axios.post("https://api.resumeintellect.com/api/user/auth/signup", formData, {
 // //         headers: {
 // //           "Content-Type": "application/json",
 // //         },
@@ -279,7 +279,7 @@
 // //     }
 
 // //     try {
-// //       const response = await axios.post("https://api.perfectresume.ca/api/user/auth/signup", formData, 
+// //       const response = await axios.post("https://api.resumeintellect.com/api/user/auth/signup", formData, 
 // //         {
 // //         headers: {
 // //           "Content-Type": "application/json",
@@ -415,7 +415,7 @@
 //     }
 //    console.log("Data" , formData)
 //     try {
-//       const response = await axios.post("https://api.perfectresume.ca/api/user/auth/signup", formData, 
+//       const response = await axios.post("https://api.resumeintellect.com/api/user/auth/signup", formData, 
 //         {
 //           headers: {
 //             "Content-Type": "application/json",
@@ -592,7 +592,7 @@ function Signup() {
     console.log("Body Data", body);
   
     try {
-      const response = await axios.post("https://api.perfectresume.ca/api/user/auth/signup", body, {
+      const response = await axios.post("https://api.resumeintellect.com/api/user/auth/signup", body, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -617,7 +617,7 @@ function Signup() {
     <div className="flex justify-center items-center h-screen">
       <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg">
         <div className="flex justify-center mb-4">
-          <img src={logo} className="w-20 h-10" alt="Logo" />
+          <img src={logo} className="w-40 h-10" alt="Logo" />
         </div>
         <div className="text-2xl text-black text-center font-bold">
           Create an Account

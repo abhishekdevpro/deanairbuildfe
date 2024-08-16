@@ -45,7 +45,7 @@ const Navbar = () => {
       };
 
       const response = await axios.post(
-        'https://api.perfectresume.ca/api/user/file-based-ai',
+        'https://api.resumeintellect.com/api/user/file-based-ai',
         requestBody,
         {
           headers: {
@@ -78,7 +78,7 @@ const Navbar = () => {
         };
 
         const response = await axios.post(
-          'https://api.perfectresume.ca/api/user/file-based-ai',
+          'https://api.resumeintellect.com/api/user/file-based-ai',
           requestBody,
           {
             headers: {
@@ -118,7 +118,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="">
-              <img src={logo} alt="logo" className="w-20 h-14" />
+              <img src={logo} alt="logo" className=" h-10" />
             </Link>
           </div>
           <div className="hidden md:flex justify-center items-center space-x-4" id="nav">
@@ -132,14 +132,14 @@ const Navbar = () => {
               AI Resume Parsing
               {isHovering && (
                 <div className="absolute w-full bg-sky-600 text-black border  px-2 py-2 rounded-md text-xs  shadow-lg mt-2  bg-opacity-50">
-                  At Perfect Resume, we leverage cutting-edge AI CV parsing technology to streamline the recruitment process,
+                  At Resume Intellect, we leverage cutting-edge AI CV parsing technology to streamline the recruitment process,
                    making it faster and more efficient for both employers and job seekers. Our AI CV parsing tool accurately 
                    extracts and analyzes key information from CVs, helping you identify the best candidates quickly and effectively.
                 </div>
               )}
             </Link>
-            <Link to="https://www.perfectresume.ca/blog/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
-            <Link to="https://www.perfectresume.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
+            <Link to="https://www.Resume Intellect.ca/blog/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
+            <Link to="https://www.Resume Intellect.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
             <Link to="/adminlogin" className="text-white px-3 py-2 rounded-md text-lg font-semibold">
               <span className="mr-2">🛡️</span>
               <span>Admin</span>

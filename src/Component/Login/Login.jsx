@@ -30,7 +30,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        'https://api.perfectresume.ca/api/user/auth/login',
+        'https://api.resumeintellect.com/api/user/auth/login',
         formData,
       );
 
@@ -54,7 +54,7 @@ function Login() {
       <div className="flex justify-center items-center h-screen w-full">
         <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg bg-white">
           <div className="flex justify-center mb-6">
-            <img src={logo} className="w-20 h-10" alt="Logo" />
+            <img src={logo} className="w-40 h-10" alt="Logo" />
           </div>
           <div className="text-2xl text-black text-center font-bold mb-4">
             Welcome Back

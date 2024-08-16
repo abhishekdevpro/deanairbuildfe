@@ -27,7 +27,7 @@ const MyResume = () => {
   
     if (token) {
       axios
-        .get("https://api.perfectresume.ca/api/user/resume-list", {
+        .get("https://api.resumeintellect.com/api/user/resume-list", {
           headers: {
             Authorization: token,
           },
@@ -54,7 +54,7 @@ const MyResume = () => {
       setIsLoading(true);
       axios
         .post(
-          "https://api.perfectresume.ca/api/user/file-based-ai",
+          "https://api.resumeintellect.com/api/user/file-based-ai",
           {
             keyword:
               "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
@@ -93,7 +93,7 @@ const MyResume = () => {
       setIsLoading(true);
       axios
         .post(
-          "https://api.perfectresume.ca/api/user/file-based-ai",
+          "https://api.resumeintellect.com/api/user/file-based-ai",
           {
             keyword:
               "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
@@ -125,7 +125,7 @@ const MyResume = () => {
     const token = localStorage.getItem("token");
   
     try {
-      const response = await axios.get(`https://api.perfectresume.ca/api/user/resume-list/${resume.id}`, {
+      const response = await axios.get(`https://api.resumeintellect.com/api/user/resume-list/${resume.id}`, {
         headers: {
           Authorization: token,
         },
@@ -162,7 +162,7 @@ const handleDeleteResume = async () => {
   const token = localStorage.getItem("token")
 
   try{
-    await axios.delete(`https://api.perfectresume.ca/api/user/resume-list/${deleteresumeid}`,{
+    await axios.delete(`https://api.resumeintellect.com/api/user/resume-list/${deleteresumeid}`,{
       headers:{
         Authorization:token
       }

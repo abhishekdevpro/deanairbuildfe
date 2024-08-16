@@ -24,7 +24,7 @@ const Skills = () => {
     }
 
     try {
-      const response = await axios.get('https://api.perfectresume.ca/api/user/user-skills', {
+      const response = await axios.get('https://api.resumeintellect.com/api/user/user-skills', {
         headers: {
           Authorization: token,
         },
@@ -105,7 +105,7 @@ const Skills = () => {
   }
 
   if (error) {
-    return <div className="py-16 px-5 text-center text-3xl">🎮Please update your Skills, So you can take the test</div>;
+    return <div className="py-16 px-5 text-center text-3xl">  🎮 Retry again or update your Skills, So you can take the test</div>;
   }
 
   return (

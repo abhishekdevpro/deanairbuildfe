@@ -7,7 +7,7 @@ const MyResume1 = () => {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    axios.get('https://api.perfectresume.ca/api/admin/users', {
+    axios.get('https://api.resumeintellect.com/api/admin/users', {
       headers: {
         Authorization: token
       }

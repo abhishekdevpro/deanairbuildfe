@@ -169,7 +169,7 @@ function Payment() {
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-white py-10 rounded-lg shadow-md w-96 text-center">
             <h2 className="text-xl font-bold mb-10">🛒 Checkout </h2>
-            <form id="checkoutForm" action="https://api.perfectresume.ca/api/user/paypal/create-payment" method="POST">
+            <form id="checkoutForm" action="https://api.resumeintellect.com/api/user/paypal/create-payment" method="POST">
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" required className='border-2 rounded-lg m-2 p-3'/><br /><br />
         
@@ -185,7 +185,7 @@ function Payment() {
         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50 z-50">
           <div className="bg-white py-10 rounded-lg shadow-md w-96 text-center">
             <h2 className="text-xl font-bold mb-10">🛒 Checkout </h2>
-            <form id="checkoutForm" action="https://api.perfectresume.ca/api/user/paypal/create-payment" method="POST">
+            <form id="checkoutForm" action="https://api.resumeintellect.com/api/user/paypal/create-payment" method="POST">
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" required className='border-2 rounded-lg m-2 p-3'/><br /><br />
         

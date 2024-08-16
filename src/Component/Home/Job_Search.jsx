@@ -9,13 +9,13 @@ function Course(props) {
   const course =[
     
     {
-        img:blog1, title:"10 alarming signs why your wants you to leave the job",link:"https://www.perfectresume.ca/blog/"
+        img:blog1, title:"10 alarming signs why your wants you to leave the job",link:"https://www.Resume Intellect.ca/blog/"
     },
-    {   img:blog2,title:"10 must have HR professional skills required for your resume",link:"https://www.perfectresume.ca/blog/"},
+    {   img:blog2,title:"10 must have HR professional skills required for your resume",link:"https://www.Resume Intellect.ca/blog/"},
 
-    {   img:blog3,title:"Science behind AI-powered resume-scoring systems",link:"https://www.perfectresume.ca/blog/"},
+    {   img:blog3,title:"Science behind AI-powered resume-scoring systems",link:"https://www.Resume Intellect.ca/blog/"},
 
-    {   img:blog4,title:"Why is it important to have resumes built by experts",link:"https://www.perfectresume.ca/blog/"},
+    {   img:blog4,title:"Why is it important to have resumes built by experts",link:"https://www.Resume Intellect.ca/blog/"},
 
     // { img:"https://blog.abroadium.com/wp-content/uploads/2024/05/Blue-Modern-Digital-Art-Marketplace-Promotion-Facebook-Ad-3.jpg",title:"My AI-Written Resume Got Me an Interview!",link:"https://blog.abroadium.com/my-ai-written-resume-got-me-an-interview/"},
     // { img:"https://blog.abroadium.com/wp-content/uploads/2024/05/Blue-Modern-Digital-Art-Marketplace-Promotion-Facebook-Ad-2.jpg",title:"Using AI to Find the Right Skills for Your Resume",link:"https://blog.abroadium.com/using-ai-to-find-the-right-skills-for-your-resume/"},

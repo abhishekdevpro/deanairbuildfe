@@ -37,7 +37,7 @@ function Uploadresume() {
     setLoading(true);
     try {
       const token = localStorage.getItem('token'); // Retrieve token from storage
-      const response = await axios.post('https://api.perfectresume.ca/api/user/resume-upload', formData, {
+      const response = await axios.post('https://api.resumeintellect.com/api/user/resume-upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           'Authorization': token // Include token in Authorization header

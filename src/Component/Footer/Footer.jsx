@@ -24,18 +24,18 @@ const Footer = () => {
                 <br/>
                 <div className=' flex flex-wrap justify-around'>
                 <div className="w-full md:w-auto mb-6 md:mb-0" id='footer'>
-                    <h2 className="text-lg font-bold text-white">Perfect Resume</h2>
+                    <h2 className="text-lg font-bold text-white">Resume Intellect</h2>
                     <ul>
                         <li><a href="/aboutus" className="">About Us</a></li>
                         <li><a href="/careers" className="">Careers</a></li>
                         <li><a href="/Placement" className="">Placement Support</a></li>
-                        <li><a href="https://www.perfectresume.ca/blog/" className="">Resources</a></li>
+                        <li><a href="https://www.Resume Intellect.ca/blog/" className="">Resources</a></li>
                     </ul>
                 </div>
                 <div className="w-full md:w-auto mb-6 md:mb-0">
                     <h2 className="text-lg font-bold text-white">Support</h2>
                     <ul>
-                        <li><a href="https://www.perfectresume.ca/#contact" className="">Contact</a></li>
+                        <li><a href="https://www.Resume Intellect.ca/#contact" className="">Contact</a></li>
                         <li><a href="/Salarytools" className="">Salary Tool</a></li>
                    
                         <li><a href="/TermsandConditions" className="">Terms & Conditions</a></li>
@@ -64,7 +64,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="container text-base md:mx-auto text-center border-t border-white pt-6 mt-6">
-                <p className="text-white text-right">&copy; Copyright By PerfectResume.ca All Rights Reserved</p>
+                <p className="text-white text-right">&copy; Copyright By Resume Intellect.ca All Rights Reserved</p>
             </div>
         </footer>
         </>

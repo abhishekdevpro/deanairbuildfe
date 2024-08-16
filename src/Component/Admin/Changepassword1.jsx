@@ -28,7 +28,7 @@ function Changepassword1() {
     e.preventDefault();
     axios({
       method: "PUT",
-      url: "https://api.perfectresume.ca/api/user/change-password",
+      url: "https://api.resumeintellect.com/api/user/change-password",
       headers: {
         Authorization: token,
         "Content-type": "application/json",

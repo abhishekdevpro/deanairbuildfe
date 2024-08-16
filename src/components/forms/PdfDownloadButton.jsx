@@ -21,7 +21,7 @@ const PdfDownloadButton = () => {
       Token: token || '' // Ensure the field name matches the API expectation
     };
 
-    axios.post('https://api.perfectresume.ca/api/user/paypal/create-payment', payload, {
+    axios.post('https://api.resumeintellect.com/api/user/paypal/create-payment', payload, {
       headers: { 'Content-Type': 'application/json' }, // Use JSON content type
     })
     .then(response => {

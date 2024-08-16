@@ -9,7 +9,7 @@ function Summary({ summary = [], handleInputChange, summaryname,location }) {
   const handleGetResults = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`https://api.perfectresume.ca/api/user/ai-resume-summery-data`, {
+      const response = await fetch(`https://api.resumeintellect.com/api/user/ai-resume-summery-data`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

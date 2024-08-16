@@ -25,7 +25,7 @@ function Testpaper() {
     const fetchQuestions = async () => {
       try {
         const response = await axios.get(
-          `https://api.perfectresume.ca/api/user/skill-assessment?skill_id=${parseInt(skillId)}&skill_name=${encodeURIComponent(skillName)}`,
+          `https://api.resumeintellect.com/api/user/skill-assessment?skill_id=${parseInt(skillId)}&skill_name=${encodeURIComponent(skillName)}`,
           {
             headers: {
               Authorization: token,
@@ -66,7 +66,7 @@ function Testpaper() {
 
     try {
       const response = await axios.put(
-        `https://api.perfectresume.ca/api/user/skill-assessment/${skillAssessmentId}`,
+        `https://api.resumeintellect.com/api/user/skill-assessment/${skillAssessmentId}`,
         {
           user_id: parseInt(jobSeekerId, 10), // Ensure user_id is an integer
           skill_id: parseInt(skillId, 10),

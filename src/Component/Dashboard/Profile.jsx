@@ -38,7 +38,7 @@ const ProfilePage = () => {
         const token = localStorage.getItem("token");
         
         // Fetch user profile
-        const userProfileResponse = await axios.get('https://api.perfectresume.ca/api/user/user-profile', {
+        const userProfileResponse = await axios.get('https://api.resumeintellect.com/api/user/user-profile', {
           headers: {
             Authorization: token,
           },
@@ -79,7 +79,7 @@ const ProfilePage = () => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      axios.get('https://api.perfectresume.ca/api/user/resume-list', {
+      axios.get('https://api.resumeintellect.com/api/user/resume-list', {
         headers: {
           Authorization: token
         }
@@ -105,7 +105,7 @@ const ProfilePage = () => {
     const token = localStorage.getItem('token');
 
     if (token) {
-      axios.post('https://api.perfectresume.ca/api/user/file-based-ai', {
+      axios.post('https://api.resumeintellect.com/api/user/file-based-ai', {
         keyword: 'Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations',
         file_location: resume.file_path
       }, {
@@ -142,7 +142,7 @@ const ProfilePage = () => {
         formData.append("files", selectedFile);
 
         const response = await axios.post(
-          "https://api.perfectresume.ca/api/user/resume-upload",
+          "https://api.resumeintellect.com/api/user/resume-upload",
           formData,
           {
             headers: {
@@ -198,7 +198,7 @@ const ProfilePage = () => {
           <div className="space-y-2 mb-6 md:mb-0 md:mr-6 md:pr-6">
             <div className="flex flex-col md:flex-row md:items-center md:space-x-4 ">
               <img
-                src={`https://api.perfectresume.ca/${formData.photo}`}
+                src={`https://api.resumeintellect.com/${formData.photo}`}
                 alt="Profile"
                 className="w-20 h-20 rounded-full mb-4 md:mb-0"
               />

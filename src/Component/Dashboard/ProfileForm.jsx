@@ -30,7 +30,7 @@ const ProfileForm = () => {
         const token = localStorage.getItem("token");
         
         // Fetch user profile
-        const userProfileResponse = await axios.get('https://api.perfectresume.ca/api/user/user-profile', {
+        const userProfileResponse = await axios.get('https://api.resumeintellect.com/api/user/user-profile', {
           headers: {
             Authorization: token,
           },
@@ -56,7 +56,7 @@ const ProfileForm = () => {
           }));
 
           // Fetch countries
-          const countriesResponse = await axios.get('https://api.perfectresume.ca/api/user/countries');
+          const countriesResponse = await axios.get('https://api.resumeintellect.com/api/user/countries');
           if (countriesResponse.data.status === 'success') {
             setCountries(countriesResponse.data.data);
           }
@@ -76,7 +76,7 @@ const ProfileForm = () => {
       if (formData.country_id) {
         try {
           const token = localStorage.getItem("token");
-          const response = await axios.get(`https://api.perfectresume.ca/api/user/states/${country_id}`, {
+          const response = await axios.get(`https://api.resumeintellect.com/api/user/states/${country_id}`, {
             headers: {
               Authorization: token // Ensure token is included correctly
             },
@@ -102,7 +102,7 @@ const ProfileForm = () => {
     const fetchCities = async () => {
       if (formData.state_id) {
         try {
-          const citiesResponse = await axios.get(`https://api.perfectresume.ca/api/user/cities/${formData.state_id}`);
+          const citiesResponse = await axios.get(`https://api.resumeintellect.com/api/user/cities/${formData.state_id}`);
           if (citiesResponse.data.status === 'success') {
             setCities(citiesResponse.data.data);
           }
@@ -175,7 +175,7 @@ const ProfileForm = () => {
     }
 
     try {
-      const response = await axios.patch('https://api.perfectresume.ca/api/user/user-profile', formDataToSend, {
+      const response = await axios.patch('https://api.resumeintellect.com/api/user/user-profile', formDataToSend, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: token,

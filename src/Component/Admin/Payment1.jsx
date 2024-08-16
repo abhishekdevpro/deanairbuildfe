@@ -32,7 +32,7 @@ function Payment1() {
                +1 123 456789
               </td>
               <td className="py-2 px-4">
-                myperfectresume@support.in
+                myResume Intellect@support.in
               </td>
               <td className="py-2 px-4">-</td>
               <td className="py-2 px-4">- </td>

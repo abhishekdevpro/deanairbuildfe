@@ -19,11 +19,11 @@ const Sidebar = ({ onClose }) => {
       <ul className="space-y-2 mt-4">
         <li>
           <Link
-            to="/"
-            className={getLinkClassName("/")}
+            to=""
+            className="flex items-center p-2 bg-blue-900 border-b-2 border-black font-semibold text-white"
             onClick={onClose} // Close sidebar on link click
           >
-            <span className="mr-2">🖥️</span>
+            <span className="mr-10 ">🖥️</span>
             <span>Dashboard</span>
           </Link>
         </li>
