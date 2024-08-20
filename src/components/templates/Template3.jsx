@@ -74,9 +74,24 @@ const Template3 = ({
               <p className='text-xs'>{exp.month1} - {exp.month2}</p>
             </div>
             <h6 className='text-xs'>{exp.role ||  predefinedText.experiences.role }</h6>
-            <ul className='my-2'>
-              <li className='text-xs md:text-xs lg:text-xs mx-2 w-2/2 break-all'>{exp.companydescription || predefinedText.experiences.companydescription}</li><br />
-            </ul>
+            <ul className={`${exp.companydescription ? 'text-xs sm:text-xs md:text-xs lg:text-xs' : ''} w-full break-all`}>
+  {exp.companydescription ? (
+    // If company description is provided, split by new lines and render each line as a list item
+    exp.companydescription.split(/\r?\n/).map((line, i) => (
+      <li
+        key={i}
+        className="text-xs sm:text-xs md:text-xs lg:text-xs m-2 w-full break-all"
+        style={{ marginBottom: '4px', listStyleType: 'none', position: 'relative', paddingLeft: '1em' }} // Adjust margin and padding as needed
+      >
+        <span style={{ position: 'absolute', left: 0 }}>•</span>
+        <span dangerouslySetInnerHTML={{ __html: line ? `${line}` : '' }} />
+      </li>
+    ))
+  ) : (
+    // Render a placeholder or message if company description is not provided
+    <li className="text-gray-400 italic">No description provided</li>
+  )}
+</ul>
           </div>
         ))}
       </div>
@@ -111,6 +126,16 @@ const Template3 = ({
             </ol>
           </div>
         ))}
+        {skillsfromapi && skillsfromapi.length > 0 && (
+    <p className="text-start ">ds
+      {skillsfromapi.map((skill, index) => (
+        <span key={index}>
+          {skill}
+          {index !== skillsfromapi.length - 1 && ' ● '}
+        </span>
+      ))}
+    </p>
+  )}
       </div>
     </div>
   );

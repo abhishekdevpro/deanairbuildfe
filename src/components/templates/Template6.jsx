@@ -9,7 +9,8 @@ const Template6 = ({
   paragraphSpacing,
   lineSpacing,
   isPreviewScreen,
-  predefinedText = {}
+  predefinedText = {},
+  skillsfromapi
 }) => {
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
@@ -26,55 +27,13 @@ const Template6 = ({
   };
 
   // Check if all details are filled
-  const allDetailsFilled = details.every(detail =>
-    areAllFieldsFilled(detail, ['Profession', 'phoneNumber', 'email', 'link', 'address', 'name'])
-  );
 
-  const allDetailsFilled2 = experiences.every(experience =>
-    areAllFieldsFilled(experience, ['Company', 'month1', 'role', 'companydescription'])
-  );
-
-  const allDetailsFilled3 = educations.every(education =>
-    areAllFieldsFilled(education, ['schoolname', 'edmonth1', 'edmonth2', 'coursename'])
-  );
-
-  const allDetailsFilled4 = skills.every(skill =>
-    areAllFieldsFilled(skill, ['skillname', 'skilldetails'])
-  );
-
-  const allDetailsFilled5 = sectionadd.every(section =>
-    areAllFieldsFilled(section, ['sectiontitle', 'sectiondescription'])
-  );
-  const allDetailsFilled6 = summary.every(summar =>
-    areAllFieldsFilled(summar, ['summarydescription'])
-  );
 
   return (
     <>
       <div className={`p-8 text-violet-800 break-all bg-red-50 ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`} style={{ fontFamily: font }}>
         {/* Red circle indicating all fields are filled */}
-        {!isPreviewScreen  && (
-        <div className="">
-          {allDetailsFilled && (
-            <div className="w-7 h-7 ps-2.5 mt-1.5 bg-white rounded-2xl absolute top-48 left-1 font-bold">1</div>
-          )}
-          {allDetailsFilled2 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5  mt-3.5 bg-white rounded-2xl absolute top-56 left-1 font-bold">2</div>
-          )}
-          {allDetailsFilled3 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-11  bg-white rounded-2xl absolute top-60 left-1 font-bold">3</div>
-          )}
-          {allDetailsFilled4 && (
-            <div className="w-7 h-7 ps-2.5 mt-2 bg-white rounded-2xl absolute top-80 left-1 font-bold">4</div>
-          )}
-          {allDetailsFilled5 && (
-            <div className="w-7 h-7 ps-2.5 mt-8 bg-white rounded-2xl absolute top-96 left-1 font-bold">6</div>
-          )}
-          {allDetailsFilled6 && (
-            <div className="w-7 h-8 ps-2.5 pt-1 mt-28 bg-white rounded-2xl absolute top-64 left-1 font-bold">5</div>
-          )}
-        </div>
-      )}
+        
 
         <div className='text-center'>
           <h1 className='text-lg md:text-xl lg:text-3xl font-bold ms-2'>{details[0]?.name || predefinedText.details.name}</h1>
@@ -122,6 +81,16 @@ const Template6 = ({
                       <ol className="text-xs md:text-xs lg:text-xs ">
                         <li><span className="m-2">&#8226;</span>{skill.skillname || predefinedText.skills.skillname}</li>
                         <li className='text-xs md:text-xs lg:text-xs'><span className="m-2">&#8226;</span>{skill.skilldetails || predefinedText.skills.skilldetails}</li>
+                        {skillsfromapi && skillsfromapi.length > 0 && (
+    <p className="text-start ">ds
+      {skillsfromapi.map((skill, index) => (
+        <span key={index}>
+          {skill}
+          {index !== skillsfromapi.length - 1 && ' ● '}
+        </span>
+      ))}
+    </p>
+  )}
                       </ol>
                     </div>
                   ))}
@@ -235,9 +204,24 @@ const Template6 = ({
                         <p style={{ fontSize: "8px" }}>{exp.month1} - {exp.month2}</p>
                       </div>
                       <h6 className='text-xs mb-1' style={{ fontSize: "10px" }}>{exp.role || predefinedText.experiences.role}</h6>
-                      <ul className=''>
-                        <li className='text-xs md:text-xs lg:text-xs w-2/2 break-all' style={{ fontSize: "10px" }}>{exp.companydescription || predefinedText.experiences.companydescription}</li>
-                      </ul>
+                      <ul className={`${exp.companydescription ? 'text-xs sm:text-xs md:text-xs lg:text-xs' : ''} w-full break-all`}>
+  {exp.companydescription ? (
+    // If company description is provided, split by new lines and render each line as a list item
+    exp.companydescription.split(/\r?\n/).map((line, i) => (
+      <li
+        key={i}
+        className="text-xs sm:text-xs md:text-xs lg:text-xs m-2 w-full break-all"
+        style={{ marginBottom: '4px', listStyleType: 'none', position: 'relative', paddingLeft: '1em' }} // Adjust margin and padding as needed
+      >
+        <span style={{ position: 'absolute', left: 0 }}>•</span>
+        <span dangerouslySetInnerHTML={{ __html: line ? `${line}` : '' }} />
+      </li>
+    ))
+  ) : (
+    // Render a placeholder or message if company description is not provided
+    <li className="text-gray-400 italic">No description provided</li>
+  )}
+</ul>
                     </div>
                   </div>
                

@@ -15,6 +15,7 @@ const Template8 = ({
   isPreviewScreen,
   isTemplate1Previewing,
   predefinedText = {},
+  skillsfromapi
 }) => {
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
@@ -56,28 +57,7 @@ const Template8 = ({
 
   return (
     <div className={`border p-7 break-all ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`} style={{ fontFamily: font, backgroundColor:'#27384C' }}>
-     {!isPreviewScreen && !isTemplate1Previewing && (
-        <div className="">
-          {allDetailsFilled && (
-            <div className="w-7 h-7 ps-2.5 mt-1.5 bg-white rounded-2xl absolute top-48 left-1 font-bold">1</div>
-          )}
-          {allDetailsFilled2 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5  mt-3.5 bg-white rounded-2xl absolute top-56 left-1 font-bold">2</div>
-          )}
-          {allDetailsFilled3 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-11  bg-white rounded-2xl absolute top-60 left-1 font-bold">3</div>
-          )}
-          {allDetailsFilled4 && (
-            <div className="w-7 h-7 ps-2.5 mt-2 bg-white rounded-2xl absolute top-80 left-1 font-bold">4</div>
-          )}
-          {allDetailsFilled5 && (
-            <div className="w-7 h-7 ps-2.5 mt-8 bg-white rounded-2xl absolute top-96 left-1 font-bold">6</div>
-          )}
-          {allDetailsFilled6 && (
-            <div className="w-7 h-8 ps-2.5 pt-1 mt-28 bg-white rounded-2xl absolute top-64 left-1 font-bold">5</div>
-          )}
-        </div>
-      )}
+    
       <div className='bg-white  rounded-3xl h-full'>
         <div className='bg-stone-300 flex justify-between px-5 rounded-3xl '>
         
@@ -114,9 +94,24 @@ const Template8 = ({
               <div key={index}>
                 <p className='text-xs'>{exp.month1 || "2024/01"}- {exp.month2 || "2024/05"}</p>
                 <h6 className='font-bold text-sm my-2'>{exp.Company || "ABC Inc."}</h6>
-                <ul className='m-1 text-xs'>
-                  <li>{exp.companydescription || "Description of job experience Lorem Ipsum is simply dummy text of thees, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"}</li>
-                </ul>
+                <ul className={`${exp.companydescription ? 'text-xs sm:text-xs md:text-xs lg:text-xs' : ''} w-full break-all`}>
+  {exp.companydescription ? (
+    // If company description is provided, split by new lines and render each line as a list item
+    exp.companydescription.split(/\r?\n/).map((line, i) => (
+      <li
+        key={i}
+        className="text-xs sm:text-xs md:text-xs lg:text-xs m-2 w-full break-all"
+        style={{ marginBottom: '4px', listStyleType: 'none', position: 'relative', paddingLeft: '1em' }} // Adjust margin and padding as needed
+      >
+        <span style={{ position: 'absolute', left: 0 }}>•</span>
+        <span dangerouslySetInnerHTML={{ __html: line ? `${line}` : '' }} />
+      </li>
+    ))
+  ) : (
+    // Render a placeholder or message if company description is not provided
+    <li className="text-gray-400 italic">No description provided</li>
+  )}
+</ul>
                 <h6 className='font-semibold text-xs'>{exp.role || "Software Developer"}</h6>
                 
               </div> 
@@ -132,6 +127,16 @@ const Template8 = ({
                   <li>
                     <span className="m-2">&#8226;</span>{skill.skilldetails || "Skill Details"}
                   </li>
+                  {skillsfromapi && skillsfromapi.length > 0 && (
+    <p className="text-start ">ds
+      {skillsfromapi.map((skill, index) => (
+        <span key={index}>
+          {skill}
+          {index !== skillsfromapi.length - 1 && ' ● '}
+        </span>
+      ))}
+    </p>
+  )}
                 </ul>
               </div>
             ))} <br />

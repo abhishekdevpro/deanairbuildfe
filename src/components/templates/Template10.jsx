@@ -14,6 +14,7 @@ const Template10 = ({
   isTemplate1Previewing,
   isPreviewScreen,
   predefinedText = {},
+  skillsfromapi
 }) => {
   console.log('imageee', image)
   // Define classes based on props
@@ -80,28 +81,7 @@ const Template10 = ({
 
   return (
     <div className={`border break-all ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`} style={{ fontFamily: font }}>
-      {!isPreviewScreen &&  (
-        <div className="">
-          {allDetailsFilled && (
-            <div className="w-7 h-7 ps-2.5 mt-1.5 bg-white rounded-2xl absolute top-48 left-1 font-bold">1</div>
-          )}
-          {allDetailsFilled2 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5  mt-3.5 bg-white rounded-2xl absolute top-56 left-1 font-bold">2</div>
-          )}
-          {allDetailsFilled3 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-11  bg-white rounded-2xl absolute top-60 left-1 font-bold">3</div>
-          )}
-          {allDetailsFilled4 && (
-            <div className="w-7 h-7 ps-2.5 mt-2 bg-white rounded-2xl absolute top-80 left-1 font-bold">4</div>
-          )}
-          {allDetailsFilled5 && (
-            <div className="w-7 h-7 ps-2.5 mt-8 bg-white rounded-2xl absolute top-96 left-1 font-bold">6</div>
-          )}
-          {allDetailsFilled6 && (
-            <div className="w-7 h-8 ps-2.5 pt-1 mt-28 bg-white rounded-2xl absolute top-64 left-1 font-bold">5</div>
-          )}
-        </div>
-      )}
+     
       <div className='flex break-all'>
         <div className="md:w-1/ ps-4 pt-5 bg-slate-100 text-white overflow-auto justify-center break-all" style={{ backgroundColor: boxBgColor }}>
           <div>
@@ -156,6 +136,16 @@ const Template10 = ({
                 <li className='text-xs md:text-xs lg:text-xs'>
                   <span className="m-2">&#8226;</span>{skill.skilldetails || predefinedText.skills.skilldetails}
                 </li>
+                {skillsfromapi && skillsfromapi.length > 0 && (
+    <p className="text-start ">ds
+      {skillsfromapi.map((skill, index) => (
+        <span key={index}>
+          {skill}
+          {index !== skillsfromapi.length - 1 && ' ● '}
+        </span>
+      ))}
+    </p>
+  )}
               </ul>
             </div>
           ))}
@@ -202,9 +192,24 @@ const Template10 = ({
                   <h6 className=' text-sm ps-1'>{exp.companyplace}</h6>
                 </div>
                 <h6 className='text-sm'>{exp.role || "Software Developer"}</h6>
-                <ul className='m-2 text-xs'>
-                  <li>{exp.companydescription || predefinedText.experiences.companydescription}</li>
-                </ul>
+                <ul className={`${exp.companydescription ? 'text-xs sm:text-xs md:text-xs lg:text-xs' : ''} w-full break-all`}>
+  {exp.companydescription ? (
+    // If company description is provided, split by new lines and render each line as a list item
+    exp.companydescription.split(/\r?\n/).map((line, i) => (
+      <li
+        key={i}
+        className="text-xs sm:text-xs md:text-xs lg:text-xs m-2 w-full break-all"
+        style={{ marginBottom: '4px', listStyleType: 'none', position: 'relative', paddingLeft: '1em' }} // Adjust margin and padding as needed
+      >
+        <span style={{ position: 'absolute', left: 0 }}>•</span>
+        <span dangerouslySetInnerHTML={{ __html: line ? `${line}` : '' }} />
+      </li>
+    ))
+  ) : (
+    // Render a placeholder or message if company description is not provided
+    <li className="text-gray-400 italic">No description provided</li>
+  )}
+</ul>
               </div>
             </div>
           ))}

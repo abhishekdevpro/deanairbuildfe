@@ -8,7 +8,8 @@ const Template7 = ({
   paragraphSpacing,
   lineSpacing,
   isPreviewScreen,
-  predefinedText
+  predefinedText,
+  skillsfromapi
 }) => {
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
@@ -55,35 +56,14 @@ const Template7 = ({
       style={{ fontFamily: font }}
     >
       {/* Red circle indicating all fields are filled */}
-      {!isPreviewScreen  && (
-        <div className="">
-          {allDetailsFilled && (
-            <div className="w-7 h-7 ps-2.5 mt-1.5 bg-white rounded-2xl absolute top-48 left-1 font-bold">1</div>
-          )}
-          {allDetailsFilled2 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5  mt-3.5 bg-white rounded-2xl absolute top-56 left-1 font-bold">2</div>
-          )}
-          {allDetailsFilled3 && (
-            <div className="w-7 h-8 ps-2.5 pt-0.5 mt-11  bg-white rounded-2xl absolute top-60 left-1 font-bold">3</div>
-          )}
-          {allDetailsFilled4 && (
-            <div className="w-7 h-7 ps-2.5 mt-2 bg-white rounded-2xl absolute top-80 left-1 font-bold">4</div>
-          )}
-          {allDetailsFilled5 && (
-            <div className="w-7 h-7 ps-2.5 mt-8 bg-white rounded-2xl absolute top-96 left-1 font-bold">6</div>
-          )}
-          {allDetailsFilled6 && (
-            <div className="w-7 h-8 ps-2.5 pt-1 mt-28 bg-white rounded-2xl absolute top-64 left-1 font-bold">5</div>
-          )}
-        </div>
-      )}
+     
 
       <div className='flex'>
         <div className='w-2/3 px-10 '>
           {details.map((del, index) => (
             <div key={index}>
-              <h3 className="text-lg md:text-xl lg:text-3xl text-orange-800 font-bold">{del.name || predefinedText.details.name}</h3>
-              <p className='font-medium'>{del.Profession || predefinedText.details.profession}</p> <br />
+              <h3 className="text-lg md:text-xl lg:text-3xl text-orange-800 font-bold mt-4">{del.name || predefinedText.details.name}</h3>
+              <p className='font-medium text-sm'>{del.Profession || predefinedText.details.profession}</p> <br />
             </div>
           ))}
 
@@ -95,14 +75,29 @@ const Template7 = ({
               <div className="flex-grow border-t border-gray-300 align-super"></div>
               {experiences.map((exp, index) => (
                 <div key={index} className='mt-4'>
-                  <div className='flex justify-between'>
+                  <div className='flex justify-between text-xs'>
                     <h6 className='font-bold'>{exp.Company || predefinedText.experiences.company}</h6>
                     <p>{exp.month1} - {exp.month2}</p>
                   </div>
                   <h6>{exp.role}</h6>
-                  <ul className={`m-2 ${paragraphSpacingClass}`}>
-                    <li>{exp.companydescription || predefinedText.experiences.companydescription}</li>
-                  </ul>
+                  <ul className={`${exp.companydescription ? 'text-xs sm:text-xs md:text-xs lg:text-xs' : ''} w-full break-all`}>
+  {exp.companydescription ? (
+    // If company description is provided, split by new lines and render each line as a list item
+    exp.companydescription.split(/\r?\n/).map((line, i) => (
+      <li
+        key={i}
+        className="text-xs sm:text-xs md:text-xs lg:text-xs m-2 w-full break-all"
+        style={{ marginBottom: '4px', listStyleType: 'none', position: 'relative', paddingLeft: '1em' }} // Adjust margin and padding as needed
+      >
+        <span style={{ position: 'absolute', left: 0 }}>•</span>
+        <span dangerouslySetInnerHTML={{ __html: line ? `${line}` : '' }} />
+      </li>
+    ))
+  ) : (
+    // Render a placeholder or message if company description is not provided
+    <li className="text-gray-400 italic">No description provided</li>
+  )}
+</ul>
                 </div>
               ))}
             </div>
@@ -144,7 +139,7 @@ const Template7 = ({
             <div>
               <h5 className='text-orange-700 font-bold'>SKILLS</h5>
               <div className="flex-grow border-t border-gray-300 align-super"></div>
-              <ul className="mt-2">
+              <ul className="mt-2 text-xs mb-2">
                 {skills.map((skill, index) => (
                 <div>
                    <li key={index}>
@@ -154,6 +149,16 @@ const Template7 = ({
                   <li>
                     {skill.skilldetails || predefinedText.skills.skilldetails}
                   </li>
+                  {skillsfromapi && skillsfromapi.length > 0 && (
+    <p className="text-start ">ds
+      {skillsfromapi.map((skill, index) => (
+        <span key={index}>
+          {skill}
+          {index !== skillsfromapi.length - 1 && ' ● '}
+        </span>
+      ))}
+    </p>
+  )}
                 </div>
                 ))}
               </ul>
@@ -164,7 +169,7 @@ const Template7 = ({
             <div>
               <h5 className='text-orange-700 font-bold'>EDUCATION</h5>
               <div className="flex-grow border-t border-gray-300 align-super"></div>
-              <ul className="mt-2">
+              <ul className="mt-2 text-sm">
                 {educations.map((edu, index) => (
                   <li key={index}>
                     {edu.coursename || predefinedText.educations.coursename} at

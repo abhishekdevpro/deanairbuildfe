@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import image1 from './homeimage1.jpg';
 import image2 from './homeimage2.jpg';
 import image3 from './homeimage3.jpg';
+
 // import image4 from './homeimage4.jpg';
 
 const Home_Image = () => {
@@ -25,14 +26,14 @@ const Home_Image = () => {
     ];
 
     return (
-        <div className=" hidden md:block md:max-w-lg p-4">
+        <div className=" hidden md:block md:w-80 md:max-w-lg p-4">
             <Slider {...settings}>
                 {images.map((image, index) => (
                     <div key={index}>
                         <img 
                             src={image} 
                             alt={`Slide ${index + 1}`} 
-                            className=" md:h-auto md:w-96 transition-transform transform hover:scale-105" 
+                            className=" md:h-auto md:w-80 transition-transform transform hover:scale-105" 
                         />
                     </div>
                 ))}

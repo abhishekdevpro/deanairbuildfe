@@ -26,7 +26,8 @@ const PreviewSection = ({
   boxBgColor,
   setBoxBgColor,
   skillsfromapi,
-  location
+  location,
+  image
 }) => {
   const targetRef = useDownload();
   const [textSize, setTextSize] = useState(2);
@@ -185,6 +186,7 @@ const PreviewSection = ({
             isPreviewScreen={isPreviewScreen}
             predefinedText={predefinedText}
             skillsfromapi={skillsfromapi}
+            image={image}
           />
           {/* Render Additional Sections Input Fields */}
         </div>
