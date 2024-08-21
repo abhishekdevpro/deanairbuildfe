@@ -17,7 +17,7 @@ function Home_first() {
           <div className='px-6 py-3' id='bghome'>
             <Home_Image />
           </div>
-          <Link to="https://deanairbuildfe.vercel.app.com/">
+          <Link to="https://resumeintellect.ca/">
           <img 
                             src={landing} 
                            style={{width:"350px"}}
