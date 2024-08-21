@@ -15,7 +15,10 @@ function Home_Second() {
         const amount = 269; // Fixed price
         const token = localStorage.getItem('token'); // Retrieve token from localStorage
     
-        
+        if(!token){
+            window.location.href="/login";
+            return;
+        }
 
         const payload = {
           amount,
