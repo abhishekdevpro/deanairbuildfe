@@ -193,95 +193,90 @@ const ProfilePage = () => {
 
   return (
     <div className="bg-indigo-900 p-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="rounded-lg shadow-lg p-6 bg-indigo-800 flex flex-col md:flex-row justify-between items-center h-44">
-          <div className="space-y-2 mb-6 md:mb-0 md:mr-6 md:pr-6">
-            <div className="flex flex-col md:flex-row md:items-center md:space-x-4 ">
-              <img
-                src={`https://api.resumeintellect.com/${formData.photo}`}
-                alt="Profile"
-                className="w-20 h-20 rounded-full mb-4 md:mb-0"
-              />
-              <div className="text-white">
-                <h2 className="text-xl font-semibold gap-4">{formData.first_name || " Benjamin "}  {<n/>} {formData.last_name || " Tenison "}</h2>
-                <p className="">{formData.professional_title ||"Web Developer "}</p>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ms-20">
-              <div>
-                <p className="text-white ms-3">📧 {formData.email ||"ben@gmail.com "} </p>
-                <p className="text-white ms-3">📱 {formData.phone ||"12345678 "}</p>
-                <p className="text-white ms-3">📍 United States, Florida</p>
-              </div>
-            </div>
-          </div>
-          <div className="hidden md:block border-[0.5px] border-gray-500 h-40"></div>
-          <div className="flex flex-col justify-start items-start gap-4">
-            {resumes.length > 0 && (
-              <tr key={resumes[0].id} className="border-t border-gray-700">
-                <td className="py-2 px-4 hidden">{getFileName(resumes[0].file_path)}</td>
-                <td>
-                  <button
-                    className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800"
-                    onClick={() => handleGetScore(resumes[0])}
-                  >
-                    {scores[resumes[0].id] !== undefined ? scores[resumes[0].id] : 'Resume Score'}
-                  </button>
-                </td>
-              </tr>
-            )}
-            <div className="flex flex-col md:flex-row items-center gap-2">
-              <input
-                type="file"
-                onChange={handleFileChange}
-                className="hidden"
-                id="fileInput"
-                accept=".pdf"
-                disabled
-              />
-             {/* <label htmlFor="fileInput" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
-                Choose File 
-              </label> */}
-              <span className="text-white ml-2">{selectedFile ? selectedFile.name : `Upload .Pdf format resume`}</span>
-            </div>
-            <Link to="/dashboard/ai-resume-builder">
-            <button
-             // onClick={handleResume}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600"
-            >
-              Upload Resume
-            </button></Link>
+  <div className="max-w-4xl mx-auto">
+    <div className="rounded-lg shadow-lg p-6 bg-indigo-800 flex flex-col md:flex-row justify-between items-center md:h-44">
+      <div className="space-y-4 mb-6 md:mb-0 md:mr-6 md:pr-6 w-full">
+        <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
+          <img
+            src={`https://api.resumeintellect.com/${formData.photo}`}
+            alt="Please Upload Profile Photo"
+            className="w-20 h-20 rounded-full mb-4 md:mb-0"
+          />
+          <div className="text-white">
+            <h2 className="text-xl font-semibold">{formData.first_name || "Benjamin"} {formData.last_name || "Tenison"}</h2>
+            <p>{formData.professional_title || "Web Developer"}</p>
           </div>
         </div>
-        {isModalOpen && (
-          <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
-            <div className="bg-gray-700 p-10 rounded shadow-lg text-white">
-              <h2 className="text-xl font-semibold text-white">Resume Score</h2>
-              <p><strong>Content Accuracy Percentage: </strong> {modalContent}</p>
-              <div className="flex mt-4">
-                <button
-                  onClick={copyToClipboard}
-                  className="bg-blue-500 text-white py-1 px-4 rounded mr-2"
-                >
-                  Copy
-                </button>
-                <button
-                  onClick={() => setIsModalOpen(false)}
-                  className="bg-yellow-500 text-white py-1 px-4 rounded"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:ms-20">
+          <div>
+            <p className="text-white">📧 {formData.email || "ben@gmail.com"}</p>
+            <p className="text-white">📱 {formData.phone || "12345678"}</p>
+            <p className="text-white">📍 United States, Florida</p>
+          </div>
+        </div>
+      </div>
+      <div className="hidden md:block border-[0.5px] border-gray-500 h-40"></div>
+      <div className="flex flex-col justify-start items-start gap-4 w-full md:w-auto">
+        {resumes.length > 0 && (
+          <div key={resumes[0].id} className="border-t border-gray-700 w-full">
+            <button
+              className="bg-black text-white px-6 py-2 rounded-lg hover:bg-gray-800 w-full md:w-auto"
+              onClick={() => handleGetScore(resumes[0])}
+            >
+              {scores[resumes[0].id] !== undefined ? scores[resumes[0].id] : 'Resume Score'}
+            </button>
           </div>
         )}
-        {uploadStatus && (
-          <div className="mt-4 text-center">
-            <p className="text-sm text-white font-semibold">{uploadStatus}</p>
-          </div>
-        )}
+        <div className="flex flex-col md:flex-row items-center gap-2 w-full md:w-auto">
+          <input
+            type="file"
+            onChange={handleFileChange}
+            className="hidden"
+            id="fileInput"
+            accept=".pdf"
+            disabled
+          />
+          <span className="text-white ml-2">{selectedFile ? selectedFile.name : `Upload .Pdf format resume`}</span>
+        </div>
+        <Link to="/dashboard/ai-resume-builder">
+          <button
+            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 w-full md:w-auto"
+          >
+            Upload Resume
+          </button>
+        </Link>
       </div>
     </div>
+    {isModalOpen && (
+      <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center">
+        <div className="bg-gray-700 p-10 rounded shadow-lg text-white">
+          <h2 className="text-xl font-semibold text-white">Resume Score</h2>
+          <p><strong>Content Accuracy Percentage: </strong> {modalContent}</p>
+          <div className="flex mt-4">
+            <button
+              onClick={copyToClipboard}
+              className="bg-blue-500 text-white py-1 px-4 rounded mr-2"
+            >
+              Copy
+            </button>
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="bg-yellow-500 text-white py-1 px-4 rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    {uploadStatus && (
+      <div className="mt-4 text-center">
+        <p className="text-sm text-white font-semibold">{uploadStatus}</p>
+      </div>
+    )}
+  </div>
+</div>
+
   );
 };
 

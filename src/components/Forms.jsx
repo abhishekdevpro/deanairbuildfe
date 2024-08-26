@@ -433,12 +433,12 @@ return (<div>
 
         <div className="flex">
        
-          <div className="flex w-full sm:w-full justify-end">
+          <div className="flex w-full sm:w-full sm:justify-end">
             <div className="absolute h-screen ">
               {/* Conditionally render the screen component based on the current section */}
              
             </div>
-            <div className="w-3/6 p-3 h-screen">
+            <div className=" p-3 h-screen">
           
               {/* Render Active Section */}
               {(() => {
@@ -537,7 +537,7 @@ start_date={resumeData.employmenthistory[0]?.start_date}
               })()}
             </div>
             
-            <div className=" w-4/6 ms-10 overflow-y-auto overflow-x-auto h-full  py-10 mb-10 border-r-2">
+            <div className=" w-4/6 ms-10 overflow-y-auto overflow-x-auto h-full  py-10 mb-10 border-r-2 hidden sm:block">
             <Download/>
               <div className=' mb-5 ms-60 '><Tooltip/></div>
               
@@ -725,7 +725,7 @@ start_date={resumeData.employmenthistory[0]?.start_date}
                 }
               })()}
             </div>
-            <div className=" w-4/6 ms-10 overflow-y-auto overflow-x-auto h-full  py-10 mb-10 border-r-2">
+            <div className=" w-4/6 ms-10 overflow-y-auto overflow-x-auto h-full  py-10 mb-10 border-r-2 hidden sm:block">
               <div className=' mb-5 ms-60 '><Tooltip/></div>
               
               <TemplateComponent

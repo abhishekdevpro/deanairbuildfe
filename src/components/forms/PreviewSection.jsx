@@ -171,8 +171,8 @@ const PreviewSection = ({
         <h1 className='text-sm'>Review and make any final changes to your resume, then download or email yourself a copy and apply for jobs!</h1>
       </div>
       <Download/>
-      <div className='flex justify-center mb-40'>
-        <div className="w-3/4 pt-5 overflow-auto mb-10">
+      <div className='sm:flex justify-center mb-40'>
+        <div className="sm:w-3/4 pt-5 overflow-auto mb-10">
         <TemplateComponent
             ref={targetRef}
             data={formData}
@@ -190,8 +190,8 @@ const PreviewSection = ({
           />
           {/* Render Additional Sections Input Fields */}
         </div>
-        <div className='py-5 w-1/4 text-center'>
-          <div className='flex justify-around'>
+        <div className='py-5 sm:w-1/4 text-center'>
+          <div className='sm:flex justify-around'>
             
             <div className="justify-end ">
               <button onClick={updateResume}>

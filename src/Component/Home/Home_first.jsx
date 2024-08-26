@@ -17,12 +17,13 @@ function Home_first() {
           <div className='px-6 py-3' id='bghome'>
             <Home_Image />
           </div>
-          <Link to="https://resumeintellect.ca/">
+          <a href="tel:+1 8887936474">
+        
           <img 
                             src={landing} 
                            style={{width:"350px"}}
                         />
-          </Link>
+          </a>
          
           <div className='px-3 py-3 w-full md:w-[500px]'>
             <div className='flex flex-col gap-4'>

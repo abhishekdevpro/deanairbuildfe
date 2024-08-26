@@ -206,14 +206,14 @@ const ProfileForm = () => {
         <h1 className="text-2xl font-bold mb-6 text-center md:text-left">BASIC INFORMATION</h1>
         
         <form onSubmit={handleSubmit}>
-          <div className="mb-6">
+          <div className="">
             <label className="block mb-2">Change Your Image:</label>
-            <div className="md:flex items-center">
+            <div className="md:flex items-center ">
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleFileChange}
-                className="flex-grow border p-2 mr-2"
+                className="w-full border p-2 mr-2"
               />
             </div>
           </div>
