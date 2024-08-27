@@ -77,7 +77,7 @@ function Home_Second() {
       <section className="bg-white dark:bg-blue-200">
         <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
           <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
-            <h2 className="mb-4 text-4xl tracking-tight font-extrabold bg-gray-800 rounded-2xl dark:text-white border p-3">Level Which is right for you?</h2>
+            <h2 className="mb-4 text-4xl tracking-tight font-extrabold bg-gray-800 rounded-2xl dark:text-white border p-3">Choose a Plan, Which is right for you?</h2>
           </div>
           <div className="space-y-4 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
             {/* Pricing Card */}
