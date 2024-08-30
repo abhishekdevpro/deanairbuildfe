@@ -216,7 +216,7 @@ const ProfilePage = () => {
         </div>
       </div>
       <div className="hidden md:block border-[0.5px] border-gray-500 h-40"></div>
-      <div className="flex flex-col justify-start items-start gap-4 w-full md:w-auto">
+      <div className="flex flex-col justify-start items-start gap-3 mx-1 w-full md:w-auto">
         {resumes.length > 0 && (
           <div key={resumes[0].id} className="border-t border-gray-700 w-full">
             <button
@@ -236,11 +236,11 @@ const ProfilePage = () => {
             accept=".pdf"
             disabled
           />
-          <span className="text-white ml-2">{selectedFile ? selectedFile.name : `Upload .Pdf format resume`}</span>
+          <span className="text-white ml-2">{selectedFile ? selectedFile.name : `Upload .Pdf `}</span>
         </div>
         <Link to="/dashboard/ai-resume-builder">
           <button
-            className="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 w-full md:w-auto"
+            className="bg-blue-500 text-white px-1  py-2 rounded-lg hover:bg-blue-600 w-full md:w-auto"
           >
             Upload Resume
           </button>

@@ -8,7 +8,8 @@ const Template3 = ({
   sectionSpacing,
   paragraphSpacing,
   lineSpacing,
-  predefinedText = {}
+  predefinedText = {},
+  skillsfromapi
 }) => {
   // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';

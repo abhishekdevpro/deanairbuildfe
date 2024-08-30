@@ -221,7 +221,7 @@ const Template1 = ({
       </p>
     </span>
   ))}{skillsfromapi && skillsfromapi.length > 0 && (
-    <p className="text-start ">ds
+    <p className="text-start">
       {skillsfromapi.map((skill, index) => (
         <span key={index}>
           {skill}

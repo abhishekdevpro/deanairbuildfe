@@ -53,6 +53,7 @@ import SearchJobsApply from "./Component/Footer/SearchJobsApply.jsx";
 import AiResumeEnhancer from "./Component/Footer/AiResumeEnhancer.jsx";
 import Templatelist from "./Component/Admin/Templatelist.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
+import Transactions from "./Component/Home/Transations.jsx";
 
 
 const route = createBrowserRouter([
@@ -67,6 +68,10 @@ const route = createBrowserRouter([
       {
         path: "slide/:id",
         element: <Slider_details />,
+      },
+      {
+        path: "transaction",
+        element: <Transactions />,
       },
       {
         path: "login",
