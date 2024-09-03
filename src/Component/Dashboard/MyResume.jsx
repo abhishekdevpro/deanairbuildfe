@@ -58,7 +58,7 @@ const MyResume = () => {
           {
             keyword:
               "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
-            file_location: resume.file_path,
+            file_location: resume.file_path || "/etc/dean_ai_resume/users/resume_uploads/majid[15_0]-1723818329.pdf",
           },
           {
             headers: {
@@ -97,7 +97,7 @@ const MyResume = () => {
           {
             keyword:
               "Rate this resume content in percentage ? and checklist of scope improvements in manner of content and informations",
-            file_location: resume.file_path,
+              file_location: resume.file_path || "/etc/dean_ai_resume/users/resume_uploads/majid[15_0]-1723818329.pdf",
           },
           {
             headers: {

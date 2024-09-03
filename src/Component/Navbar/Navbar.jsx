@@ -138,8 +138,8 @@ const Navbar = () => {
                 </div>
               )}
             </Link>
-            <Link to="https://www.Resume Intellect.ca/blog/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
-            <Link to="https://www.Resume Intellect.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
+            <Link to="https://blog.resumeintellect.com/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
+            <Link to="https://blog.resumeintellect.com/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
             <Link to="/adminlogin" className="text-white px-3 py-2 rounded-md text-lg font-semibold">
               <span className="mr-2">🛡️</span>
               <span>Admin</span>

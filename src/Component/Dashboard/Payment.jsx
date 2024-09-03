@@ -60,9 +60,9 @@ function Payment() {
     
 
   return (
-    <div className="min-h-screen bg-gray-300 flex p-6">
+    <div className="min-h-screen mien bg-gray-300 flex w-full p-2">
          
-      <div className="bg-white shadow-md rounded-lg overflow-hidden w-full">
+      <div className="bg-white shadow-md rounded-lg  w-full">
         <table className="min-w-full leading-normal">
           <thead>
             <tr>
