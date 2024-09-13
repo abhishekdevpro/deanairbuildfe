@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import logo from "./logo.jpg";
 import toast from "react-hot-toast";
 import axios from "axios";
 import "./Login.css";
 
 function Resetpassword() {
-  const { token } = useParams(); // Extract token from URL
+  const { token } = useParams(); // Extract token from URL path
   const [newPassword, setNewPassword] = useState("");
   const navigate = useNavigate();
 
@@ -14,11 +14,16 @@ function Resetpassword() {
     setNewPassword(e.target.value);
   };
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!newPassword) {
       toast.error("New password is required");
+      return;
+    }
+
+    if (!token) {
+      toast.error("Token is missing");
       return;
     }
 
@@ -62,7 +67,7 @@ function Resetpassword() {
         <p className="text-black text-base text-center mb-6">
           People across the globe are joining us to upgrade their career with our Robust AI.
         </p>
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-black mb-2">New Password</label>
             <input

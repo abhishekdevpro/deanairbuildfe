@@ -56,6 +56,7 @@ import PrivateRoute from "./PrivateRoute.jsx";
 import Transactions from "./Component/Home/Transations.jsx";
 import Forgotpassword from "./Component/Login/Forgotpassword.jsx";
 import Resetpassword from "./Component/Login/Resetpassword.jsx";
+import Verifyaccount from "./Component/Login/Verifyaccount.jsx";
 
 
 const route = createBrowserRouter([
@@ -84,8 +85,13 @@ const route = createBrowserRouter([
         element: <Forgotpassword />,
       },
       {
-        path: "reset-password/",
+        path: "user/reset-password/:token",
         element: <Resetpassword />,
+      },
+      {
+        path: "user/verify-account/:token",
+        element: <Verifyaccount />,
+       
       },
       {
         path: "adminlogin",
