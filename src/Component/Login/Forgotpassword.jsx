@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "./logo.jpg";
 import toast from "react-hot-toast";
-import Modal from "./Modal";
-import Signup from "./Signup";
 import axios from "axios";
 import "./Login.css";
 
-function Login() {
-  const [isThirdstepOpen, setThirdstepOpen] = useState(false);
+function Forgotpassword() {
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
   });
   const navigate = useNavigate();
 
@@ -23,30 +19,35 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!formData.email || !formData.password) {
-      toast.error("Email and Password are required");
+    if (!formData.email) {
+      toast.error("Email is required");
       return;
     }
 
+    // Create FormData object and append email
+    const formDataToSend = new FormData();
+    formDataToSend.append("email", formData.email);
+
     try {
       const response = await axios.post(
-        'https://api.resumeintellect.com/api/user/auth/login',
-        formData,
+        'https://api.resumeintellect.com/api/user/forget-password',
+        formDataToSend,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
       );
 
       if (response.status === 200) {
-        toast.success("Login successfully");
+        toast.success("Email sent successfully");
         console.log(response);
-        console.log("Token", response.data.data.token);
-        localStorage.setItem("token", response.data.data.token);
-        localStorage.setItem("email", response.data.data.email);
-
         navigate("/dashboard");
       } else {
-        toast.error("Failed to login");
+        toast.error("Failed to send email");
       }
     } catch (error) {
-      console.error(error);
+      console.error(error.response?.data || error.message || "An error occurred");
       toast.error(error.response?.data?.message || "An error occurred");
     }
   };
@@ -59,13 +60,13 @@ function Login() {
             <img src={logo} className="w-40 h-10" alt="Logo" />
           </div>
           <div className="text-2xl text-black text-center font-bold mb-4">
-            Welcome Back
+            Forgot Password
           </div>
           <p className="text-black text-base text-center mb-6">
             People across the globe are joining us to upgrade their career with our Robust AI.
           </p>
           <form onSubmit={handleLogin}>
-            <div className="mb-4">
+            <div className="m-4">
               <label className="block text-black mb-2">Email ID</label>
               <input
                 type="email"
@@ -77,44 +78,17 @@ function Login() {
                 required
               />
             </div>
-            <div className="mb-4">
-              <label className="block text-black mb-2">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                placeholder="Enter your password"
-                required
-              />
-            </div>
-            <div className="text-center py-2">
-              <button
-                type="button"
-                className="text-blue-500 hover:text-yellow-500"
-                onClick={() => setThirdstepOpen(true)}
-              >
-                New User? Create Account
-              </button>
-            </div>
-            <div className="text-center py-2"><Link to={"/forgotpassword"}>
-              <label className="text-black cursor-pointer">Forgot Password?</label></Link>
-            </div>
             <button
               type="submit"
               className="w-full bg-yellow-500 text-black px-4 py-2 rounded-md hover:bg-yellow-600 transition-colors duration-300"
             >
-              Login
+              Send Email
             </button>
           </form>
         </div>
       </div>
-      <Modal isOpen={isThirdstepOpen} onClose={() => setThirdstepOpen(false)}>
-        <Signup />
-      </Modal>
     </>
   );
 }
 
-export default Login;
+export default Forgotpassword;

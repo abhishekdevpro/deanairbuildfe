@@ -54,6 +54,8 @@ import AiResumeEnhancer from "./Component/Footer/AiResumeEnhancer.jsx";
 import Templatelist from "./Component/Admin/Templatelist.jsx";
 import PrivateRoute from "./PrivateRoute.jsx";
 import Transactions from "./Component/Home/Transations.jsx";
+import Forgotpassword from "./Component/Login/Forgotpassword.jsx";
+import Resetpassword from "./Component/Login/Resetpassword.jsx";
 
 
 const route = createBrowserRouter([
@@ -76,6 +78,14 @@ const route = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "forgotpassword",
+        element: <Forgotpassword />,
+      },
+      {
+        path: "reset-password/",
+        element: <Resetpassword />,
       },
       {
         path: "adminlogin",
