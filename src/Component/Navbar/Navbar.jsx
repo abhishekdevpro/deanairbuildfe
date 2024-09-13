@@ -124,10 +124,9 @@ const Navbar = () => {
           <div className="hidden md:flex justify-center items-center space-x-4" id="nav">
             <Link to="" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
             <Link
-              to="/"
+              to="/signup"
               className="text-white px-3 py-2 rounded-md text-lg font-semibold relative"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
+              
             >
               AI Resume Parsing
               {isHovering && (
@@ -144,7 +143,7 @@ const Navbar = () => {
               <span className="mr-2">🛡️</span>
               <span>Admin</span>
             </Link>
-            <Link to="https://www.Resume Intellect.ca/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">📞 +1 8887936474</Link>
+            <a href="tel:+1 8887936474" className="text-white px-3 py-2 rounded-md text-lg font-semibold">📞 +1 8887936474 </a>
           </div>
           <div className="hidden md:flex justify-center items-center gap-4">
             {isLoggedIn ? (
