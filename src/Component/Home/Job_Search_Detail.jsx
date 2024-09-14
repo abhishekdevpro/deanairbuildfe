@@ -54,6 +54,7 @@
 import React from "react";
 import './Job.css';
 import '../Home/Home.css';
+import { Link } from "react-router-dom";
 
 const CourseDetail = ({ course }) => {
   return (
@@ -75,9 +76,10 @@ const CourseDetail = ({ course }) => {
         </div>
         
         <div className="flex justify-center mt-10">
+        <Link to={"https://blog.resumeintellect.com/"}>
           <button className="px-6 py-3 text-lg font-semibold text-white bg-blue-500 hover:bg-blue-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600">
             Get More Career Advice
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>

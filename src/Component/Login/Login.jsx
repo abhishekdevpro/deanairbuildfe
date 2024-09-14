@@ -9,6 +9,7 @@ import "./Login.css";
 
 function Login() {
   const [isThirdstepOpen, setThirdstepOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for toggling password visibility
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -51,6 +52,10 @@ function Login() {
     }
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword); // Toggle password visibility
+  };
+
   return (
     <>
       <div className="flex justify-center items-center h-screen w-full">
@@ -79,15 +84,24 @@ function Login() {
             </div>
             <div className="mb-4">
               <label className="block text-black mb-2">Password</label>
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
-                placeholder="Enter your password"
-                required
-              />
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"} // Toggle between "text" and "password" types
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Enter your password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={toggleShowPassword}
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                >
+                  {showPassword ? "🕵🏻 Hide " : "👁 View"}
+                </button>
+              </div>
             </div>
             <div className="text-center py-2">
               <button
@@ -98,8 +112,10 @@ function Login() {
                 New User? Create Account
               </button>
             </div>
-            <div className="text-center py-2"><Link to={"/forgotpassword"}>
-              <label className="text-black cursor-pointer">Forgot Password?</label></Link>
+            <div className="text-center py-2">
+              <Link to={"/forgotpassword"}>
+                <label className="text-black cursor-pointer">Forgot Password?</label>
+              </Link>
             </div>
             <button
               type="submit"

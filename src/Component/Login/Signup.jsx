@@ -550,9 +550,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import logo from "./logo.jpg";
-// import "./Login.css"; // Ensure this file exists and is correctly linked
+import "./Login.css"; // Ensure this file exists and is correctly linked
 
 function Signup() {
+  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -569,7 +570,7 @@ function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-  
+
     if (
       !formData.first_name ||
       !formData.last_name ||
@@ -580,7 +581,7 @@ function Signup() {
       toast.error("All fields are required");
       return;
     }
-  
+
     const body = {
       first_name: formData.first_name,
       last_name: formData.last_name,
@@ -588,33 +589,35 @@ function Signup() {
       phone: formData.phone,
       password: formData.password,
     };
-  
-    console.log("Body Data", body);
-  
+
     try {
-      const response = await axios.post("https://api.resumeintellect.com/api/user/auth/signup", body, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-  
-      console.log("Response:", response);
-  
+      const response = await axios.post(
+        "https://api.resumeintellect.com/api/user/auth/signup",
+        body,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
       if (response.status === 200) {
         toast.success("Signup successful!");
-        navigate("/login"); 
+        navigate("/login");
       } else {
         toast.error("Failed to sign up");
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.response?.data?.message || "An error occurred");
     }
   };
-  
+
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center">
       <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg">
         <div className="flex justify-center mb-4">
           <img src={logo} className="w-40 h-10" alt="Logo" />
@@ -651,7 +654,7 @@ function Signup() {
               maxLength={40}
             />
           </div>
-         
+
           <div className="mb-4">
             <label className="block text-black">Email</label>
             <input
@@ -679,7 +682,7 @@ function Signup() {
           <div className="mb-4">
             <label className="block text-black">Password</label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"} // Toggle password visibility
               name="password"
               value={formData.password}
               onChange={handleInputChange}
@@ -689,6 +692,17 @@ function Signup() {
               minLength={6}
               maxLength={12}
             />
+          </div>
+          <div className="mb-4">
+            <label className="flex items-center">
+              <input
+                type="checkbox"
+                checked={showPassword}
+                onChange={toggleShowPassword}
+                className="mr-2"
+              />
+              Show Password
+            </label>
           </div>
           <button
             type="submit"

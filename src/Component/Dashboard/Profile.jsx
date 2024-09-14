@@ -151,14 +151,14 @@ const ProfilePage = () => {
               />
               <div className="text-white">
                 <h2 className="text-xl font-semibold">{formData.first_name || "Benjamin"} {formData.last_name || "Tenison"}</h2>
-                <p>{formData.professional_title || "Web Developer"}</p>
+                <p>{formData.professional_title || "Please update your profile"}</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:ms-20">
               <div>
-                <p className="text-white">📧 {formData.email || "ben@gmail.com"}</p>
-                <p className="text-white">📱 {formData.phone || "12345678"}</p>
-                <p className="text-white">📍 United States, Florida</p>
+                <p className="text-white">📧 {formData.email || "Please update your profile"}</p>
+                <p className="text-white">📱 {formData.phone || "Please update your profile"}</p>
+             
               </div>
             </div>
           </div>

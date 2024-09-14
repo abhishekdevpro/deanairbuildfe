@@ -76,7 +76,7 @@ const ProfileForm = () => {
       if (formData.country_id) {
         try {
           const token = localStorage.getItem("token");
-          const response = await axios.get(`https://api.resumeintellect.com/api/user/states/${country_id}`, {
+          const response = await axios.get(`https://api.resumeintellect.com/api/user/stats/${country_id}`, {
             headers: {
               Authorization: token // Ensure token is included correctly
             },
