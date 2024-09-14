@@ -12,7 +12,8 @@ function Home_first() {
 
   return (
     <>
-      <div className='bg-blue-100'>
+      <div className='bg-blue-100 pt-10'>
+      <a href="tel:+1 8887936474" className="text-black bg-red-300 px-3 py-4 mt-5 rounded-3xl  font-bold text-center sm:hidden ms-20">Call us 📞 +1 8887936474 </a>
         <div className='py-9 px-5 w-screen flex gap-3 md:gap-10 md:justify-evenly items-center flex-col md:flex-row'>
           <div className='px-6 py-3' id='bghome'>
             <Home_Image />
