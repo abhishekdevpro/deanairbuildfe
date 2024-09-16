@@ -69,8 +69,8 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="hidden md:flex justify-center items-center space-x-4">
-            <Link to="/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
-            <Link
+            <Link to="/navbarcontent" className="text-white px-3 py-2 rounded-md text-lg font-semibold">AI Resume Builder</Link>
+           {/* <Link
               to="/signup"
               className="text-white px-3 py-2 rounded-md text-lg font-semibold relative"
               onMouseEnter={handleMouseEnter}
@@ -82,7 +82,7 @@ const Navbar = () => {
                   At Resume Intellect, we leverage cutting-edge AI CV parsing technology to streamline the recruitment process...
                 </div>
               )}
-            </Link>
+            </Link> */}
             <Link to="https://blog.resumeintellect.com/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">Resources</Link>
             <Link to="https://blog.resumeintellect.com/" className="text-white px-3 py-2 rounded-md text-lg font-semibold">About Us</Link>
             <Link to="/adminlogin" className="text-white px-3 py-2 rounded-md text-lg font-semibold">
@@ -154,7 +154,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <Link to="/" className="text-white block px-3 py-2 rounded-md text-base font-semibold" onClick={handleLinkClick}>AI Resume Builder</Link>
-              <Link to="/" className="text-white block px-3 py-2 rounded-md text-base font-semibold" onClick={handleLinkClick}>AI Resume Parsing</Link>
+              {/*//<Link to="/" className="text-white block px-3 py-2 rounded-md text-base font-semibold" onClick={handleLinkClick}>AI Resume Parsing</Link> */}
               <Link to="/" className="text-white block px-3 py-2 rounded-md text-base font-semibold" onClick={handleLinkClick}>Resources</Link>
               <Link to="/" className="text-white block px-3 py-2 rounded-md text-base font-semibold" onClick={handleLinkClick}>About Us</Link>
               <Link to="/" className="text-white block px-3 py-2 rounded-md text-base font-semibold" onClick={handleLinkClick}>Blog</Link>

@@ -40,7 +40,7 @@ function Forgotpassword() {
       );
 
       if (response.status === 200) {
-        toast.success("Email sent successfully");
+        toast.success("Password reset link sent on your email");
         console.log(response);
         navigate("/dashboard");
       } else {

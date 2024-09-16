@@ -96,7 +96,17 @@ const Sidebar1 = ({ onClose }) => {
             onClick={onClose} // Close sidebar on link click
           >
             <span className="mr-2">💷</span>
-            <span>Reffreral User</span>
+            <span>Referral User</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="addreferalladmin"
+            className={getLinkClassName("/admin/addreferalladmin")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <span className="mr-2">💷</span>
+            <span>Add Referral </span>
           </Link>
         </li>
         <li>
@@ -106,7 +116,7 @@ const Sidebar1 = ({ onClose }) => {
             onClick={onClose} // Close sidebar on link click
           >
             <span className="mr-2">💷</span>
-            <span>Reffreral Admin</span>
+            <span>Referral </span>
           </Link>
         </li>
        

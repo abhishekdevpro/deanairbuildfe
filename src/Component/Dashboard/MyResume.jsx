@@ -18,7 +18,7 @@ const MyResume = () => {
   const [locationFromResponse, setLocationFromResponse] = useState(""); 
   const [deleteresumeid,setDeleteresumeid]=useState(null)
   const [isDeleteModalOpen, setisDeleteModalOpen]=useState(false);
-
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const navigate = useNavigate(); // Initialize useNavigate
 
@@ -246,14 +246,38 @@ const handleCloseModal = () => {
                         :  `${resume.ai_resume_score_percentage}` || "Resume score"}
                     </button>
                   </td>
-                  <td className="py-2 px-4">
-                    <button
-                      className="bg-yellow-500 text-white py-1 px-3 rounded"
-                      onClick={() => handleGetSuggestions(resume)}
-                    >
-                      AI
-                    </button>
-                  </td>
+                  <td className="py-2 px-4 ">
+      <button
+        className="bg-yellow-500 text-white py-1 px-3 rounded"
+        onClick={() => handleGetSuggestions('resume')}
+        onMouseEnter={() => setShowDropdown(true)}
+        onMouseLeave={() => setShowDropdown(false)}
+      >
+        AI
+      </button>
+
+      {showDropdown && (
+        <div
+          className="absolute w-96 mt-2  bg-gray-200 border border-gray-300 rounded shadow-lg"
+          onMouseEnter={() => setShowDropdown(true)}  // Keep it open while hovering over the dropdown
+          onMouseLeave={() => setShowDropdown(false)} // Close it when the user leaves
+        >
+          <ul className="p-2 text-start">
+          {resume.ai_suggestion 
+    ? (
+      <ul className="list-disc ml-5">
+        {resume.ai_suggestion.split('||').map((suggestion, index) => (
+          <li key={index}>
+            {suggestion}
+          </li>
+        ))}
+      </ul>
+    )
+    : "Resume score"}
+          </ul>
+        </div>
+      )}
+    </td>
                   <td className="py-2 px-4">
                     {new Date(resume.created_at).toLocaleDateString()}
                   </td>

@@ -39,6 +39,7 @@ import { DownloadProvider } from './components/forms/DownloadContext'; // Import
 import { TemplateProvider } from "./components/forms/TemplateContext.jsx";
 
 import Aboutus from "./Component/Footer/Aboutus.jsx";
+import Navbarcontent from "./Component/Footer/Navbarcontent.jsx";
 import Careers from "./Component/Footer/Careers.jsx";
 import Placement from "./Component/Footer/Placement .jsx";
 import Salarytools from "./Component/Footer/Salarytools.jsx";
@@ -61,6 +62,7 @@ import Subscriberslist from "./Component/Admin/Subscriberslist.jsx";
 import Reffreraladmin from "./Component/Admin/Reffreraladmin.jsx";
 import Reffreraluser from "./Component/Admin/Reffreraluser.jsx";
 import Reffrerallist from "./Component/Dashboard/Reffrerallist.jsx";
+import Addreferalladmin from "./Component/Admin/Addreferalladmin.jsx";
 
 
 const route = createBrowserRouter([
@@ -108,6 +110,10 @@ const route = createBrowserRouter([
       {
         path: "aboutus",
         element: <Aboutus />,
+      },
+      {
+        path: "navbarcontent",
+        element: <Navbarcontent />,
       },
       {
         path: "careers",
@@ -279,6 +285,10 @@ const route = createBrowserRouter([
           {
             path: "changepassword1",
             element: <Changepassword1 />,
+          },
+          {
+            path: "addreferalladmin",
+            element: <Addreferalladmin />,
           },
         ],
       },

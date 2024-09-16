@@ -22,6 +22,8 @@ const ProfileForm = () => {
   const [states, setStates] = useState([]);
   const [cities, setCities] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Track loading state
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -83,7 +85,12 @@ const ProfileForm = () => {
           });
           if (response.data.status === 'success') {
             setStates(response.data.data);
-          } else {
+           
+          }
+          else if(response.data.message === 'Records not found'){
+              toast.error("state not availabe")
+          }
+          else {
             console.error('API Error:', response.data.message);
           }
         } catch (error) {
@@ -99,17 +106,28 @@ const ProfileForm = () => {
   useEffect(() => {
     const fetchCities = async () => {
       if (formData.state_id) {
+        setLoading(true); // Set loading state to true
         try {
           const citiesResponse = await axios.get(`https://api.resumeintellect.com/api/user/cities/${formData.state_id}`);
+          
           if (citiesResponse.data.status === 'success') {
-            setCities(citiesResponse.data.data);
+            if (citiesResponse.data.message === "Records not found") {
+              setCities([]); // Set cities to an empty array if no records are found
+              setError("No cities found for the selected state.");
+            } else {
+              setCities(citiesResponse.data.data); // Set cities if data is found
+              setError(null); // Clear any previous error
+            }
           }
         } catch (error) {
           console.error('Error fetching cities:', error);
+          setError("An error occurred while fetching cities."); // Set error message
+        } finally {
+          setLoading(false); // Set loading to false when done
         }
       }
     };
-
+  
     fetchCities();
   }, [formData.state_id]);
 
@@ -373,11 +391,19 @@ const ProfileForm = () => {
                 disabled={!formData.state_id}
               >
                 <option value="">Select a city</option>
-                {cities.map((city) => (
-                  <option key={city.id} value={city.id}>
-                    {city.name}
-                  </option>
-                ))}
+               {loading ? (
+      <option disabled>Loading cities...</option>
+    ) : error ? (
+      <option disabled>{error}</option> // Show error if available
+    ) : cities.length > 0 ? (
+      cities.map((city) => (
+        <option key={city.id} value={city.id}>
+          {city.name}
+        </option>
+      ))
+    ) : (
+      <option disabled>No cities available</option> // Show when no cities are found
+    )}
               </select>
             </div>
           </div>

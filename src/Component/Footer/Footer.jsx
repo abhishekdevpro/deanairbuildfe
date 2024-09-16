@@ -77,7 +77,7 @@ const Footer = () => {
                 <div className="w-full md:w-auto mb-6 md:mb-0">
                     <h2 className="text-lg font-bold text-white">Support</h2>
                     <ul>
-                        <li><a href="https://www.Resume Intellect.ca/#contact" className="">Contact</a></li>
+                        {/*//<li><a href="https://www.Resume Intellect.ca/#contact" className="">Contact</a></li> */}
                         <li><a href="/Salarytools" className="">Salary Tool</a></li>
                    
                         <li><a href="/TermsandConditions" className="">Terms & Conditions</a></li>

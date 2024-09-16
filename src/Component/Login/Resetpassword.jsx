@@ -7,17 +7,18 @@ import "./Login.css";
 
 function Resetpassword() {
   const { token } = useParams(); // Extract token from URL path
-  const [newPassword, setNewPassword] = useState("");
+  const [new_password, setnew_password] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
-    setNewPassword(e.target.value);
+    setnew_password(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!newPassword) {
+    if (!new_password) {
       toast.error("New password is required");
       return;
     }
@@ -27,10 +28,10 @@ function Resetpassword() {
       return;
     }
 
-    // Create FormData object and append token and newPassword
+    // Create FormData object and append token and new_password
     const formData = new FormData();
     formData.append("token", token);
-    formData.append("newPassword", newPassword);
+    formData.append("new_password", new_password);
 
     try {
       const response = await axios.post(
@@ -55,6 +56,10 @@ function Resetpassword() {
     }
   };
 
+  const toggleShowPassword = () => {
+    setShowPassword(!showPassword); // Toggle password visibility
+  };
+
   return (
     <div className="flex justify-center items-center h-screen w-full">
       <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg bg-white">
@@ -68,17 +73,25 @@ function Resetpassword() {
           People across the globe are joining us to upgrade their career with our Robust AI.
         </p>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-black mb-2">New Password</label>
+        <label className="block text-black mb-2">New Password</label>
+        <div className="relative mb-3">
+           
             <input
-              type="password"
-              name="newPassword"
-              value={newPassword}
+               type={showPassword ? "text" : "password"} 
+              name="new_password"
+              value={new_password}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
               placeholder="Enter your new password"
               required
             />
+             <button
+                  type="button"
+                  onClick={toggleShowPassword}
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                >
+                  {showPassword ? "🕵🏻 Hide " : "👁 View"}
+                </button>
           </div>
           <button
             type="submit"

@@ -463,12 +463,12 @@ return (<div>
                     return (
                       <>
                         <Experience
-                       company={resumeData.employmenthistory[1]?.company}
-                       dates={resumeData.employmenthistory[0]?.dates}
-location={resumeData.employmenthistory[0]?.location}
-position={resumeData.employmenthistory[0]?.position}
-summary={resumeData.employmenthistory[0]?.responsibilities}
-start_date={resumeData.employmenthistory[0]?.start_date}
+                       company={resumeData.employmenthistory?.company || "test"}
+                       dates={resumeData.employmenthistory?.dates}
+location={resumeData.employmenthistory?.location}
+position={resumeData.employmenthistory?.position}
+summary={resumeData.employmenthistory?.responsibilities}
+start_date={resumeData.employmenthistory?.start_date}
                           experiences={formData.experiences}
                           handleInputChange={handleInputChange}
                           handleKeyPress={handleKeyPress}
