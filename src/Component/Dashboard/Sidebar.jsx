@@ -89,6 +89,16 @@ const Sidebar = ({ onClose }) => {
         </li>
         <li>
           <Link
+            to="reffrerallist"
+            className={getLinkClassName("/dashboard/reffrerallist")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <span className="mr-2">👥</span>
+            <span>Referral List</span>
+          </Link>
+        </li>
+        <li>
+          <Link
             to="payment"
             className={getLinkClassName("/dashboard/payment")}
             onClick={onClose} // Close sidebar on link click

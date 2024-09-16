@@ -12,11 +12,14 @@ function Uploadresume() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState(''); // New state variable for file name
   const [idFromResponse, setIdFromResponse] = useState(null); // State variable to hold the id
   const [locationFromResponse, setlocationFromResponse] = useState(null); 
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFileName(selectedFile ? selectedFile.name : ''); // Set file name
   };
 
   const handleUpload = async () => {
@@ -80,19 +83,18 @@ function Uploadresume() {
       setLoading(false);
     }
   };
-  
 
   return (
     <>
-      {loading ? (<>
-        <div className="text-center pt-10">Please wait for while...</div>
-        <div className="flex items-center justify-center h-screen">
-          
-          <div className="border-t-8 border-violet-800 rounded-full w-40 h-40 animate-spin"></div>
-        </div>
-      </>
+      {loading ? (
+        <>
+          <div className="text-center pt-10">Please wait for while...</div>
+          <div className="flex items-center justify-center h-screen">
+            <div className="border-t-8 border-violet-800 rounded-full w-40 h-40 animate-spin"></div>
+          </div>
+        </>
       ) : (
-        <>{console.log(locationFromResponse,'dasd')}
+        <>
           <div className="h-screen">
             <div className="text-center my-10">
               <h1 className="font-bold text-3xl mb-3">How do you want to build your resume?</h1>
@@ -102,18 +104,19 @@ function Uploadresume() {
                 <img src={upload} alt="" style={{ height: '50px' }} className="ms-24" />
                 <h1 className="font-bold text-xl mt-2 mb-3 text-slate-700">Drag and drop a file here</h1>
                 <input 
-  type="file" 
-  onChange={handleFileChange} 
-  className="hidden" 
-  id="file-upload" 
-  accept=".pdf"
-/>
-
+                  type="file" 
+                  onChange={handleFileChange} 
+                  className="hidden" 
+                  id="file-upload" 
+                  accept=".pdf"
+                />
                 <label htmlFor="file-upload" className="cursor-pointer text-white px-4 rounded-full py-1 text-xs" style={{ backgroundColor: '#022B5F' }}>Browse</label>
+               {/* Display the file name */}
               </div>
             </div>
             <div className="text-center">
               <h3 className="text-xs"><strong>Files we can read: PDF</strong></h3>
+              {fileName && <div className="mt-2 text-gray-700 bg-gray-200 rounded-3xl p-2 mx-96">Selected file: {fileName}</div>} 
             </div>
             <div className="text-center mt-10">
               <button className="px-10 rounded-full py-2 text-lg text-violet-950 font-bold border border-violet-950" onClick={handleUpload}>Submit</button>
@@ -122,7 +125,6 @@ function Uploadresume() {
               <button className="px-10 rounded-full py-2 text-lg text-violet-950 font-bold border border-violet-950" onClick={() => navigate('/dashboard/ai-resume-builder')}>Back</button>
             </div>
           </div>
-       
           <ToastContainer />
         </>
       )}

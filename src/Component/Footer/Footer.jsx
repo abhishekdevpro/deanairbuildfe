@@ -1,11 +1,43 @@
 import React from 'react';
 import './Footer.css';
 import logo from './logo.jpg'
-
+import { useState } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { ToastContainer } from 'react-toastify';
 const Footer = () => {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+  
+    const handleSubmit = (e) => {
+        e.preventDefault(); // Prevent form default behavior
+    
+        // Sending raw JSON data in the POST request
+        axios.post('https://api.resumeintellect.com/api/user/user-subscribe', 
+          JSON.stringify({ email }), // Sending email in raw JSON
+          {
+            headers: {
+              'Content-Type': 'application/json', // Specify raw JSON
+            },
+          }
+        )
+          .then(response => {
+            // Handle the response, show a success message
+            setMessage('Subscribed successfully!');
+            toast.success('Subscribed successfully!');
+          })
+          .catch(error => {
+            // Handle the error, show an error message
+            setMessage('Subscription failed. Please try again.');
+            console.error('Error subscribing:', error);
+          });
+      };
+
+    
+
     return (
       <>
-      
+      <ToastContainer/>
         <footer className=" bg-black text-white py-8" id='footerbg'>
             <div className="container mx-auto flex flex-col gap-7 justify-between px-6">
               <div className=' flex flex-wrap justify-between px-2 md:px-[65px]'>
@@ -15,10 +47,20 @@ const Footer = () => {
                 </div>
                 <div className="w-full md:w-auto mb-6 md:mb-0">
                     <h2 className="text-lg font-semibold text-white">Get Our Weekly</h2>
-                    <form className="flex flex-col md:flex-row gap-3">
-                        <input type="email" placeholder="Type your email..." required className="p-2  rounded" />
-                        <button type="submit" className="md:px-4 md:py-1 p-1 rounded-full bg-white text-black hover:bg-orange-500">Subscribe</button>
-                    </form>
+                    <form onSubmit={handleSubmit} className="flex flex-col md:flex-row gap-3">
+        <input 
+          type="email" 
+          placeholder="Type your email..." 
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}  // Update the email state
+          required 
+          className="p-2 rounded text-black" 
+        />
+        <button type="submit" className="md:px-4 md:py-1 p-1 rounded-full bg-white text-black hover:bg-orange-500">
+          Subscribe
+        </button>
+      </form>
+      {message && <p>{message}</p>} {/* Display message */}
                 </div>
                 </div>
                 <br/>

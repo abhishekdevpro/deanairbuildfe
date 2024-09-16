@@ -29,9 +29,13 @@ const ProfilePage = () => {
     city_id: '',
     uploadPhoto: null
   });
+  
 
   useEffect(() => {
     const fetchData = async () => {
+
+
+      
       try {
         const token = localStorage.getItem("token");
         const userProfileResponse = await axios.get('https://api.resumeintellect.com/api/user/user-profile', {
@@ -145,19 +149,19 @@ const ProfilePage = () => {
           <div className="space-y-4 mb-6 md:mb-0 md:mr-6 md:pr-6 w-full">
             <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
               <img
-                src={`https://api.resumeintellect.com/${formData.photo}`}
+                src={`https://api.resumeintellect.com/${formData.photo}` || "https://www.kindpng.com/picc/m/252-2524695_dummy-profile-image-jpg-hd-png-download.png"}
                 alt="Please Upload Profile Photo"
                 className="w-20 h-20 rounded-full mb-4 md:mb-0"
               />
               <div className="text-white">
                 <h2 className="text-xl font-semibold">{formData.first_name || "Benjamin"} {formData.last_name || "Tenison"}</h2>
-                <p>{formData.professional_title || "Please update your profile"}</p>
+                <p>{formData.professional_title || "Please update your profile!"}</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:ms-20">
               <div>
-                <p className="text-white">📧 {formData.email || "Please update your profile"}</p>
-                <p className="text-white">📱 {formData.phone || "Please update your profile"}</p>
+                <p className="text-white">📧 {formData.email || "Please update your profile!"}</p>
+                <p className="text-white">📱 {formData.phone || "Please update your profile!"}</p>
              
               </div>
             </div>

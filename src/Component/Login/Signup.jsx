@@ -570,7 +570,7 @@ function Signup() {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
+  
     if (
       !formData.first_name ||
       !formData.last_name ||
@@ -581,7 +581,7 @@ function Signup() {
       toast.error("All fields are required");
       return;
     }
-
+  
     const body = {
       first_name: formData.first_name,
       last_name: formData.last_name,
@@ -589,7 +589,7 @@ function Signup() {
       phone: formData.phone,
       password: formData.password,
     };
-
+  
     try {
       const response = await axios.post(
         "https://api.resumeintellect.com/api/user/auth/signup",
@@ -600,9 +600,19 @@ function Signup() {
           },
         }
       );
-
+  
       if (response.status === 200) {
         toast.success("Signup successful!");
+        
+        // Clear the form fields
+        setFormData({
+          first_name: "",
+          last_name: "",
+          email: "",
+          phone: "",
+          password: "",
+        });
+  
         navigate("/login");
       } else {
         toast.error("Failed to sign up");
@@ -611,6 +621,7 @@ function Signup() {
       toast.error(error.response?.data?.message || "An error occurred");
     }
   };
+  
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);

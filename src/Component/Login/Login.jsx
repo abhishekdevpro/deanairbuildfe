@@ -41,7 +41,7 @@ function Login() {
         console.log("Token", response.data.data.token);
         localStorage.setItem("token", response.data.data.token);
         localStorage.setItem("email", response.data.data.email);
-
+console.log( response.data.data.token)
         navigate("/dashboard");
       } else {
         toast.error("Failed to login");

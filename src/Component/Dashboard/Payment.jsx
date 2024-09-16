@@ -144,10 +144,10 @@ function Payment() {
                                 <p className="text-gray-600">✔️ Copy and paste content from site</p>
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Copy and paste content from site</p>
+                                <p className="text-gray-600">✔️ Receive resume in pdf and docs</p>
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Copy and paste content from site</p>
+                            <p className="text-gray-600">✔️ Receive resume in pdf and docs</p>
                             </td>
                         </tr>
                         <tr className='text-center'>
@@ -158,11 +158,12 @@ function Payment() {
                                 <p className="text-gray-600">✔️ Unlimited resumes edits</p>
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Unlimited resumes edits</p>
+                                <p className="text-gray-600">✔️ Cover letter included</p>
                             </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Unlimited resumes edits</p>
+                            <p className="text-gray-600">✔️ Cover letter included</p>
                             </td>
+                          
                         </tr>
 
 
@@ -173,14 +174,14 @@ function Payment() {
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p className="text-gray-600">✔️ Save resume as pdf and docs</p>
                             </td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-600">✔️ 3 revisions included</p>
+                            </td>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-600">✔️ 3 revisions included</p>
+                            </td>
                             
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Save resume as pdf and docs</p>
-                            </td>
-
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Save resume as pdf and docs</p>
-                            </td>
+                           
                             
                         </tr>
                         <tr className='text-center'>
@@ -192,11 +193,11 @@ function Payment() {
                             </td>
                             
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Download fully formatted Resume</p>
+                                <p className="text-gray-600">✔️ Speak one on one with writer</p>
                             </td>
 
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Download fully formatted Resume</p>
+                            <p className="text-gray-600">✔️ Speak one on one with writer</p>
                             </td>
                             
                         </tr>
@@ -209,32 +210,16 @@ function Payment() {
                             </td>
                             
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Unlimited resumes downloads</p>
+                                <p className="text-gray-600">✔️ Final Delivery 1 week</p>
                             </td>
 
                              
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✔️ Unlimited resumes downloads</p>
+                                <p className="text-gray-600">✔️Final Delivery 1 week</p>
                             </td>
                             
                         </tr>
-                        <tr className='text-center'>
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✖️ </p>
-                            </td>
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600">✖️ </p>
-                            </td>
-                            
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600"> ✔️ Save multiple Variants of resumes</p>
-                            </td>
-
-                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                <p className="text-gray-600"> ✔️ Save multiple Variants of resumes</p>
-                            </td>
-                            
-                        </tr>
+                      
                     </tbody>
 
                     

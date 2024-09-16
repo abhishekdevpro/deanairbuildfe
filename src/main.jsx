@@ -57,6 +57,10 @@ import Transactions from "./Component/Home/Transations.jsx";
 import Forgotpassword from "./Component/Login/Forgotpassword.jsx";
 import Resetpassword from "./Component/Login/Resetpassword.jsx";
 import Verifyaccount from "./Component/Login/Verifyaccount.jsx";
+import Subscriberslist from "./Component/Admin/Subscriberslist.jsx";
+import Reffreraladmin from "./Component/Admin/Reffreraladmin.jsx";
+import Reffreraluser from "./Component/Admin/Reffreraluser.jsx";
+import Reffrerallist from "./Component/Dashboard/Reffrerallist.jsx";
 
 
 const route = createBrowserRouter([
@@ -89,7 +93,7 @@ const route = createBrowserRouter([
         element: <Resetpassword />,
       },
       {
-        path: "user/verify-account/:token",
+        path: "user/verify/:token",
         element: <Verifyaccount />,
        
       },
@@ -186,6 +190,10 @@ const route = createBrowserRouter([
             element: <Addreferall />,
           },
           {
+            path: "reffrerallist",
+            element: <Reffrerallist />,
+          },
+          {
             path: "changepassword",
             element: <Changepassword />,
           },
@@ -244,9 +252,18 @@ const route = createBrowserRouter([
             element: <Payment1 />,
           },
           {
-            path: "paymentpage1",
-            element: <Paymentpage1 />,
+            path: "subscriberslist",
+            element: <Subscriberslist />,
           },
+          {
+            path: "reffreraluser",
+            element: <Reffreraluser />,
+          },
+          {
+            path: "reffreraladmin",
+            element: <Reffreraladmin />,
+          },
+          
           {
             path: "addreferall1",
             element: <Addreferall1 />,

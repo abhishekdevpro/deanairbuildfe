@@ -79,6 +79,36 @@ const Sidebar1 = ({ onClose }) => {
             <span>Payment</span>
           </Link>
         </li>
+        <li>
+          <Link
+            to="subscriberslist"
+            className={getLinkClassName("/admin/subscriberslist")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <span className="mr-2">💷</span>
+            <span>Subscribers List</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="reffreraluser"
+            className={getLinkClassName("/admin/reffreraluser")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <span className="mr-2">💷</span>
+            <span>Reffreral User</span>
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="reffreraladmin"
+            className={getLinkClassName("/admin/reffreraladmin")}
+            onClick={onClose} // Close sidebar on link click
+          >
+            <span className="mr-2">💷</span>
+            <span>Reffreral Admin</span>
+          </Link>
+        </li>
        
         <li>
           

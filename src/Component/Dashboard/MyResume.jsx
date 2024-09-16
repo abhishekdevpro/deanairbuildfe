@@ -234,7 +234,7 @@ const handleCloseModal = () => {
                   <td className=" ">{index + 1}.</td>
 
                   <td className="py-2 float-start ">
-                    {getFileName(resume.file_path) || "Resume joe"}
+                 { `${resume.resue_name}` || "Resume score"}
                   </td>
                   <td className="py-2 px-4">
                     <button
@@ -243,7 +243,7 @@ const handleCloseModal = () => {
                     >
                       {scores[resume.id] !== undefined
                         ? scores[resume.id]
-                        : "Resume Score"}
+                        :  `${resume.ai_resume_score_percentage}` || "Resume score"}
                     </button>
                   </td>
                   <td className="py-2 px-4">
@@ -275,7 +275,7 @@ const handleCloseModal = () => {
                     </div>
                   </td>
                   <td className="py-2 px-4">
-                    Comming Soon
+                    Coming Soon
                   </td>
                 </tr>
               )) ) : (

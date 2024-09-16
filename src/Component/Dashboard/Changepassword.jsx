@@ -37,11 +37,14 @@ function Changepassword() {
       data: requestBody,
     })
       .then((response) => {
-        console.log(response);
+        console.log(response.data.message);
         toast("✅ Password has been changed successfully");
       })
-      .catch((err) => console.log(err));
-    toast("❌ Something went wrong please try again ");
+      .catch((err) => {
+        console.log(err.data)
+        toast("❌ Something went wrong please try again ");
+      });
+    
   };
 
   return (

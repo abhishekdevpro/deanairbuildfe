@@ -76,27 +76,25 @@ const ProfileForm = () => {
       if (formData.country_id) {
         try {
           const token = localStorage.getItem("token");
-          const response = await axios.get(`https://api.resumeintellect.com/api/user/stats/${country_id}`, {
+          const response = await axios.get(`https://api.resumeintellect.com/api/user/stats/${formData.country_id}`, {
             headers: {
-              Authorization: token // Ensure token is included correctly
+              Authorization: token, // Ensure token is included correctly
             },
           });
           if (response.data.status === 'success') {
             setStates(response.data.data);
           } else {
             console.error('API Error:', response.data.message);
-            
           }
         } catch (error) {
           console.error('Request Error:', error);
-       
         }
       }
     };
-    
-
+  
     fetchStates();
   }, [formData.country_id]);
+  
 
   useEffect(() => {
     const fetchCities = async () => {
