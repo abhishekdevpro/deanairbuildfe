@@ -155,13 +155,13 @@ const ProfilePage = () => {
               />
               <div className="text-white">
                 <h2 className="text-xl font-semibold">{formData.first_name || "Benjamin"} {formData.last_name || "Tenison"}</h2>
-                <p>{formData.professional_title || "Please update your profile!"}</p>
+                <p>{formData.professional_title || "Please update your Profile Title!"}</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:ms-20">
               <div>
-                <p className="text-white">📧 {formData.email || "Please update your profile!"}</p>
-                <p className="text-white">📱 {formData.phone || "Please update your profile!"}</p>
+                <p className="text-white">📧 {formData.email || "Please update your [Email]"}</p>
+                <p className="text-white">📱 {formData.phone || "Please update your [Phone]"}</p>
              
               </div>
             </div>

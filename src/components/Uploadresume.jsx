@@ -47,7 +47,7 @@ function Uploadresume() {
         },
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          toast.info(`Upload progress: ${percentCompleted}%`);
+          console.log(`Upload progress: ${percentCompleted}%`);
         }
       });
   
