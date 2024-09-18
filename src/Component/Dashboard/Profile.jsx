@@ -154,7 +154,7 @@ const ProfilePage = () => {
                 className="w-20 h-20 rounded-full mb-4 md:mb-0"
               />
               <div className="text-white">
-                <h2 className="text-xl font-semibold">{formData.first_name || "Benjamin"} {formData.last_name || "Tenison"}</h2>
+                <h2 className="text-xl font-semibold">{formData.first_name || "Please update your [Name]"} {formData.last_name || "!"}</h2>
                 <p>{formData.professional_title || "Please update your Profile Title!"}</p>
               </div>
             </div>

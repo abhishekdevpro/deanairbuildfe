@@ -115,7 +115,7 @@ function Home_Second() {
 
 
       const emailset = localStorage.getItem('email');
-      const isTestUser = emailset === 'testuser@gmail.com'
+     // const isTestUser = emailset === 'testuser@gmail.com'
 
   return (
     <>
@@ -418,6 +418,7 @@ function Home_Second() {
             </div>
 
 
+           {/*
             {isTestUser && (
         <div className="flex flex-col p-6 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 dark:text-white">
           <h3 className="mb-4 text-2xl font-bold">Testing Card</h3>
@@ -475,6 +476,7 @@ function Home_Second() {
         </div>
       )}
 
+           */}
 
 
           </div>
