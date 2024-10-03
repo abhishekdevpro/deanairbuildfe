@@ -15,52 +15,52 @@ import "../../Component/Admin/Template.css"
 
 const Templatelist = () => {
   const boxes = [
-    <Link to="/dashboard/ai-resume-builder" key="box1">
+    <Link to="" key="box1">
       <div className="bg-violet-900 shadow-indigo-900 shadow-xl rounded-lg text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template1} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box2">
+    <Link to="" key="box2">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template2} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box3">
+    <Link to="" key="box3">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template3} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box4">
+    <Link to="" key="box4">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template4} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box5">
+    <Link to="" key="box5">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template5} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box6">
+    <Link to="" key="box6">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template6} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box7">
+    <Link to="" key="box7">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template7} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box8">
+    <Link to="" key="box8">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template8} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box9">
+    <Link to="" key="box9">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template9} style={{height:"300px", width:"240px"}} alt=''/>
       </div>
     </Link>,
-    <Link to="/dashboard/ai-resume-builder" key="box10">
+    <Link to="" key="box10">
       <div className="bg-violet-900 rounded-lg shadow-xl shadow-indigo-900 text-center text-white cursor-pointer text-3xl font-semibold box-hover-effect">
         <img src={template10} style={{height:"300px", width:"240px"}} alt=''/>
       </div>

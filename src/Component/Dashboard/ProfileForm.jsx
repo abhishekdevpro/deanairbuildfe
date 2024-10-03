@@ -236,7 +236,7 @@ const ProfileForm = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block mb-2">First Name:</label>
+              <label className="block mb-2">First Name*</label>
               <input
                 type="text"
                 name="first_name"
@@ -247,7 +247,7 @@ const ProfileForm = () => {
               />
             </div>
             <div>
-              <label className="block mb-2">Last Name:</label>
+              <label className="block mb-2">Last Name*</label>
               <input
                 type="text"
                 name="last_name"
@@ -258,7 +258,7 @@ const ProfileForm = () => {
               />
             </div>
             <div>
-              <label className="block mb-2">Professional Title:</label>
+              <label className="block mb-2">Professional Title*</label>
               <input
                 type="text"
                 name="professional_title"
@@ -269,7 +269,7 @@ const ProfileForm = () => {
               />
             </div>
             <div>
-              <label className="block mb-2">Languages:</label>
+              <label className="block mb-2">Languages*</label>
               <input
                 type="text"
                 name="languages"
@@ -280,7 +280,7 @@ const ProfileForm = () => {
               />
             </div>
             <div>
-              <label className="block mb-2">Age:</label>
+              <label className="block mb-2">Age*</label>
               <input
                 type="number"
                 name="age"
@@ -316,7 +316,7 @@ const ProfileForm = () => {
               />
             </div>
             <div className="md:col-span-2">
-              <label className="block mb-2">Description:</label>
+              <label className="block mb-2">Description*</label>
               <textarea
                 name="description"
                 value={formData.description}

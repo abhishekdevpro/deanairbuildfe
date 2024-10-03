@@ -112,7 +112,7 @@ const Navbar = () => {
                       className="block px-4 py-2 hover:bg-gray-200"
                       onClick={() => setIsDropdownOpen(false)}
                     >
-                      Dashboard
+                      Home 
                     </Link>
                     <Link 
                       to="/dashboard/profile"
