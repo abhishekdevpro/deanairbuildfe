@@ -87,7 +87,19 @@ function Payment() {
                  
                 </div>
               </th>
-           
+              <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600  tracking-wider">
+                <div className="text-center">
+                  <p className="text-lg font-bold">Expert human writer</p>
+                  
+                  <span className=" text-violet-900 font-bold text-lg"> $269</span> <span className=" text-violet-900 ">/Resume </span><br/>
+                  <button
+                   className='bg-green-700 text-white p-2 px-5 rounded-lg m-4 disabled:'
+                   onClick={handleChoosePlan3} 
+                  >
+                    Choose this plan
+                  </button>
+                </div>
+              </th>
 
               <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600  tracking-wider">
                 <div className="text-center">
@@ -114,7 +126,9 @@ function Payment() {
                                 <p className="text-gray-600"> ✔️ Create optimized resumes</p>
                             </td>
                             
-                          
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-600"> ✔️ Create optimized resumes</p>
+                            </td>
 
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p className="text-gray-600"> ✔️ Create optimized resumes</p>
@@ -129,7 +143,9 @@ function Payment() {
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p className="text-gray-600">✔️ Copy and paste content from site</p>
                             </td>
-                           
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-600">✔️ Receive resume in pdf and docs</p>
+                            </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-600">✔️ Receive resume in pdf and docs</p>
                             </td>
@@ -141,7 +157,9 @@ function Payment() {
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p className="text-gray-600">✔️ Unlimited resumes edits</p>
                             </td>
-                           
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-600">✔️ Cover letter included</p>
+                            </td>
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                             <p className="text-gray-600">✔️ Cover letter included</p>
                             </td>
@@ -159,7 +177,9 @@ function Payment() {
                             <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <p className="text-gray-600">✔️ 3 revisions included</p>
                             </td>
-                           
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-600">✔️ 3 revisions included</p>
+                            </td>
                             
                            
                             
@@ -176,7 +196,9 @@ function Payment() {
                                 <p className="text-gray-600">✔️ Speak one on one with writer</p>
                             </td>
 
-                           
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p className="text-gray-600">✔️ Speak one on one with writer</p>
+                            </td>
                             
                         </tr>
                         <tr className='text-center'>
@@ -192,7 +214,9 @@ function Payment() {
                             </td>
 
                              
-                          
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-600">✔️Final Delivery 1 week</p>
+                            </td>
                             
                         </tr>
                       
