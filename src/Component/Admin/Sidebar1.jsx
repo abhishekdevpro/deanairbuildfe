@@ -85,7 +85,7 @@ const Sidebar1 = ({ onClose }) => {
             className={getLinkClassName("/admin/subscriberslist")}
             onClick={onClose} // Close sidebar on link click
           >
-            <span className="mr-2">💷</span>
+            <span className="mr-2">🔔</span>
             <span>Subscribers List</span>
           </Link>
         </li>

@@ -63,6 +63,7 @@ import Reffreraladmin from "./Component/Admin/Reffreraladmin.jsx";
 import Reffreraluser from "./Component/Admin/Reffreraluser.jsx";
 import Reffrerallist from "./Component/Dashboard/Reffrerallist.jsx";
 import Addreferalladmin from "./Component/Admin/Addreferalladmin.jsx";
+import Skillhistory from "./Component/Dashboard/Skillhistory.jsx";
 
 
 const route = createBrowserRouter([
@@ -222,6 +223,10 @@ const route = createBrowserRouter([
           {
             path: "skilltest",
             element: <Skills />,
+          },
+          {
+            path: "skillhistory",
+            element: <Skillhistory />,
           },
           {
             path: "testpaper/:skillId/:skillName",
