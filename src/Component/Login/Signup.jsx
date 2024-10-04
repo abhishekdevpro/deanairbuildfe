@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import logo from "./logo.jpg";
 import "./Login.css"; // Ensure this file exists and is correctly linked
@@ -84,7 +84,7 @@ function Signup() {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg">
+      <div className="p-8 rounded-xl shadow-lg shadow-slate-700 w-full max-w-lg m-5">
         <div className="flex justify-center mb-4">
           <img src={logo} className="w-40 h-10" alt="Logo" />
         </div>
@@ -92,7 +92,8 @@ function Signup() {
           Create an Account
         </div>
         <form onSubmit={handleSignup}>
-          <div className="mb-4">
+       <div className="flex gap-7 mt-2">
+       <div className="mb-4">
             <label className="block text-black">First Name*</label>
             <input
               type="text"
@@ -120,6 +121,7 @@ function Signup() {
               maxLength={40}
             />
           </div>
+       </div>
 
           <div className="mb-4">
             <label className="block text-black">Email*</label>
@@ -147,29 +149,28 @@ function Signup() {
           </div>
           <div className="mb-4">
             <label className="block text-black">Password*</label>
-            <input
-              type={showPassword ? "text" : "password"} // Toggle password visibility
-              name="password"
-              value={formData.password}
-              onChange={handleInputChange}
-              className="w-full px-3 py-2 border rounded-md"
-              placeholder="Enter your password"
-              required
-              minLength={6}
+            <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"} // Toggle between "text" and "password" types
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                  placeholder="Enter your password"
+                  required
+                  minLength={6}
               maxLength={30}
-            />
+                />
+                <button
+                  type="button"
+                  onClick={toggleShowPassword}
+                  className="absolute inset-y-0 right-3 flex items-center text-gray-500"
+                >
+                  {showPassword ? "🕵🏻 Hide " : "👁 View"}
+                </button>
+              </div>
           </div>
-          <div className="mb-4">
-            <label className="flex items-center">
-              <input
-                type="checkbox"
-                checked={showPassword}
-                onChange={toggleShowPassword}
-                className="mr-2"
-              />
-              Show Password
-            </label>
-          </div>
+          
           <div className="mb-4">
             <label className="flex items-center">
               <input
@@ -178,7 +179,7 @@ function Signup() {
                 required
                 className="mr-2"
               />
-              Agree to terms & conditions
+            <Link to={"/TermsandConditions"}> Agree to terms & conditions</Link> 
             </label>
           </div>
           <button
